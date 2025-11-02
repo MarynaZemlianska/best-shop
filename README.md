@@ -1,3 +1,4 @@
+
 # Fundamentals Project Template
 
 This is a multi-page frontend project template using HTML, SCSS, and JavaScript.  
@@ -50,5 +51,4 @@ npm run dev
 
 The npm run dev script automatically compiles all .scss files into dist/style.css and watches for changes.
 After this, you can open index.html or any other page of the project in your browser.
-
 
