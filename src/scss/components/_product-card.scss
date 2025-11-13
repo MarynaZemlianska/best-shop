@@ -1,0 +1,147 @@
+/* ----------------- Travel Cards ----------------- */
+.travel-cards {
+  text-align: center;
+  margin-bottom: 80px;
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 30px;
+  }
+
+.travel-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 296px); /* ровно 4 колонки */
+  gap: 24px;
+  justify-content: center; /* центрируем ряд */
+  margin: 0 auto;
+  max-width: calc(4 * 296px + 3 * 24px); /* точно вмещаем 4 карточки */
+}
+
+.travel-card {
+  width: 296px;
+  height: 600px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(28,28,28,0.06);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
+      z-index: 1;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+    }
+
+    h4 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+/* ----------------- Selected Products ----------------- */
+.selected-products {
+  text-align: center;
+  margin-bottom: 80px;
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 30px;
+  }
+
+  .product-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* адаптивно */
+    gap: 24px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 1300px;
+  }
+
+  .product-card {
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px;
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(28, 28, 28, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h4 {
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .price {
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .add {
+      display: inline-block;
+      padding: 8px 16px;
+      background: #B92770;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .add:hover {
+      background: #8e1c50;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    }
+  }
+}

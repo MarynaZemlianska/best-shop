@@ -1,0 +1,25 @@
+footer {
+  background: #2f2f2f;
+  color: #d6d6d6;
+  padding: 40px 0;
+
+  .foot-grid {
+    display: flex;
+    gap: 40px;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  small {
+    display: block;
+    margin-top: 18px;
+    color: #999;
+  }
+
+  div:last-child {
+    text-align: center;
+    color: #777;
+    padding-top: 18px;
+  }
+}

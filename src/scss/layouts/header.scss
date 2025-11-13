@@ -1,0 +1,158 @@
+
+/* --- Общий стиль топ-бара --- */
+.topbar {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+
+  position: fixed;      /* фиксируем вверху экрана */
+  top: 0;
+  left: 0;
+  z-index: 1000;        /* чтобы всегда была поверх контента */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* лёгкая тень снизу */
+}
+
+/* Чтобы контент под шапкой не уезжал под неё */
+body {
+  margin: 0;
+  padding-top: 130px; /* подстраховка под высоту шапки */
+}
+
+/* --- Верхняя часть --- */
+.topbar-inner{
+  width: var(--container);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  position: relative;
+}
+
+/* Соцсети */
+.socials{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.social-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Лого по центру */
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ссылка, чтобы логотип был кликабельным */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none; /* убираем подчёркивание */
+}
+
+/* Иконка магазина */
+.store-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  fill: var(--pink);
+}
+
+/* Название магазина */
+.brand {
+  color: #B92770;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+/* Эффект при наведении */
+.logo-link:hover .brand {
+  color: #8e1c50; /* немного темнее фирменного цвета */
+}
+
+.logo-link:hover .store-icon {
+  transform: scale(1.1); /* лёгкое увеличение при наведении */
+}
+
+
+.brand{
+  color: #B92770;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+}
+
+/* Иконки справа */
+.user-cart{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.uc-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 33px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+/* Разделительная линия */
+.divider{
+  width: var(--container);
+  border-bottom: 1px solid #727174;
+  opacity: 0.6;
+  margin: 0 0 10px;
+}
+
+/* Меню */
+.main-nav{
+  width: var(--container);
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 0 15px;
+}
+
+.nav-item{
+  text-decoration: none;
+  color: var(--dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.2s ease, color 0.2s ease;
+}
+
+/* Подсветка при наведении — фон #B92770 и белый текст */
+.nav-item:hover{
+  color: var(--pink);
+}

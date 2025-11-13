@@ -1,0 +1,43 @@
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+@import "./base/fonts";
+@import "./base/reset";
+@import "./components/buttons";
+@import "./components/forms";
+@import "./components/product-card";
+@import "./layouts/header";
+@import "./layouts/footer";
+@import "./pages/_home";
+@import "./pages/_about";
+@import "./pages/catalog";
+@import "./pages/cart";
+@import "./pages/product-details";
+
+
+
+body {
+  font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  background: #fafafa;
+  color: #222;
+  margin: 0;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  margin: 0;
+}
+
+/* Ссылки */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Контейнер */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
