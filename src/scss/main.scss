@@ -17,25 +17,29 @@
 
 body {
   font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
-  font-weight: 400;
+  font-weight: 400,700,900;
   background: #fafafa;
   color: #222;
   margin: 0;
 }
 
-/* Заголовки */
+section{
+  width: 100%;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 900;
   margin: 0;
 }
 
-/* Ссылки */
+
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Контейнер */
+
 .container {
   max-width: 1100px;
   margin: 0 auto;

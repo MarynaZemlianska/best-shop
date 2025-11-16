@@ -8,13 +8,16 @@
 }
 
 .promo .promo-btn,
-.add,
-.cta {
+.add{
   display: inline-block;
   padding: 8px 12px;
   background: var(--pink);
   color: #fff;
-  border-radius: 6px;
   font-weight: 700;
   margin-top: 12px;
 }
+
+.btn:hover {
+  background: #d12d77;
+}
+

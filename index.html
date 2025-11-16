@@ -1,247 +1,269 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop — Home page</title>
-
+  <title>Best Shop - Home page</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
-
- <link rel="stylesheet" href="./../dist/style.css">
-
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./../dist/style.css">
 </head>
 
 <body>
-<!-- HTML -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <!-- Верх: соцсети слева -->
-    <div class="socials">
-      <a class="social-link" href="https://facebook.com" target="_blank">
-        <img src="./src/assets/images/facebook.svg" alt="Facebook">
-      </a>
-      <a class="social-link" href="https://twitter.com" target="_blank">
-        <img src="./src/assets/images/twitter.svg" alt="Twitter">
-      </a>
-      <a class="social-link" href="https://instagram.com" target="_blank">
-        <img src="./src/assets/images/instagram.svg" alt="Instagram">
-      </a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="socials">
+        <a class="social-link" href="https://facebook.com" target="_blank">
+          <img src="./src/assets/images/facebook.svg" alt="Facebook">
+        </a>
+        <a class="social-link" href="https://twitter.com" target="_blank">
+          <img src="./src/assets/images/twitter.svg" alt="Twitter">
+        </a>
+        <a class="social-link" href="https://instagram.com" target="_blank">
+          <img src="./src/assets/images/instagram.svg" alt="Instagram">
+        </a>
+      </div>
+      <div class="logo">
+        <a href="/index.html" class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32"
+            fill="none">
+            <path fill="url(#a)" d="M0 0h32v32H0z" />
+            <defs>
+              <pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox">
+                <use xlink:href="#b" transform="scale(.00667)" />
+              </pattern>
+              <image
+                xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABmUExURQAAAP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////5WfaagAAAAidFJOUwAQIECPz+//359gcK+/MFAcGFTjgKNuCERsZWQ51+5o89uQKq+OAAAACXBIWXMAABcRAAAXEQHKJvM/AAACH0lEQVR4Xu3b0VLaUACEYSFIBCtRFNFWrb7/S3ZMOtnkz9bBdnLsxf6XycH9BhjGm5ydpZRSSimllNJ/1GI5acEzhatW5+vadbGqeLZYiw01wzZf9J5VF5SMW2/5ihJdkjHtC1xL/6UatV7yVbP3jQbXFV81d1sKfKU/xpPerOJv1+KEb1Zb2V+JXb97vq0mNVf97R1fOWtVv2t/zRcf356tpt+1n5JYDW/NWlifKazPFNbvrpvtoJv22m546b1Vv3vJW+/pn54Nb3W/rzfDS801CNP2t/1fbOt+Du/GF/+lu/YP6ue47XYPBjqMj5di1fUGkFH3PF2MVd+DMug4/b+gGGt9BEY98GxBVv0AjHrk0ZKsR2CUWS/H6m64zHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwKjvPFqS9QMY9cSjJVlPwAx65tlyrGdQhu1feLoU6+XDpzF+vuJ4Idbrn79ZbcvD2+h8Edbb4YRnd0dPu3dPSJgH4P+27nGl4/RSSimllFJKKc3VLyXhNx4FpV0aAAAAAElFTkSuQmCC"
+                id="b" width="150" height="150" preserveAspectRatio="none" />
+            </defs>
+          </svg>
+        </a>
+        <a href="/index.html" class="logo-link">
+          <span class="brand">BEST SHOP</span>
+        </a>
+      </div>
+      <div class="user-cart">
+        <a class="account-icon" href="#">
+          <img src="./src/assets/images/account.svg" alt="Account">
+        </a>
+        <a class="cart-icon" href="#">
+          <img src="./src/assets/images/cart.svg" alt="Cart">
+          <span class="cart-count">0</span>
+        </a>
+      </div>
     </div>
-
-    <!-- Лого по центру -->
- <div class="logo">
-  <a href="/index.html" class="logo-link">
-<svg class="store-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" ><path fill="url(#a)" d="M0 0h32v32H0z"/><defs><pattern id="a" width="1" height="1" patternContentUnits="objectBoundingBox"><use xlink:href="#b" transform="scale(.00667)"/></pattern><image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABmUExURQAAAP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////5WfaagAAAAidFJOUwAQIECPz+//359gcK+/MFAcGFTjgKNuCERsZWQ51+5o89uQKq+OAAAACXBIWXMAABcRAAAXEQHKJvM/AAACH0lEQVR4Xu3b0VLaUACEYSFIBCtRFNFWrb7/S3ZMOtnkz9bBdnLsxf6XycH9BhjGm5ydpZRSSimllNJ/1GI5acEzhatW5+vadbGqeLZYiw01wzZf9J5VF5SMW2/5ihJdkjHtC1xL/6UatV7yVbP3jQbXFV81d1sKfKU/xpPerOJv1+KEb1Zb2V+JXb97vq0mNVf97R1fOWtVv2t/zRcf356tpt+1n5JYDW/NWlifKazPFNbvrpvtoJv22m546b1Vv3vJW+/pn54Nb3W/rzfDS801CNP2t/1fbOt+Du/GF/+lu/YP6ue47XYPBjqMj5di1fUGkFH3PF2MVd+DMug4/b+gGGt9BEY98GxBVv0AjHrk0ZKsR2CUWS/H6m64zHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwCizHhYwyqyHBYwy62EBo8x6WMAosx4WMMqshwWMMuthAaPMeljAKLMeFjDKrIcFjDLrYQGjzHpYwKjvPFqS9QMY9cSjJVlPwAx65tlyrGdQhu1feLoU6+XDpzF+vuJ4Idbrn79ZbcvD2+h8Edbb4YRnd0dPu3dPSJgH4P+27nGl4/RSSimllFJKKc3VLyXhNx4FpV0aAAAAAElFTkSuQmCC" id="b" width="32" height="32" preserveAspectRatio="none"/></defs></svg>   
- <span class="brand">BEST SHOP</span>
-  </a>
-</div>
-
-
-    <!-- Право: вход и корзина -->
-    <div class="user-cart">
-      <a class="uc-icon" href="#">
-        <img src="./src/assets/images/account.svg" alt="Account">
-      </a>
-      <a class="uc-icon" href="#">
-        <img src="./src/assets/images/cart.svg" alt="Cart">
-      </a>
-    </div>
-  </div> <!-- ✅ вот здесь закрыл topbar-inner -->
-
-  <!-- Разделительная линия -->
-  <div class="divider"></div>
-
-  <!-- Нижнее меню -->
-  <nav class="main-nav">
-    <a href="#" class="nav-item">Home</a>
-    <a href="#" class="nav-item">Catalog</a>
-    <a href="#" class="nav-item">About Us</a>
-    <a href="#" class="nav-item">Contact Us</a>
-  </nav>
-</header>
-
-
+    <div class="divider"></div>
+    <nav class="main-nav">
+      <a href="#" class="nav-item">Home</a>
+      <div class="nav-dropdown">
+        <a href="/src/html/catalog.html" class="nav-item">
+          Catalog
+          <span class="arrow">
+            <span></span>
+            <span></span>
+          </span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#">Category 1</a>
+          <a href="#">Category 2</a>
+          <a href="#">Category 3</a>
+        </div>
+      </div>
+      <a href="/src/html/about.html" class="nav-item">About Us</a>
+      <a href="#" class="nav-item">Contact Us</a>
+    </nav>
+  </header>
   <main>
     <section class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow"></div>
-        <h1> Smart Styles for <br> Every Destination</h1>
-        <p class="lead">
-          Phasellus tempus, pretium at amet magna non, molestie ultricies enim. Nullam pulvinar felis at metus.
-        </p>
-        <a class="btn" href="#">View All Items</a>
-      </div>
-      <div class="hero-visual">
-        <img class="hero-img" src="./src/assets/images/suitcase.png" alt="suitcase">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="promo">
-  <div class="promo-inner">
-    <div class="promo-left">
-      <div class="author">
-        <img src="./src/assets/images/author.png" alt="author">
-        <div>
-          <div style="font-weight:800">Lillian Bennett</div>
-          <div style="font-size:13px;color:var(--muted)">Chief Marketing Officer</div>
-        </div>
-      </div>
-      <h3 class="title">Aliquam Faucibus Odionecom.</h3>
-      <p class="text">
-        Duis vestibulum elit vel neque pharetra vulputate. Quisque scelerisque nisi urna. Duis rutrum non risus in imperdiet.
-      </p>
-    </div>
-
-    <div class="promo-right">
-      <div class="overlay-content">
-        <h3>25 % Discount</h3>
-        <p class="small">
-          Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.
-        </p>
-        <a class="btn" href="#">Get Discount</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-   <!-- Travel Cards Section -->
-<section class="travel-cards">
-  <div class="container">
-    <h2 class="section-title">Travel suitcases</h2>
-    <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
-
-    <div class="travel-cards-grid">
-      <article class="travel-card" style="background-image:url('./src/assets/images/travel-suit-1.png')">
-        <div class="card-content">
-          <h4>Lightweight suitcases</h4>
-          <p>Duis vestibulum elit vel neque.</p>
-        </div>
-      </article>
-      <article class="travel-card" style="background-image:url('./src/assets/images/travel-suit-2.png')">
-        <div class="card-content">
-          <h4>Airport ready</h4>
-          <p>Neque vestibulum elit neque.</p>
-        </div>
-      </article>
-      <article class="travel-card" style="background-image:url('./src/assets/images/travel-suit-3.png')">
-        <div class="card-content">
-          <h4>Premium selection</h4>
-          <p>Elitus situbum elit vulputate.</p>
-        </div>
-      </article>
-      <article class="travel-card" style="background-image:url('./src/assets/images/travel-suit-4.png')">
-        <div class="card-content">
-          <h4>Travel easy</h4>
-          <p>Vel vestibulum elit tuvel euqen.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- Selected Products Section -->
-<section class="selected-products">
-  <div class="container">
-    <h2 class="section-title">Selected Products</h2>
-    <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
-
-    <div class="product-cards-grid">
-      <div class="product-card" style="background-image:url('./src/assets/images/product-1.png');">
-        <h4>Rose suitcase</h4>
-        <div class="price">$250</div>
-        <a class="add" href="#">Add To Cart</a>
-      </div>
-      <div class="product-card" style="background-image:url('./src/assets/images/product-2.png');">
-        <h4>Beige suitcase</h4>
-        <div class="price">$200</div>
-        <a class="add" href="#">Add To Cart</a>
-      </div>
-      <div class="product-card" style="background-image:url('./src/assets/images/product-3.png');">
-        <h4>Pink suitcase</h4>
-        <div class="price">$300</div>
-        <a class="add" href="#">Add To Cart</a>
-      </div>
-      <div class="product-card" style="background-image:url('./src/assets/images/product-4.png');">
-        <h4>Blue suitcase</h4>
-        <div class="price">$350</div>
-        <a class="add" href="#">Add To Cart</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <section>
       <div class="container">
-        <div class="big-promo">
+        <div class="hero-grid">
           <div>
-            <h1>50%</h1>
-            <p style="max-width:520px">Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.</p>
+            <div class="eyebrow"></div>
+            <h1> Smart Styles for <br> Every Destination</h1>
+            <p class="lead">
+              Phasellus tempus, pretium at amet magna non, molestie ultricies enim. Nullam pulvinar felis at metus.
+            </p>
+            <a class="btn" href="#">View All Items</a>
           </div>
-          <div>
-            <a class="cta" href="#">Get Offer Today</a>
+          <div class="hero-visual">
+            <img class="hero-img" src="./src/assets/images/suitcase.png" alt="suitcase">
           </div>
         </div>
       </div>
     </section>
-
-    <section>
+    <section class="promo">
+      <div class="promo-inner">
+        <div class="promo-left">
+          <div class="author">
+            <img src="./src/assets/images/author.png" alt="author">
+            <div>
+              <div style="font-weight:800">Lillian Bennett</div>
+              <div style="font-size:13px;color:var(--muted)">Chief Marketing Officer</div>
+            </div>
+          </div>
+          <h3 class="title">Aliquam Faucibus Odionecom.</h3>
+          <p class="text">
+            Duis vestibulum elit vel neque pharetra vulputate. Quisque scelerisque nisi urna. Duis rutrum non risus in
+            imperdiet.
+          </p>
+        </div>
+        <div class="promo-right">
+          <div class="overlay-content">
+            <h3>25 % Discount</h3>
+            <p class="small">
+              Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.
+            </p>
+            <a class="btn" href="#">Get Discount</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="travel-cards">
+      <div class="container">
+        <h2 class="section-title">Travel suitcases</h2>
+        <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
+        <div class="travel-cards-grid">
+          <article class="card-item card--tall" style="background-image:url('./src/assets/images/travel-suit-1.png')">
+            <div class="card-content card--tall">
+              <h4>Lightweight suitcases</h4>
+              <p>Duis vestibulum elit vel neque.</p>
+            </div>
+          </article>
+          <article class="card-item card--tall" style="background-image:url('./src/assets/images/travel-suit-2.png')">
+            <div class="card-content card--tall">
+              <h4>Airport ready</h4>
+              <p>Neque vestibulum elit neque.</p>
+            </div>
+          </article>
+          <article class="card-item card--tall" style="background-image:url('./src/assets/images/travel-suit-3.png')">
+            <div class="card-content card--tall">
+              <h4>Premium selection</h4>
+              <p>Elitus situbum elit vulputate.</p>
+            </div>
+          </article>
+          <article class="card-item card--tall" style="background-image:url('./src/assets/images/travel-suit-4.png')">
+            <div class="card-content card--tall">
+              <h4>Travel easy</h4>
+              <p>Vel vestibulum elit tuvel euqen.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="selected-products">
+      <div class="container">
+        <h2 class="section-title">Selected Products</h2>
+        <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
+        <div class="selected-products-grid">
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/product-1.png')"></div>
+            <div class="card-content">
+              <h4>Rose suitcase</h4>
+              <div class="price">$250</div>
+              <a class="btn" href="#">Add To Cart</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/product-2.png')"></div>
+            <div class="card-content">
+              <h4>Beige suitcase</h4>
+              <div class="price">$200</div>
+              <a class="btn" href="#">Add To Cart</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/product-3.png')"></div>
+            <div class="card-content">
+              <h4>Pink suitcase</h4>
+              <div class="price">$300</div>
+              <a class="btn" href="#">Add To Cart</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/product-4.png')"></div>
+            <div class="card-content">
+              <h4>Blue suitcase</h4>
+              <div class="price">$350</div>
+              <a class="btn" href="#">Add To Cart</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="big-promo">
+      <div class="container">
+        <div class="big-promo-left">
+          <h1>50%</h1>
+          <p>Curabitur vulputate arcu odio, ac facilisis diam.</p>
+        </div>
+        <div class="big-promo-right">
+          <h3>Offer Of The Month</h3>
+          <p>Curabitur vulputate arcu odio, ac facilisis diam accumsan ut.</p>
+          <a class="btn" href="#">Get Offer Today</a>
+        </div>
+      </div>
+      <div class="bg-overlay"></div>
+    </section>
+    <section class="new-arrivals">
       <div class="container">
         <h2 class="section-title">New Products Arrival</h2>
         <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
-        <div class="cards-grid">
-          <div class="card">
-            <div class="thumb" style="height:240px"></div>
-            <h4>Gray suitcase</h4>
-            <div class="price">$150</div>
-            <a class="add" href="#">View Product</a>
-          </div>
-          <div class="card">
-            <div class="thumb" style="height:240px"></div>
-            <h4>Yellow suitcase</h4>
-            <div class="price">$450</div>
-            <a class="add" href="#">View Product</a>
-          </div>
-          <div class="card">
-            <div class="thumb" style="height:240px"></div>
-            <h4>Light blue suitcase</h4>
-            <div class="price">$250</div>
-            <a class="add" href="#">View Product</a>
-          </div>
-          <div class="card">
-            <div class="thumb" style="height:240px"></div>
-            <h4>Dark blue suitcase</h4>
-            <div class="price">$200</div>
-            <a class="add" href="#">View Product</a>
-          </div>
+        <div class="new-arrivals-grid">
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/new-1.png')"></div>
+            <div class="card-content">
+              <h4>Gray suitcase</h4>
+              <div class="price">$150</div>
+              <a class="btn" href="#">View Product</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/new-2.png')"></div>
+            <div class="card-content">
+              <h4>Yellow suitcase</h4>
+              <div class="price">$450</div>
+              <a class="btn" href="#">View Product</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/new-3.png')"></div>
+            <div class="card-content">
+              <h4>Light blue suitcase</h4>
+              <div class="price">$250</div>
+              <a class="btn" href="#">View Product</a>
+            </div>
+          </article>
+          <article class="card-item">
+            <div class="card-img" style="background-image:url('./src/assets/images/new-4.png')"></div>
+            <div class="card-content">
+              <h4>Dark blue suitcase</h4>
+              <div class="price">$200</div>
+              <a class="btn" href="#">View Product</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
-
     <section>
       <div class="container">
         <h2 class="section-title">Our Grateful Customers</h2>
         <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
         <div class="testimonials">
           <div class="testimonial">
-            <img src="../assets/Homepage.jpg" alt="person">
+            <img src="/src/assets/images/person-1.png" alt="person">
             <p>Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.</p>
             <div class="who">Ethan Wade, New York</div>
           </div>
           <div class="testimonial">
-            <img src="../assets/Homepage.jpg" alt="person">
+            <img src="/src/assets/images/person-2.png" alt="person">
             <p>Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.</p>
             <div class="who">Jane Mayer, California</div>
           </div>
           <div class="testimonial">
-            <img src="../assets/Homepage.jpg" alt="person">
+            <img src="/src/assets/images/person-3.png" alt="person">
             <p>Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in vulputate.</p>
             <div class="who">Erica Blank, Miami</div>
           </div>
@@ -249,24 +271,89 @@
       </div>
     </section>
   </main>
-
-  <footer>
-    <div class="foot-grid">
-      <div class="container" style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
-        <div style="flex:1;min-width:200px">
-          <h4 style="color:#fff">About Us</h4>
-          <p style="color:var(--muted);max-width:320px">Немного текста о магазине. Мы предлагаем качественные чемоданы и аксессуары для путешествий.</p>
-        </div>
-        <div style="flex:2;min-width:240px">
-          <h4 style="color:#fff">Contact</h4>
-          <p style="color:var(--muted)">Phone: (123) 456-7890<br>Mail: hello@bestshop.example</p>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-bg"></div>
+      <div class="footer-container">
+        <h3 class="footer-title">Our Benefits</h3>
+        <div class="footer-items">
+          <div class="footer-item">
+            <img src="/src/assets/images/footer-icon-1.svg" alt="">
+            <p>Velit nisl sodales eget donec quis. volutpat orci.</p>
+          </div>
+          <div class="footer-item">
+            <img src="/src/assets/images/footer-icon-2.svg" alt="">
+            <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
+          </div>
+          <div class="footer-item">
+            <img src="/src/assets/images/footer-icon-3.svg" alt="">
+            <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
+          </div>
+          <div class="footer-item">
+            <img src="/src/assets/images/footer-icon-4.svg" alt="">
+            <p>Nisl sodales eget donec quis. volutpat orci.</p>
+          </div>
         </div>
       </div>
     </div>
-    <div style="text-align:center;color:#777;padding-top:18px">© Copyright 2025</div>
+    <div class="footer-middle">
+      <div class="footer-container footer-flex">
+        <div class="footer-left">
+          <div class="footer-links-row">
+            <div class="col">
+              <h4>About Us</h4>
+              <a href="#">Organisation</a>
+              <a href="#">Partners</a>
+              <a href="#">Clients</a>
+            </div>
+            <div class="col">
+              <h4>Interesting Links</h4>
+              <a href="#">Photo Gallery</a>
+              <a href="#">Our Team</a>
+              <a href="#">Socials</a>
+            </div>
+            <div class="col">
+              <h4>Achievements</h4>
+              <a href="#">Winning Awards</a>
+              <a href="#">Press</a>
+              <a href="#">Our Amazing Clients</a>
+            </div>
+          </div>
+          <div class="footer-wide-text">
+            <h4>Shipping Information</h4>
+            <p>
+              Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac. Ut sit amet erat nec nibh rhoncus
+              varius in non lorem.
+              Donec interdum, lectus in convallis pulvinar, enim elit porta sapien, vel finibus erat felis sed neque.
+            </p>
+          </div>
+        </div>
+        <aside class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>
+            Bendum dolor eu varius. Morbi fermentum velit nisl sodales egetonec. Volutpat orci.
+          </p>
+          <div class="contact-wrapper">
+            <ul class="contact-column">
+              <li><img src="./src/assets/images/.svg" alt="">Phone: (+63) 236 6322</li>
+              <li><img src="./src/assets/images/.svg" alt="">Mon–Fri: 10am–6pm<br> Sat–Sun: 10am–6pm</li>
+            </ul>
+            <ul class="contact-column">
+              <li><img src="./src/assets/images/.svg" alt="">public@news.com</li>
+              <li><img src="./src/assets/images/.svg" alt="">639 Jade Valley, Washington DC</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-container">
+        <p class="copyright">© Copyright 2025</p>
+      </div>
+    </div>
   </footer>
-
   <script src="../js/main.js"></script>
   <script src="../js/home.js"></script>
 </body>
+
 </html>
