@@ -1,27 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Catalog</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Shop - Product card</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@700;900&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../../dist/style.css">
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="socials">
         <a class="social-link" href="https://facebook.com" target="_blank">
-          <img src="../assets/images/facebook.svg" alt="Facebook">
+          <img src="/src/assets/images/facebook.svg" alt="Facebook">
         </a>
         <a class="social-link" href="https://twitter.com" target="_blank">
-          <img src="../assets/images/twitter.svg" alt="Twitter">
+          <img src="/src/assets/images/twitter.svg" alt="Twitter">
         </a>
         <a class="social-link" href="https://instagram.com" target="_blank">
-          <img src="../assets/images/instagram.svg" alt="Instagram">
+          <img src="/src/assets/images/instagram.svg" alt="Instagram">
         </a>
       </div>
       <div class="logo">
@@ -45,19 +46,19 @@
       </div>
       <div class="user-cart">
         <a class="account-icon" href="#">
-          <img src="../assets/images/account.svg" alt="Account">
+          <img src="/src/assets/images/account.svg" alt="Account">
         </a>
         <a class="cart-icon" href="#">
-          <img src="../assets/images/cart.svg" alt="Cart">
-          <span class="cart-count">01</span>
+          <img src="/src/assets/images/cart.svg" alt="Cart">
+          <span class="cart-count">0</span>
         </a>
       </div>
     </div>
     <div class="divider"></div>
     <nav class="main-nav">
-      <a href="/index.html" class="nav-item">Home</a>
+      <a href="#" class="nav-item">Home</a>
       <div class="nav-dropdown">
-        <a href="#" class="nav-item">
+        <a href="/src/html/catalog.html" class="nav-item">
           Catalog
           <span class="arrow">
             <span></span>
@@ -65,188 +66,173 @@
           </span>
         </a>
         <div class="dropdown-menu">
-          <a href="#"> 1</a>
-          <a href="#">2</a>
-          <a href="#"> 3</a>
+          <a href="#">Category 1</a>
+          <a href="#">Category 2</a>
+          <a href="#">Category 3</a>
         </div>
       </div>
       <a href="/src/html/about.html" class="nav-item">About Us</a>
       <a href="#" class="nav-item">Contact Us</a>
     </nav>
   </header>
-  <main>
-    <section class="catalog-page">
-      <div class="catalog-container">
-        <div class="catalog-content">
-          <div class="catalog-filter-bar">
-            <p class="results-count">Showing 1–12 of 15 Results</p>
-            <div class="filter-controls">
-              <select class="filter-sort">
-                <option>Default Sorting</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-              </select>
-              <div class="search-box">
-                <input type="text" placeholder="Search Models">
-                <img src="../assets/images/search.svg" alt="">
-              </div>
-            </div>
-          </div>
-          <div class="catalog-grid">
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/product-4.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/new-3.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/new-2.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/new-3.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-5.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-6.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-7.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-8.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-9.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-10.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-11.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-            <article class="card-item card--med">
-              <div class="card-img" style="background-image:url('../assets/images/cat-12.png')"></div>
-              <div class="card-content">
-                <h4>Vel vestibulum elit tuvel euqen.</h4>
-                <div class="price">$250</div>
-                <a class="btn" href="#">Add To Cart</a>
-              </div>
-            </article>
-          </div>
-          <div class="catalog-pagination">
-            <a class="page active">1</a>
-            <a class="page">2</a>
-            <a class="next-btn">Next →</a>
-          </div>
-        </div>
-        <aside class="catalog-sidebar">
-          <h3 class="sidebar-title">Top Best Sets</h3>
-          <div class="top-products-list">
-            <div class="top-product">
-              <img src="../assets/images/cat-1.png" alt="">
-              <div class="top-product-info">
-                <p class="tp-title">Priminis in faucibus accumsan laoreet…</p>
-                <div class="tp-stars">
-                  ★★★★☆
-                </div>
-                <div class="tp-price">$1000</div>
-              </div>
-            </div>
-            <div class="top-product">
-              <img src="../assets/images/cat-3.png" alt="">
-              <div class="top-product-info">
-                <p class="tp-title">Vestibulum in elementrum erat interdum…</p>
-                <div class="tp-stars">★★★★★</div>
-                <div class="tp-price">$1200</div>
-              </div>
-            </div>
+  <section class="container product-page">
 
-            <div class="top-product">
-              <img src="../assets/images/cat-4.png" alt="">
-              <div class="top-product-info">
-                <p class="tp-title">Lacreet rhoncus ipsum eget tempus…</p>
-                <div class="tp-stars">★★★★☆</div>
-                <div class="tp-price">$900</div>
-              </div>
-            </div>
-            <div class="top-product">
-              <img src="../assets/images/cat-4.png" alt="">
-              <div class="top-product-info">
-                <p class="tp-title">Lacreet rhoncus ipsum eget tempus…</p>
-                <div class="tp-stars">★★★★☆</div>
-                <div class="tp-price">$900</div>
-              </div>
-            </div>
-            <div class="top-product">
-              <img src="../assets/images/cat-4.png" alt="">
-              <div class="top-product-info">
-                <p class="tp-title">Lacreet rhoncus ipsum eget tempus…</p>
-                <div class="tp-stars">★★★★☆</div>
-                <div class="tp-price">$900</div>
-              </div>
-            </div>
-          </div>
-        </aside>
+    <div class="product-wrapper">
+      <div class="product-gallery">
+        <img class="main-img" src="./src/assets/images/product-hero-2.jpg" alt="Silver suitcase">
+
+        <div class="thumbs">
+          <img src="./src/assets/images/product-thumb-1.jpg" alt="">
+          <img src="./src/assets/images/product-thumb-2.jpg" alt="">
+          <img src="./src/assets/images/product-thumb-3.jpg" alt="">
+        </div>
       </div>
-    </section>
-  </main>
+      <div class="product-info">
+        <h1>Global Explorer Silver Edition Suitcase</h1>
+
+        <div class="rating">
+          ⭐⭐⭐⭐⭐ <span>(12 Reviews)</span>
+        </div>
+
+        <div class="price">$320</div>
+
+        <p class="product-desc">
+          A stylish and durable travel suitcase made from reinforced recycled materials.
+          Designed for maximum comfort and efficiency during long-distance travel.
+        </p>
+        <div class="product-options">
+
+          <label>Size</label>
+          <select>
+            <option>Choose option</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+          </select>
+
+          <label>Color</label>
+          <select>
+            <option>Choose option</option>
+            <option>Silver</option>
+            <option>Black</option>
+            <option>Red</option>
+          </select>
+
+          <label>Category</label>
+          <select>
+            <option>Choose option</option>
+            <option>Travel</option>
+            <option>Luggage</option>
+          </select>
+        </div>
+
+        <div class="product-action">
+          <div class="counter">
+            <button>-</button>
+            <input type="number" value="1" />
+            <button>+</button>
+          </div>
+
+          <a href="#" class="btn add-cart">Add To Cart</a>
+        </div>
+
+        <div class="payment">
+          <span>Payment:</span>
+          <img src="./src/assets/icons/visa.svg" alt="">
+          <img src="./src/assets/icons/mastercard.svg" alt="">
+          <img src="./src/assets/icons/paypal.svg" alt="">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="product-tabs">
+      <button class="active">Details</button>
+      <button>Reviews</button>
+      <button>Shipping</button>
+    </div>
+
+    <div class="tab-content">
+      <p>
+        Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor, in
+        efficitur justo imperdiet. Etiam a ex at
+        ante tincidunt imperdiet. Nunc congue ex vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent luctus
+        lacus non lorem elementum, eu tristique
+        sapien suscipit. Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales purus, eget hendrerit dui ligula
+        eu enim. Ut non est nisi. Pellentesque
+        tristique pretium dolor eu commodo. Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna
+        sit amet luctus. Suspendisse potenti.
+        Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra,
+        facilisis quam.</p>
+
+      <p>Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse potenti.
+        Curabitur ac placerat est, sit amet sodales
+        risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra, facilisis quam. Proin iaculis nibh vitae
+        lectus mollis bibendum. </p>
+
+      <p>Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
+        risus. Pellentesque viverra dui auctor,
+        ullamcorper turpis pharetra, facilisis quam.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">You May Also Like</h2>
+      <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
+
+      <div class="selected-products-grid">
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-1.png')"></div>
+          <div class="card-content">
+            <h4>Rose suitcase</h4>
+            <div class="price">$250</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-2.png')"></div>
+          <div class="card-content">
+            <h4>Beige suitcase</h4>
+            <div class="price">$200</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-3.png')"></div>
+          <div class="card-content">
+            <h4>Pink suitcase</h4>
+            <div class="price">$300</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-4.png')"></div>
+          <div class="card-content">
+            <h4>Blue suitcase</h4>
+            <div class="price">$350</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  <section class="attention-block">
+    <div class="container">
+      <h2>Pay Attention</h2>
+      <p>
+        Before purchasing, please make sure the size and capacity meet airline requirements
+        for carry-on luggage. Warranty applies to manufacturing defects only.
+      </p>
+    </div>
+  </section>
   <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-bg"></div>
@@ -254,19 +240,19 @@
         <h3 class="footer-title">Our Benefits</h3>
         <div class="footer-items">
           <div class="footer-item">
-            <img src="../assets/images/footer-icon-1.svg" alt="">
+            <img src="/src/assets/images/footer-icon-1.svg" alt="">
             <p>Velit nisl sodales eget donec quis. volutpat orci.</p>
           </div>
           <div class="footer-item">
-            <img src="../assets/images/footer-icon-2.svg" alt="">
+            <img src="/src/assets/images/footer-icon-2.svg" alt="">
             <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
           </div>
           <div class="footer-item">
-            <img src="../assets/images/footer-icon-3.svg" alt="">
+            <img src="/src/assets/images/footer-icon-3.svg" alt="">
             <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
           </div>
           <div class="footer-item">
-            <img src="../assets/images/footer-icon-4.svg" alt="">
+            <img src="/src/assets/images/footer-icon-4.svg" alt="">
             <p>Nisl sodales eget donec quis. volutpat orci.</p>
           </div>
         </div>
@@ -311,12 +297,12 @@
           </p>
           <div class="contact-wrapper">
             <ul class="contact-column">
-              <li><img src="../assets/images/.svg" alt="">Phone: (+63) 236 6322</li>
-              <li><img src="../assets/images/.svg" alt="">Mon–Fri: 10am–6pm<br> Sat–Sun: 10am–6pm</li>
+              <li><img src="./src/assets/images/.svg" alt="">Phone: (+63) 236 6322</li>
+              <li><img src="./src/assets/images/.svg" alt="">Mon–Fri: 10am–6pm<br> Sat–Sun: 10am–6pm</li>
             </ul>
             <ul class="contact-column">
-              <li><img src="../assets/images/.svg" alt="">public@news.com</li>
-              <li><img src="../assets/images/.svg" alt="">639 Jade Valley, Washington DC</li>
+              <li><img src="./src/assets/images/.svg" alt="">public@news.com</li>
+              <li><img src="./src/assets/images/.svg" alt="">639 Jade Valley, Washington DC</li>
             </ul>
           </div>
         </aside>
@@ -324,11 +310,12 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-container">
-        <p class="copyright">© Copyright 2025 </p>
+        <p class="copyright">© Copyright 2025</p>
       </div>
     </div>
   </footer>
   <script src="../js/main.js"></script>
   <script src="../js/home.js"></script>
 </body>
+
 </html>

@@ -78,33 +78,6 @@
       }
     }
   }
-
-  .hero-prev,
-  .hero-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 12px 18px;
-    border: none;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: 0.3s;
-
-    &:hover {
-      background: rgba(0,0,0,0.7);
-    }
-  }
-
-  .hero-prev {
-    left: 20px;
-  }
-
-  .hero-next {
-    right: 20px;
-  }
 }
 
   .features-grid {
