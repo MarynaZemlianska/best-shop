@@ -46,6 +46,8 @@
   z-index: 2;
   padding: 24px 12px;
   background: transparent;
+  text-align: left;
+  line-height: 1.5;
 }
 
 .card-item .card-img {
@@ -53,6 +55,7 @@
   height: 400px; 
   background-size: cover;
   background-position: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .card-item .card-content {

@@ -23,13 +23,14 @@
   h1 {
     font-family: Montserrat, sans-serif;
     font-size: 40px;
-    line-height: 1.02;
+    line-height: 1.3;
     margin: 6px 0 12px;
   }
 
   p.lead {
     color: var(--muted);
     max-width: 520px;
+    line-height: 1.5;
   }
 
   .hero-img {
@@ -63,7 +64,6 @@
   display: flex;
   flex-direction: column;
   justify-content:flex-end;
-  gap: 20px;
 
   .author {
     display: flex;
@@ -80,14 +80,14 @@
   .title {
     font-family: Montserrat;
     font-weight: 700;
-    font-size: 26px;
-    margin: 0;
+    margin-top: 15px;
+    font-size: 26px; 
   }
 
   .text {
     font-size: 16px;
     color: var(--muted);
-    line-height: 1.4;
+
   }
 }
 
@@ -114,9 +114,8 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 30px 20px;
+    align-items: flex-start;
+    text-align: left;
     max-width: 80%;
   }
 
@@ -129,7 +128,6 @@
 
   .small {
     font-size: 16px;
-    margin-bottom: 20px;
   }
 }
 .big-promo {

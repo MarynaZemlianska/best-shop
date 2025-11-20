@@ -1,20 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Cart</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Best Shop - Product card</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@400;700;900&display=swap"
-    rel="stylesheet"/>
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@700;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../dist/style.css">
 </head>
-
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="socials">
+     <div class="socials">
         <a class="social-link" href="https://facebook.com" target="_blank">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=""><path fill="" d="M16.417 0H3.484A3.535 3.535 0 0 0 0 3.5v13.1A3.516 3.516 0 0 0 3.483 20h6.965v-7.1h-1.99v-3h1.99V8a3.683 3.683 0 0 1 3.685-3.7h2.388v3h-2.388a.858.858 0 0 0-.8.8V10h2.587v3h-2.487v7h3.084A3.535 3.535 0 0 0 20 16.5v-13A3.692 3.692 0 0 0 16.417 0Z"/></svg>
         </a>
@@ -46,10 +44,10 @@
       </div>
       <div class="user-cart">
         <a class="account-icon" href="#">
-          <img src="../assets/images/account.svg" alt="Account">
+          <img src="/src/assets/images/account.svg" alt="Account">
         </a>
         <a class="cart-icon" href="#">
-          <img src="../assets/images/cart.svg" alt="Cart">
+          <img src="/src/assets/images/cart.svg" alt="Cart">
           <span class="cart-count">0</span>
         </a>
       </div>
@@ -75,125 +73,149 @@
       <a href="/src/html/contact.html" class="nav-item">Contact Us</a>
     </nav>
   </header>
-  <section class="hero-slider">
-        <div class="hero-slide active">
-            <img src="../assets/images/cart-slide.png" alt="">
-            <div class="hero-content">
-                <h1>My Cart</h1>
-            </div>
-        </div>
-  </section>
-  <main class="cart-page container" style="padding: 40px 20px; max-width: var(--container);">
-    <h1 style="font-weight:900; margin-bottom:20px;">My Cart</h1>
-    <div class="cart-section" style="display:flex; gap:30px; align-items:flex-start;">
-      <div style="flex:1; background:transparent;">
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart1.png" alt="item 1" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">Nomad Haven</h3>
-                <p style="margin:0; color:#666;">Color: Sand • Size: L</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$250</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$250</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="height:1px; background:#efefef; margin:8px 0;"></div>
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart2.png" alt="item 2" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">WanderWay Kid</h3>
-                <p style="margin:0; color:#666;">Color: Blue • Size: M</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$690</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$690</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="height:1px; background:#efefef; margin:8px 0;"></div>
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart3.png" alt="item 3" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">Crossroads Elite</h3>
-                <p style="margin:0; color:#666;">Color: Black • Size: XL</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$1200</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$1200</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="height:1px; background:#efefef; margin:8px 0 24px;"></div>
-        <div style="display:flex; gap:12px; align-items:center;">
-          <a href="/index.html" class="btn" style="padding:10px 18px; border-radius:8px;">Continue Shopping</a>
-          <button class="btn" style="background:#fff; color:var(--dark); border:1px solid #e1e1e1;">Clear Shopping Cart</button>
+  <section class="container product-page">
+
+    <div class="product-wrapper">
+      <div class="product-gallery">
+        <img class="main-img" src="./src/assets/images/product-hero-2.jpg" alt="Silver suitcase">
+
+        <div class="thumbs">
+          <img src="./src/assets/images/product-thumb-1.jpg" alt="">
+          <img src="./src/assets/images/product-thumb-2.jpg" alt="">
+          <img src="./src/assets/images/product-thumb-3.jpg" alt="">
         </div>
       </div>
-      <aside style="width:340px;">
-        <div class="cart-summary" style="background:#fff; padding:22px; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,0.06);">
-          <h3 style="margin:0 0 14px; font-size:18px;">Order Summary</h3>
-          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #efefef;">
-            <span>Sub Total</span>
-            <span style="font-weight:700;">$2140</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #efefef;">
-            <span>Shipping</span>
-            <span>Free</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; padding:14px 0; margin-top:6px; font-weight:700; font-size:16px;">
-            <span>Total</span>
-            <span>$2140</span>
-          </div>
-          <a href="#" class="btn checkout" style="display:block; text-align:center; margin-top:16px; padding:12px 0; border-radius:8px;">Proceed to Checkout</a>
+      <div class="product-info">
+        <h1>Global Explorer Silver Edition Suitcase</h1>
+        <div class="rating">
+          ⭐⭐⭐⭐⭐ <span>(12 Reviews)</span>
         </div>
-      </aside>
+        <div class="price">$320</div>
+        <p class="product-desc">
+          A stylish and durable travel suitcase made from reinforced recycled materials.
+          Designed for maximum comfort and efficiency during long-distance travel.
+        </p>
+        <div class="product-options">
+          <label>Size</label>
+          <select>
+            <option>Choose option</option>
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+          </select>
+          <label>Color</label>
+          <select>
+            <option>Choose option</option>
+            <option>Silver</option>
+            <option>Black</option>
+            <option>Red</option>
+          </select>
+          <label>Category</label>
+          <select>
+            <option>Choose option</option>
+            <option>Travel</option>
+            <option>Luggage</option>
+          </select>
+        </div>
+        <div class="product-action">
+          <div class="counter">
+            <button>-</button>
+            <input type="number" value="1" />
+            <button>+</button>
+          </div>
+          <a href="#" class="btn add-cart">Add To Cart</a>
+        </div>
+        <div class="payment">
+          <span>Payment:</span>
+          <img src="./src/assets/icons/visa.svg" alt="">
+          <img src="./src/assets/icons/mastercard.svg" alt="">
+          <img src="./src/assets/icons/paypal.svg" alt="">
+        </div>
+      </div>
     </div>
-  </main>
-<footer class="site-footer">
+    <div class="product-tabs">
+      <button class="active">Details</button>
+      <button>Reviews</button>
+      <button>Shipping</button>
+    </div>
+    <div class="tab-content">
+      <p>
+        Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor, in
+        efficitur justo imperdiet. Etiam a ex at
+        ante tincidunt imperdiet. Nunc congue ex vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent luctus
+        lacus non lorem elementum, eu tristique
+        sapien suscipit. Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales purus, eget hendrerit dui ligula
+        eu enim. Ut non est nisi. Pellentesque
+        tristique pretium dolor eu commodo. Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna
+        sit amet luctus. Suspendisse potenti.
+        Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra,
+        facilisis quam.</p>
+      <p>Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse potenti.
+        Curabitur ac placerat est, sit amet sodales
+        risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra, facilisis quam. Proin iaculis nibh vitae
+        lectus mollis bibendum. </p>
+      <p>Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
+        risus. Pellentesque viverra dui auctor,
+        ullamcorper turpis pharetra, facilisis quam.
+      </p>
+    </div>
+  </section>
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">You May Also Like</h2>
+      <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
+
+      <div class="selected-products-grid">
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-1.png')"></div>
+          <div class="card-content">
+            <h4>Rose suitcase</h4>
+            <div class="price">$250</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-2.png')"></div>
+          <div class="card-content">
+            <h4>Beige suitcase</h4>
+            <div class="price">$200</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-3.png')"></div>
+          <div class="card-content">
+            <h4>Pink suitcase</h4>
+            <div class="price">$300</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+        <article class="card-item">
+          <div class="card-img" style="background-image:url('./src/assets/images/product-4.png')"></div>
+          <div class="card-content">
+            <h4>Blue suitcase</h4>
+            <div class="price">$350</div>
+            <a href="#" class="btn">Add To Cart</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  <section class="attention-block">
+    <div class="container">
+      <h2>Pay Attention</h2>
+      <p>
+        Before purchasing, please make sure the size and capacity meet airline requirements
+        for carry-on luggage. Warranty applies to manufacturing defects only.
+      </p>
+    </div>
+  </section>
+ <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-bg"></div>
       <div class="footer-container">
@@ -286,6 +308,8 @@
       </div>
     </div>
   </footer>
-
+  <script src="../js/main.js"></script>
+  <script src="../js/home.js"></script>
 </body>
+
 </html>

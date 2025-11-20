@@ -2,14 +2,16 @@
   max-width: 1200px;
   margin: 60px auto;
   text-align: center;
-
-  display: flex !important;          // принудительно
+  display: flex; 
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
 
   .contact-item {
-    flex: 1;                         // чтобы распределились равномерно
+    flex: 1; 
+    text-align: center;
+  max-width: 200px;
+  margin: 0 auto;
 
     img {
       width: 48px;
@@ -30,19 +32,34 @@
   }
 }
 
+.icon-wrapper {
+  background-color: #B92770;
+  width: 60px;             
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 12px auto; 
+}
+
 
 
 .contact-form-section {
   max-width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 50px;
   margin: 80px auto;
 
   .contact-image img {
     width: 100%;
-    border-radius: 4px;
     object-fit: cover;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 50px;
   }
 
   .contact-form {
@@ -52,7 +69,6 @@
     }
 
     p {
-      color: #777;
       margin-bottom: 24px;
     }
 
@@ -65,14 +81,22 @@
         font-size: 14px;
         font-weight: 600;
         margin-bottom: 6px;
+        position: relative;
+        display: inline-block;
+      }
+
+      label::after {
+        content: "*";
+        margin-left: 4px;
+        color: var(--pink);
+        font-weight: 700;
       }
 
       input,
       textarea {
-        border: 1px solid #ddd;
+        border: 1px solid var(--pink);
         padding: 12px;
         font-size: 15px;
-        border-radius: 3px;
         transition: 0.2s;
 
         &:focus {
@@ -95,7 +119,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
-      border-radius: 3px;
 
       &:hover {
         background: #d83a75;
