@@ -126,3 +126,25 @@
     }
   }
 }
+
+.error {
+  color: #c41b66;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-status {
+  margin-top: 15px;
+  font-weight: 600;
+  display: none;
+  text-align: center;
+}
+
+.form-status.success {
+  color: #2b9c2b;
+}
+
+.form-status.error {
+  color: #c41b66;
+}

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,6 +11,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="../../dist/style.css">
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-inner">
@@ -51,49 +53,87 @@
     <div class="divider"></div>
     <nav class="main-nav">
       <a href="/index.html" class="nav-item">Home</a>
-      <div class="nav-dropdown">
+      <li class="nav-item catalog-menu">
         <a href="/src/html/catalog.html" class="nav-item active">
           Catalog
           <span class="arrow"><span></span><span></span></span>
         </a>
-        <div class="dropdown-menu">
-          <a href="#">Category 1</a>
-          <a href="#">Category 2</a>
-          <a href="#">Category 3</a>
+        <div class="catalog-dropdown">
+          <div class="divider-catalog-1"></div>
+          <div class="filters-row">
+            <div class="filter-group">
+              <label class="catalog-label">Size</label>
+              <select>
+                <option value="">Choose option</option>
+                <option>Смартфоны</option>
+                <option>Аксессуары</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="catalog-label">Color</label>
+              <select>
+                <option value="">Choose option</option>
+                <option>Смартфоны</option>
+                <option>Аксессуары</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="catalog-label">Category</label>
+              <select>
+                <option value="">Choose option</option>
+                <option>Samsung</option>
+                <option>Xiaomi</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="catalog-label">Sales</label>
+              <div class="radio-group">
+                <label><input type="radio" name="sales" value=""> </label>
+              </div>
+            </div>
+          </div>
+          <div class="divider-catalog-2"></div>
+          <button class="filters-apply">CLEAR FILTERS</button>
+          <button class="filters-apply">HIDE FILTERS</button>
+
         </div>
-      </div>
+      </li>
+
+
       <a href="/src/html/about.html" class="nav-item">About Us</a>
       <a href="/src/html/contact.html" class="nav-item">Contact Us</a>
     </nav>
   </header>
-<div id="loginModal" class="login-overlay">
-      <div class="login-modal">
-        <span class="login-close">&times;</span>
-        <form id="loginForm">
-          <div class="form-group">
-            <label for="loginEmail">Email address <span class="required">*</span></label>
-            <input class="login-input" classtype="text" id="loginEmail" name="email" placeholder="" required>
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">Password <span class="required">*</span></label>
-            <input class="login-input" type="password" id="loginPassword" name="password" placeholder="" required>
-            <span class="password-toggle" id="togglePassword">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ec4c84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-        <circle cx="12" cy="12" r="3"/>
-      </svg>
-    </span>
-          </div>
-          <div class="form-options">
-            <label class="remember-me">
-              <input type="checkbox" name="remember"> Remember me
-            </label>
-            <a href="#" class="forgot-password">Forgot your password?</a>
-          </div>
-          <button type="submit" class="login-btn">LOG IN</button>
-        </form>
-      </div>
+  <div id="loginModal" class="login-overlay">
+    <div class="login-modal">
+      <span class="login-close">&times;</span>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email address <span class="required">*</span></label>
+          <input class="login-input" classtype="text" id="loginEmail" name="email" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password <span class="required">*</span></label>
+          <input class="login-input" type="password" id="loginPassword" name="password" placeholder="" required>
+          <span class="password-toggle" id="togglePassword">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="#ec4c84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </span>
+        </div>
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" name="remember"> Remember me
+          </label>
+          <a href="#" class="forgot-password">Forgot your password?</a>
+        </div>
+        <button type="submit" class="login-btn">LOG IN</button>
+      </form>
     </div>
+  </div>
   </header>
   <main>
     <section class="catalog-page">
@@ -104,13 +144,10 @@
             <div class="filter-controls">
               <select class="filter-sort">
                 <option>Default Sorting</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
+                <option>Price</option>
+                <option>Popularity</option>
+                <option>Rating</option>
               </select>
-              <div class="search-box">
-                <input type="text" placeholder="Search Models">
-                <img src="../assets/images/search.svg" alt="">
-              </div>
             </div>
           </div>
           <div class="catalog-grid">
@@ -218,6 +255,9 @@
           </div>
         </div>
         <aside class="catalog-sidebar">
+          <div class="search-box">
+                <input class="search-box-input" type="text" placeholder="Search Models">
+          </div>
           <h3 class="sidebar-title">Top Best Sets</h3>
           <div class="top-products-list">
             <div class="top-product">
@@ -298,7 +338,9 @@
         <div class="footer-left">
           <div class="footer-links-row">
             <div class="col">
-              <a class="footer-link" href="/src/html/about.html"><h4>About Us</h4></a>
+              <a class="footer-link" href="/src/html/about.html">
+                <h4>About Us</h4>
+              </a>
               <a class="footer-link" href="#">Organisation</a>
               <a class="footer-link" href="#">Partners</a>
               <a class="footer-link" href="#">Clients</a>
@@ -326,28 +368,42 @@
           </div>
         </div>
         <aside class="footer-contact">
-          <a class="footer-link" href="/src/html/contact.html"><h4>Contact Us</h4></a>
+          <a class="footer-link" href="/src/html/contact.html">
+            <h4>Contact Us</h4>
+          </a>
           <p>
             Bendum dolor eu varius. Morbi fermentum velit nisl sodales egetonec. Volutpat orci.
           </p>
           <div class="contact-wrapper">
             <ul class="contact-column">
               <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#B92770" d="M20.787 24c-.1 0-.193 0-.29-.013h-.017a23.03 23.03 0 0 1-9.978-3.542 22.7 22.7 0 0 1-6.938-6.924A22.928 22.928 0 0 1 .013 3.512v-.016A3.21 3.21 0 0 1 3.208 0H6.55a3.226 3.226 0 0 1 3.18 2.759v.009c.13.985.372 1.952.72 2.883a3.213 3.213 0 0 1-.724 3.383l-.852.85a16.69 16.69 0 0 0 5.222 5.21l.854-.852a3.215 3.215 0 0 1 3.388-.721c.932.347 1.901.588 2.888.718h.009a3.21 3.21 0 0 1 2.763 3.243v3.3A3.211 3.211 0 0 1 20.787 24Zm-.1-2A1.21 1.21 0 0 0 22 20.791V17.446a1.21 1.21 0 0 0-1.038-1.225 15.246 15.246 0 0 1-3.322-.826 1.215 1.215 0 0 0-1.281.27l-1.4 1.4a1 1 0 0 1-1.2.162 18.689 18.689 0 0 1-7.012-7 1 1 0 0 1 .162-1.2l1.4-1.4a1.208 1.208 0 0 0 .27-1.271 15.178 15.178 0 0 1-.83-3.318A1.216 1.216 0 0 0 6.55 2H3.209a1.21 1.21 0 0 0-1.206 1.31 20.919 20.919 0 0 0 3.239 9.124v.007a20.683 20.683 0 0 0 6.329 6.316h.008A21.022 21.022 0 0 0 20.687 22Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                  <path fill="#B92770"
+                    d="M20.787 24c-.1 0-.193 0-.29-.013h-.017a23.03 23.03 0 0 1-9.978-3.542 22.7 22.7 0 0 1-6.938-6.924A22.928 22.928 0 0 1 .013 3.512v-.016A3.21 3.21 0 0 1 3.208 0H6.55a3.226 3.226 0 0 1 3.18 2.759v.009c.13.985.372 1.952.72 2.883a3.213 3.213 0 0 1-.724 3.383l-.852.85a16.69 16.69 0 0 0 5.222 5.21l.854-.852a3.215 3.215 0 0 1 3.388-.721c.932.347 1.901.588 2.888.718h.009a3.21 3.21 0 0 1 2.763 3.243v3.3A3.211 3.211 0 0 1 20.787 24Zm-.1-2A1.21 1.21 0 0 0 22 20.791V17.446a1.21 1.21 0 0 0-1.038-1.225 15.246 15.246 0 0 1-3.322-.826 1.215 1.215 0 0 0-1.281.27l-1.4 1.4a1 1 0 0 1-1.2.162 18.689 18.689 0 0 1-7.012-7 1 1 0 0 1 .162-1.2l1.4-1.4a1.208 1.208 0 0 0 .27-1.271 15.178 15.178 0 0 1-.83-3.318A1.216 1.216 0 0 0 6.55 2H3.209a1.21 1.21 0 0 0-1.206 1.31 20.919 20.919 0 0 0 3.239 9.124v.007a20.683 20.683 0 0 0 6.329 6.316h.008A21.022 21.022 0 0 0 20.687 22Z" />
+                </svg>
                 Phone: (+63) 236 6322
               </li>
               <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 27 27"> <path fill="#B92770" d="M3.894 22.985A13.5 13.5 0 0 1 22.985 3.894 13.5 13.5 0 0 1 3.894 22.985ZM5.308 5.31A11.5 11.5 0 1 0 21.571 21.57a11.498 11.498 0 0 0-3.69-18.825A11.5 11.5 0 0 0 5.308 5.31ZM17.617 16.75l-4.625-2.31a.999.999 0 0 1-.553-.9V6.607a1 1 0 0 1 2 0v6.318l4.073 2.037a1 1 0 1 1-.895 1.788Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 27 27">
+                  <path fill="#B92770"
+                    d="M3.894 22.985A13.5 13.5 0 0 1 22.985 3.894 13.5 13.5 0 0 1 3.894 22.985ZM5.308 5.31A11.5 11.5 0 1 0 21.571 21.57a11.498 11.498 0 0 0-3.69-18.825A11.5 11.5 0 0 0 5.308 5.31ZM17.617 16.75l-4.625-2.31a.999.999 0 0 1-.553-.9V6.607a1 1 0 0 1 2 0v6.318l4.073 2.037a1 1 0 1 1-.895 1.788Z" />
+                </svg>
                 Mon–Fri: 10am–6pm<br> Sat–Sun: 10am–6pm
               </li>
             </ul>
             <ul class="contact-column">
               <li>
-                <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" fill="none" viewBox="0 0 24 18"><path fill="#B92770" d="M3.2 18.002a3.1 3.1 0 0 1-3.2-2.98V2.98A3.1 3.1 0 0 1 3.2 0h17.6a3.1 3.1 0 0 1 3.2 2.98v12.04a3.1 3.1 0 0 1-3.2 2.98H3.2ZM2 15.022a1.142 1.142 0 0 0 1.2 1.034h17.6a1.142 1.142 0 0 0 1.2-1.034V6.83l-9.394 6.966a1.024 1.024 0 0 1-1.212 0L2 6.83v8.19Zm10-3.22 10-7.418v-1.4a1.142 1.142 0 0 0-1.2-1.033H3.2A1.142 1.142 0 0 0 2 2.98v1.4l10 7.42Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 18">
+                  <path fill="#B92770"
+                    d="M3.2 18.002a3.1 3.1 0 0 1-3.2-2.98V2.98A3.1 3.1 0 0 1 3.2 0h17.6a3.1 3.1 0 0 1 3.2 2.98v12.04a3.1 3.1 0 0 1-3.2 2.98H3.2ZM2 15.022a1.142 1.142 0 0 0 1.2 1.034h17.6a1.142 1.142 0 0 0 1.2-1.034V6.83l-9.394 6.966a1.024 1.024 0 0 1-1.212 0L2 6.83v8.19Zm10-3.22 10-7.418v-1.4a1.142 1.142 0 0 0-1.2-1.033H3.2A1.142 1.142 0 0 0 2 2.98v1.4l10 7.42Z" />
+                </svg>
                 public@news.com
               </li>
               <li>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path fill="#B92770" d="M9.445 23.831a30.392 30.392 0 0 1-4.671-4.019 21.113 21.113 0 0 1-3.246-4.351A11.423 11.423 0 0 1 0 10a10 10 0 0 1 20 0 11.42 11.42 0 0 1-1.528 5.463 21.11 21.11 0 0 1-3.246 4.351 30.403 30.403 0 0 1-4.671 4.019 1 1 0 0 1-1.11 0v-.002ZM2 10c0 5.414 6.1 10.364 8 11.771 1.9-1.406 8-6.356 8-11.771a8 8 0 0 0-16 0Zm4 0a4 4 0 1 1 4 4 4.007 4.007 0 0 1-4-4Zm2 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                  <path fill="#B92770"
+                    d="M9.445 23.831a30.392 30.392 0 0 1-4.671-4.019 21.113 21.113 0 0 1-3.246-4.351A11.423 11.423 0 0 1 0 10a10 10 0 0 1 20 0 11.42 11.42 0 0 1-1.528 5.463 21.11 21.11 0 0 1-3.246 4.351 30.403 30.403 0 0 1-4.671 4.019 1 1 0 0 1-1.11 0v-.002ZM2 10c0 5.414 6.1 10.364 8 11.771 1.9-1.406 8-6.356 8-11.771a8 8 0 0 0-16 0Zm4 0a4 4 0 1 1 4 4 4.007 4.007 0 0 1-4-4Zm2 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
+                </svg>
                 639 Jade Valley, <br>Washington DC
               </li>
             </ul>
@@ -362,5 +418,7 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
+  <script src="../js/catalog.js"></script>
 </body>
+
 </html>

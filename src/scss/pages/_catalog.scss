@@ -35,27 +35,24 @@
 
 .filter-sort {
   padding: 8px 12px;
+  padding-right: 32px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  margin-bottom: 30px;
+  width: content;
+  color: #504E4A;
 }
 
 .search-box {
   position: relative;
 }
 
-.search-box input {
+.search-box-input{
   padding: 8px 12px;
   padding-right: 32px;
   border: 1px solid #ccc;
-}
-
-.search-box img {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  opacity: 0.6;
+  margin-bottom: 30px;
+  width: content;
+  color: #504E4A;
 }
 
 .catalog-grid {
@@ -133,4 +130,99 @@
 .tp-price {
   font-weight: 700;
   font-size: 15px;
+}
+ 
+
+/* скрыт по умолчанию */
+.catalog-dropdown {
+  position: absolute;
+  top: 100%;
+  right: -500px;
+  width: max-content;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 20;
+}
+
+.catalog-menu {
+  position: relative;
+}
+
+/* показывать при наведении */
+.catalog-menu.show-dropdown .catalog-dropdown {
+  display: block;
+}
+
+/* ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ */
+.filters-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 40px;
+}
+
+.catalog-dropdown input,
+.catalog-dropdown select {
+  padding: 6px 8px;
+  border: 1px solid #E9E9ED;
+  margin-top: 6px;
+  color: #727174;
+}
+
+/* radio кнопки */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .catalog-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    cursor: pointer;
+     color: #504E4A;
+  
+  }
+
+
+  input[type="radio"] {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+
+.filters-apply {
+  width: 200px;
+  height: 40px;
+  padding: 8px;
+  background: var(--pink);
+  color: white;
+  border: none;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.divider-catalog-1,
+ .divider-catalog-2{
+  width: content;
+  border-bottom: 1px solid var(--pink);
+}
+
+.divider-catalog-1{
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.divider-catalog-2{
+  margin-top: 30px;
 }

@@ -142,28 +142,38 @@
   <div class="contact-image">
     <img src="../assets/images/contact-img.png" alt="">
   </div>
-  <form class="contact-form">
+
+  <form class="contact-form" id="contactForm">
     <h3>Your Feedback Is Much Appreciated!</h3>
     <p>We will contact you when you complete the form.</p>
+
     <div class="form-group">
       <label>Your Name</label>
-      <input type="text" placeholder="">
+      <input type="text" id="name" required>
     </div>
+
     <div class="form-group">
       <label>Your Email Address</label>
-      <input type="email" placeholder="">
+      <input type="email" id="email" required>
+      <small class="error" id="emailError"></small>
     </div>
+
     <div class="form-group">
       <label>Topic</label>
-      <input type="text" placeholder="">
+      <input type="text" id="topic" required>
     </div>
+
     <div class="form-group">
       <label>Your Message</label>
-      <textarea placeholder=""></textarea>
+      <textarea id="message" required></textarea>
     </div>
-    <button class="btn send-btn">SEND</button>
+
+    <button class="btn send-btn" type="submit">SEND</button>
+
+    <p class="form-status" id="formStatus"></p>
   </form>
-</section> 
+</section>
+
 </main>
   <footer class="site-footer">
     <div class="footer-top">
@@ -259,6 +269,6 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
-  <script src="../js/home.js"></script>
+  <script src="../js/contact.js"></script>
 </body>
 </html>
