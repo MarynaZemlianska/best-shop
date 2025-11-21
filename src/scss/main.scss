@@ -46,3 +46,148 @@ a {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+.login-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-modal {
+  background: #fff;
+  padding: 30px 40px;
+  width: 500px;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.login-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ec4c84;
+}
+
+.login-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.login-input {
+  width: 360px;
+  height: 38px;
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #ec4c84;
+  transition: 0.2s;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #d83a75;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.account-icon.logged-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ec4c84;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: default;
+}
+
+.account-icon{
+  cursor: pointer;
+}
+
+.remember-me {
+  color: #727174;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.forgot-password {
+  color: #ec4c84;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  width: 360px;
+  height: 38px;
+  background: #ec4c84;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #d83a75;
+}
+
+.required {
+  color: var(--pink);
+}
+.password-wrapper {
+  position: relative;
+  width: 360px;
+}
+
+.password-wrapper .login-input {
+  width: 100%;
+  height: 38px;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 51%;
+  right:80px; 
+  
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

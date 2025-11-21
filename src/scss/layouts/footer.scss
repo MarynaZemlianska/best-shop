@@ -143,8 +143,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1;          /* пусть растягивается */
-  min-width: 0;     /* самое важное — разрешает тексту занимать ширину */
+  flex: 1;  
+  min-width: 0;    
 }
 
 .contact-column li {
