@@ -3,6 +3,7 @@
 .hero {
   background: #eee;
   height: 700px;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
@@ -236,5 +237,7 @@ width: 100%;
   }
 }
 
+@media screen and (min-width: 1440px) {
 
-
+}
+  
