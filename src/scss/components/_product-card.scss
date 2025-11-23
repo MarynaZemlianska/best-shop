@@ -1,5 +1,4 @@
-
-
+/* Общие стили секций */
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 36px;
@@ -15,86 +14,45 @@
   text-align: center;
 }
 
-.card-item.card--tall {
-  height: 600px;
+/* Обычные карточки */
+.card-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 450px; /* фиксированная высота */
+  box-shadow: 0 8px 30px rgba(28,28,28,0.06);
+  transition: transform .28s ease, box-shadow .28s ease;
+  background: #fff;
+  text-align: center;
+}
+
+
+.card-item:not(.card--tall) .card-img {
   width: 100%;
+  height: 70%; /* изображение занимает большую часть */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(28, 28, 28, 0.06);
-  transition: transform .28s ease, box-shadow .28s ease;
 }
 
-.card-item.card--tall::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.05));
-  z-index: 1;
-}
-
-
-.card-item.card--tall .card-content {
-  position: relative;
-  z-index: 2;
-  padding: 24px 12px;
-  background: transparent;
-  text-align: left;
-  line-height: 1.5;
-}
-
-.card-item .card-img {
-  width: 100%;
-  height: 400px; 
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.card-item .card-content {
-  flex: 1;
-  padding: 16px;
+.card-item:not(.card--tall) .card-content {
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 8px;
-  text-align: center;
-  background: transparent;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
 }
 
-.card-item.card--med,
-.card-item.card--short {
-  width: 296px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(28,28,28,0.06);
-  transition: transform .28s ease, box-shadow .28s ease;
-  background: transparent; 
-}
+
 
 .card-item .card-content h4 {
   font-size: 20px;
   font-weight: 700;
   margin: 0;
   color: black;
-
-}
-
-.card-content.card--tall,
-.card-content.card--tall h4
-{
-
-  color: white;
 }
 
 .card-item .card-content .price {
@@ -121,19 +79,137 @@
   box-shadow: 0 16px 50px rgba(0,0,0,0.25);
 }
 
+.card-item.card--tall {
+  height: 600px; /* фиксированная высота как раньше */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* текст внизу */
+  color: white;
+}
+
+/* Tall карточки */
+.card-item.card--tall .card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.card-item.card--tall .card-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.05));
+  z-index: 1;
+}
+
+.card-item.card--tall .card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-end; /* текст внизу */
+  align-items: center;
+  text-align: center;
+}
+
+.card-item.card--tall .card-content h4 {
+  color: white;
+}
+
+/* Сетки */
 .travel-cards-grid,
 .selected-products-grid,
 .new-arrivals-grid {
   display: grid;
-  grid-template-columns: repeat(4, 296px);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   justify-content: center;
   margin: 0 auto;
   max-width: calc(4 * 296px + 3 * 24px);
 }
-
+/* Общие отступы для секций */
 .travel-cards,
 .selected-products,
 .new-arrivals {
-  margin: 80px 0 80px 0;
+  margin: 80px 0;
+}
+
+//* Адаптив */
+@media screen and (max-width: 1024px) {
+  .travel-cards-grid,
+  .selected-products-grid,
+  .new-arrivals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Уменьшаем обычные карточки */
+  .card-item {
+    height: 400px;
+  }
+
+  /* Tall карточки */
+  .card-item.card--tall {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .travel-cards-grid,
+  .selected-products-grid,
+  .new-arrivals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 10px;
+  }
+
+  /* Обычные карточки */
+  .card-item {
+    height: 350px;
+  }
+
+  /* Tall карточки */
+  .card-item.card--tall {
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .travel-cards-grid,
+  .selected-products-grid,
+  .new-arrivals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tall карточки */
+  .card-item.card--tall {
+    height: 350px;
+  }
+
+  /* Обычные карточки */
+  .card-item {
+    height: 300px;
+  }
+
+  .card-item .card-content h4 {
+    font-size: 16px;
+  }
+
+  .card-item .card-content .price {
+    font-size: 16px;
+  }
+
+  .card-item .card-content .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
 }

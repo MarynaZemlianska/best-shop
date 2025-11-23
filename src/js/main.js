@@ -91,3 +91,11 @@ function logoutUser() {
   userIcon.innerHTML = `<img src="./src/assets/images/account.svg" alt="Account">`;
   userIcon.style.cssText = ""; 
 }
+
+const hamburger = document.getElementById('hamburger');
+const mainNav = document.querySelector('.main-nav');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mainNav.classList.toggle('active');
+});

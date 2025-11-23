@@ -188,3 +188,42 @@
 .footer-link:hover{
   color: var(--pink);
 }
+
+
+@media screen and (max-width: 820px) {
+  .footer-flex {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-contact {
+    width: 100%;
+  }
+
+  .footer-links-row {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center; /* центрируем ссылки */
+  }
+
+  .contact-wrapper {
+    display: flex;
+    flex-direction: column; /* колонки сверху вниз */
+    align-items: center; /* центрируем колонки */
+    gap: 20px;
+  }
+
+  .contact-column {
+    flex: unset; /* убрать flex:1 */
+    width: 100%; /* можно для ширины текста */
+    max-width: 320px; /* чтобы не растягивалось на всю ширину */
+  }
+
+  .contact-column li {
+    white-space: normal;
+    justify-content: center; /* центрируем текст и иконку */
+  }
+}
