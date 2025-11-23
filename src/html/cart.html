@@ -104,116 +104,96 @@
             </div>
         </div>
   </section>
-  <main class="cart-page container" style="padding: 40px 20px; max-width: var(--container);">
-    <h1 style="font-weight:900; margin-bottom:20px;">My Cart</h1>
-    <div class="cart-section" style="display:flex; gap:30px; align-items:flex-start;">
-      <div style="flex:1; background:transparent;">
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart1.png" alt="item 1" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">Nomad Haven</h3>
-                <p style="margin:0; color:#666;">Color: Sand • Size: L</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$250</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$250</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
+  <main class="cart-page container">
+
+  <div class="cart-section">
+    <div class="cart-items-container">
+      <div class="cart-grid-header">
+        <div>Image</div>
+        <div>Product Name</div>
+        <div>Price</div>
+        <div>Quantity</div>
+        <div>Total</div>
+        <div>Delete</div>
+      </div>
+      <div class="cart-item">
+        <img src="../assets/images/cart1.png" alt="item 1" class="cart-img">
+        <div class="product-info">
+          <h3>Nomad Haven</h3>
+          <p>Color: Sand • Size: L</p>
         </div>
-        <div style="height:1px; background:#efefef; margin:8px 0;"></div>
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart2.png" alt="item 2" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">WanderWay Kid</h3>
-                <p style="margin:0; color:#666;">Color: Blue • Size: M</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$690</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$690</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
+        <div class="price">$250</div>
+        <div class="quantity">
+          <button>−</button>
+          <span>1</span>
+          <button>+</button>
         </div>
-        <div style="height:1px; background:#efefef; margin:8px 0;"></div>
-        <div class="cart-item" style="display:flex; gap:18px; align-items:center; padding:18px 16px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); margin-bottom:12px;">
-          <img src="../assets/images/cart3.png" alt="item 3" style="width:110px; height:88px; object-fit:cover; border-radius:8px;">
-          <div style="flex:1;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <div>
-                <h3 style="margin:0 0 6px; font-size:18px; font-weight:700;">Crossroads Elite</h3>
-                <p style="margin:0; color:#666;">Color: Black • Size: XL</p>
-              </div>
-              <div style="text-align:right;">
-                <div style="font-weight:700; font-size:16px;">$1200</div>
-                <div style="color:#999; font-size:13px; margin-top:6px;">each</div>
-              </div>
-            </div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-              <div style="display:flex; gap:8px; align-items:center;">
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">−</button>
-                <span style="min-width:28px; text-align:center; display:inline-block;">1</span>
-                <button class="qty-btn" style="width:36px; height:36px; border-radius:8px; border:1px solid #e1e1e1; background:#fff; font-weight:700; cursor:pointer;">+</button>
-              </div>
-              <div style="display:flex; gap:10px; align-items:center;">
-                <div style="font-weight:700;">$1200</div>
-                <button class="remove" style="border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer;">✕</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="height:1px; background:#efefef; margin:8px 0 24px;"></div>
-        <div style="display:flex; gap:12px; align-items:center;">
-          <a href="/index.html" class="btn" style="padding:10px 18px; border-radius:8px;">Continue Shopping</a>
-          <button class="btn" style="background:#fff; color:var(--dark); border:1px solid #e1e1e1;">Clear Shopping Cart</button>
+        <div class="total">$250</div>
+        <div class="delete-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#B92770" viewBox="0 0 24 24">
+            <path d="M7 4h-2l-1 2h-2v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.97 0 1.11.89 2 2 2h12v-2h-12l.25-.44h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.3.12-.48 0-.55-.45-1-1-1h-14zm0 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
         </div>
       </div>
-      <aside style="width:340px;">
-        <div class="cart-summary" style="background:#fff; padding:22px; border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,0.06);">
-          <h3 style="margin:0 0 14px; font-size:18px;">Order Summary</h3>
-          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #efefef;">
-            <span>Sub Total</span>
-            <span style="font-weight:700;">$2140</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #efefef;">
-            <span>Shipping</span>
-            <span>Free</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; padding:14px 0; margin-top:6px; font-weight:700; font-size:16px;">
-            <span>Total</span>
-            <span>$2140</span>
-          </div>
-          <a href="#" class="btn checkout" style="display:block; text-align:center; margin-top:16px; padding:12px 0; border-radius:8px;">Proceed to Checkout</a>
+      <div class="cart-divider"></div>
+
+      <div class="cart-item">
+        <img src="../assets/images/cart2.png" alt="item 2" class="cart-img">
+        <div class="product-info">
+          <h3>WanderWay Kid</h3>
+          <p>Color: Blue • Size: M</p>
         </div>
-      </aside>
+        <div class="price">$690</div>
+        <div class="quantity">
+          <button>−</button>
+          <span>1</span>
+          <button>+</button>
+        </div>
+        <div class="total">$690</div>
+        <div class="delete-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#B92770" viewBox="0 0 24 24">
+            <path d="M7 4h-2l-1 2h-2v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.97 0 1.11.89 2 2 2h12v-2h-12l.25-.44h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.3.12-.48 0-.55-.45-1-1-1h-14zm0 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="cart-divider"></div>
+
+      <div class="cart-item">
+        <img src="../assets/images/cart3.png" alt="item 3" class="cart-img">
+        <div class="product-info">
+          <h3>Crossroads Elite</h3>
+          <p>Color: Black • Size: XL</p>
+        </div>
+        <div class="price">$1200</div>
+        <div class="quantity">
+          <button>−</button>
+          <span>1</span>
+          <button>+</button>
+        </div>
+        <div class="total">$1200</div>
+        <div class="delete-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#B92770" viewBox="0 0 24 24">
+            <path d="M7 4h-2l-1 2h-2v2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.97 0 1.11.89 2 2 2h12v-2h-12l.25-.44h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.3.12-.48 0-.55-.45-1-1-1h-14zm0 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="cart-bottom">
+        <div class="cart-buttons">
+          <a href="/src/html/catalog.html" class="btn-cart">Continue Shopping</a>
+          <button class="btn-cart">Clear Shopping Cart</button>
+        </div>
+        <aside class="cart-summary">
+          <ul>
+            <li><span>Sub Total</span><span>$2140</span></li>
+            <li><span>Shipping</span><span>Free</span></li>
+            <li class="total"><span>Total</span><span>$2140</span></li>
+          </ul>
+          <a href="#" class="btn checkout">Checkout</a>
+        </aside>
+      </div>
     </div>
-  </main>
+  </div>
+</main>
 <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-bg"></div>

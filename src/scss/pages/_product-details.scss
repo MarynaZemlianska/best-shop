@@ -3,6 +3,10 @@
   margin: 100px 0;
 }
 
+.container.product-page{
+  margin-top: 80px;
+}
+
 .product-page .product-wrapper {
   display: flex;
   gap: 40px;
@@ -46,6 +50,10 @@
   margin: 10px 0;
 }
 
+.price{
+  color: #504E4A;
+}
+
 .product-options {
   display: flex;
   flex-direction: column;
@@ -53,10 +61,94 @@
   margin: 25px 0;
 }
 
+.product-options-select{
+  color: #504E4A;
+  border-radius: none;
+}
+
 .product-action {
   display: flex;
   align-items: center;
   gap: 20px;
+  margin-bottom: 40px;
+}
+
+.qty-box {
+  display: flex;
+  align-items: center;
+  width: 130px; 
+  height: 55px;
+  border: 2px solid #B92770;
+  overflow: hidden;
+  background: #fff;
+}
+
+
+.qty-btn {
+  width: 30px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: #707070; 
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.qty-btn:hover {
+  background: rgba(185, 39, 112, 0.1);
+}
+
+.qty-input {
+  flex: 1;
+  min-width: 40px; 
+  text-align: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #707070; 
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 55px;
+  margin: 0;
+  background: #B92770;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.add-cart:hover {
+  background: #a02063;
+}
+
+
+.payment {
+  display: flex;
+  gap: 20px;
+  color: #727174;
+  align-items: center;
 }
 
 .product-tabs {
@@ -65,7 +157,18 @@
   margin-top: 50px;
 }
 
+.reviews-items {
+ display: flex;
+ gap: 20px;
+}
+
+.container-add-review{
+  display: flex;
+  flex-direction: column;
+}
+
 .product-tabs button {
+  
   background: none;
   border: none;
   font-weight: 600;
@@ -79,8 +182,103 @@
   color: var(--pink);
 }
 
-.attention-block {
-  background: #fafafa;
-  text-align: center;
-  padding: 60px 20px;
+.reviews-content {
+  margin-top: 40px;
+  font-family: var(--font-main);
+}
+
+.review-header-title {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.review-text{
+  line-height: 1.7;
+}
+
+.review-card {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.review-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-row {
+  display: flex;
+  gap: 15px;
+}
+
+.review-author {
+  font-weight: bold;
+}
+
+.review-date {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.review-stars {
+  margin: 10px 0;
+  color: gold;
+}
+
+.add-title {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.rating-input {
+  margin-bottom: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+textarea {
+  width: 500px;
+  height: 180px;
+  padding: 15px;
+  border: 1px solid var(--pink);
+}
+
+.input-group {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.input-group input {
+  width: 50%;
+  padding: 15px;
+  border: 1px solid var(--pink);
+}
+
+.btn-submit {
+  display: flex;            
+  justify-content: center;  
+  align-items: center;       
+  width: 150px;             
+  height: 50px;              
+  margin-top: 20px;
+  background: var(--pink);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: center;        
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;    
+  padding: 0;         
+}
+
+.divider-product-card{
+  width: 340px;
+  border-bottom: 1px solid var(--pink);
+  margin-top: 20px;
+  margin: 0 auto;
 }
