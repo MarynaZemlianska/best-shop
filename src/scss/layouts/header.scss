@@ -267,7 +267,7 @@ body {
   background: #fff;
   border-radius: 6px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-  z-index: 3000; /* выше всего */
+  z-index: 3000; 
   min-width: 160px;
 }
 
@@ -353,19 +353,17 @@ body {
   }
 
   body {
-    padding-top: 180px; /* чтобы контент не залазил под шапку */
+    padding-top: 180px; 
   }
 
   .topbar-inner {
     display: flex;
-    flex-direction: row;          /* ряд элементов */
-    justify-content: space-between; /* слева и справа */
+    flex-direction: row;       
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
   }
 
-  /* Логотип, соцсети и юзер-картинка слева */
   .logo,
   .socials,
   .user-cart {
@@ -402,7 +400,6 @@ body {
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
-  /* Главное меню скрыто по умолчанию */
   .main-nav {
     display: none; 
     flex-direction: column;
@@ -411,7 +408,6 @@ body {
     margin-top: 10px;
   }
 
-  /* Показываем меню при активном бургер-клике */
   .main-nav.active {
     display: flex;
   }
@@ -423,13 +419,11 @@ body {
     font-size: 16px;
   }
 
-  /* Дропдаун отключаем на мобилке */
   .nav-dropdown:hover .dropdown-menu {
     position: static;
     display: none;
   }
 
-  /* Divider корректно под шапкой */
   .divider {
     margin: 10px 0;
   }
@@ -439,11 +433,11 @@ body {
 @media screen and (max-width: 524px) {
   .topbar-inner {
     flex-direction: column;
-    align-items: center; /* центрируем всё */
+    align-items: center; 
     gap: 10px;
   }
 
-  /* Соцсети в ряд и по центру */
+
   .socials {
     display: flex;
     flex-direction: row;
@@ -452,7 +446,6 @@ body {
     width: 100%;
   }
 
-  /* Аккаунт и корзина под соцсетями, тоже в ряд по центру */
   .user-cart {
     display: flex;
     flex-direction: row;

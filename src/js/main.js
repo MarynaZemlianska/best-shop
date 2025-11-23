@@ -1,4 +1,3 @@
-//Modal login
 
 const loginModal = document.getElementById("loginModal");
 const userIcon = document.querySelector(".account-icon"); 

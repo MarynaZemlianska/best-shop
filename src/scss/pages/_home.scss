@@ -304,20 +304,20 @@ width: 100%;
   }
   .big-promo .container {
     flex-direction: column;
-    align-items: center;       /* горизонтальное центрирование */
-    justify-content: center;   /* вертикальное центрирование */
+    align-items: center;     
+    justify-content: center; 
     text-align: center;
     gap: 30px;
   }
 
   .big-promo-left,
   .big-promo-right {
-    flex: unset;               /* убрать flex: 1 1 300px */
-    max-width: 100%;           /* чтобы занимали всю ширину */
+    flex: unset;           
+    max-width: 100%;         
   }
   .big-promo-left h1 {
     font-size: 120px;
-    margin: 0; /* убрать лишние отступы */
+    margin: 0; 
   }
   .big-promo-right h3 {
     font-size: 32px;
@@ -367,8 +367,8 @@ width: 100%;
   }
    .hero-grid {
     display: flex;
-    flex-direction: column; /* картинка вниз */
-    align-items: center; /* по центру */
+    flex-direction: column; 
+    align-items: center; 
     gap: 30px;
     text-align: center;
   }

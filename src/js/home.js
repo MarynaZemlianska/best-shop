@@ -3,14 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const newArrivalsGrid = document.querySelector('.new-arrivals-grid');
   const cartCountEl = document.querySelector('.cart-count');
 
-  // Функция обновления счётчика корзины
   function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
     const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     cartCountEl.textContent = totalItems;
   }
 
-  // Функция создания карточки товара
   function createCard(product, type) {
     const card = document.createElement('article');
     card.className = 'card-item';
@@ -59,17 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return card;
   }
 
-  // Загрузка товаров
+
   fetch('./assets/data/products.json')
     .then(res => res.json())
     .then(data => {
       const products = data.data;
 
-      // Selected Products
+
       products.filter(p => p.blocks.includes('Selected Products'))
               .forEach(p => selectedProductsGrid.appendChild(createCard(p, 'cart')));
 
-      // New Products Arrival
+
       products.filter(p => p.blocks.includes('New Products Arrival'))
               .forEach(p => newArrivalsGrid.appendChild(createCard(p, 'view')));
 
