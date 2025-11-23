@@ -34,11 +34,25 @@
     line-height: 1.5;
   }
 
-  .hero-img {
-  max-width: 100%; 
+  .hero {
+  overflow: hidden; /* убирает вылазание элементов */
+}
+
+.hero-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Картинка */
+.hero-img {
+  width: 100%;
+  max-width: 500px;
   height: auto;
-  transform: translateX(-60px); 
-  }
+  object-fit: contain;
+}
+
 }
 
 .promo {
@@ -46,7 +60,7 @@
   justify-content: center;
   margin: -80px 0 100px 0;
   position: relative;
-  z-index: 5;
+  z-index: 0;
 }
 
 .promo-inner {
@@ -351,6 +365,34 @@ width: 100%;
     padding: 10px 20px;
     font-size: 14px;
   }
+   .hero-grid {
+    display: flex;
+    flex-direction: column; /* картинка вниз */
+    align-items: center; /* по центру */
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-img {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hero .lead {
+    font-size: 16px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hero .btn {
+    margin: 10px auto;
+    display: inline-flex;
+  }
 }
 
 
@@ -367,5 +409,13 @@ width: 100%;
   .big-promo .btn {
     padding: 8px 16px;
     font-size: 12px;
+  }
+
+  .hero-img {
+    max-width: 300px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
   }
 }
