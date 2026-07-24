@@ -14,3 +14,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* The [hidden] attribute must always win, even over components (like
+   .cart-bottom) that set their own `display` for their visible state. */
+[hidden] {
+  display: none !important;
+}

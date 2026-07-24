@@ -1,7 +1,7 @@
 {
-  "name": "project-template",
+  "name": "best-shop",
   "version": "1.0.0",
-  "description": "Capstone Project Template ",
+  "description": "Best Shop — a multi-page e-commerce website for travel suitcases and luggage.",
   "repository": {
     "type": "git",
     "url": "https://autocode.git.epam.com/campus_javascript/capstone-project/project-template.git"
@@ -9,10 +9,13 @@
   "license": "ISC",
   "author": "Maryna Zemlianska",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "dev": "sass src/scss/main.scss dist/style.css --watch",
-    "build": "echo \"Dummy build script required for Autocode Compile\"",
+    "build": "sass src/scss/main.scss dist/style.css --style=compressed --no-source-map",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "sass": "^1.101.7"
   }
 }

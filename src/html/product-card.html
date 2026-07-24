@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Best Shop - Product card</title>
+  <title>Best Shop - Product</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@700;900&display=swap"
     rel="stylesheet">
@@ -15,280 +16,217 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="socials">
-        <a class="social-link" href="https://facebook.com" target="_blank">
+        <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Best Shop on Facebook">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="">
-            <path fill=""
-              d="M16.417 0H3.484A3.535 3.535 0 0 0 0 3.5v13.1A3.516 3.516 0 0 0 3.483 20h6.965v-7.1h-1.99v-3h1.99V8a3.683 3.683 0 0 1 3.685-3.7h2.388v3h-2.388a.858.858 0 0 0-.8.8V10h2.587v3h-2.487v7h3.084A3.535 3.535 0 0 0 20 16.5v-13A3.692 3.692 0 0 0 16.417 0Z" />
+            <path fill="" d="M16.417 0H3.484A3.535 3.535 0 0 0 0 3.5v13.1A3.516 3.516 0 0 0 3.483 20h6.965v-7.1h-1.99v-3h1.99V8a3.683 3.683 0 0 1 3.685-3.7h2.388v3h-2.388a.858.858 0 0 0-.8.8V10h2.587v3h-2.487v7h3.084A3.535 3.535 0 0 0 20 16.5v-13A3.692 3.692 0 0 0 16.417 0Z"/>
           </svg>
         </a>
-        <a class="social-link" href="https://twitter.com" target="_blank">
+        <a class="social-link" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Best Shop on Twitter">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="">
-            <path fill=""
-              d="M25 2.4a9.893 9.893 0 0 1-2.947.8A5.188 5.188 0 0 0 24.288.4a9.834 9.834 0 0 1-3.251 1.2A5.124 5.124 0 0 0 12.195 5c-.017.402.018.806.102 1.2A14.47 14.47 0 0 1 1.728.9a5.524 5.524 0 0 0-.711 2.6 5.042 5.042 0 0 0 2.235 4.2A5.834 5.834 0 0 1 1.017 7v.1a5.147 5.147 0 0 0 4.166 5 6.04 6.04 0 0 1-1.321.2 3.872 3.872 0 0 1-1.017-.1 5.021 5.021 0 0 0 4.777 3.499 10.11 10.11 0 0 1-6.402 2.2 5.027 5.027 0 0 1-1.22-.1 14.834 14.834 0 0 0 7.833 2.2 14.412 14.412 0 0 0 14.634-14.4v-.7A8.58 8.58 0 0 0 25 2.4Z" />
+            <path fill="" d="M25 2.4a9.893 9.893 0 0 1-2.947.8A5.188 5.188 0 0 0 24.288.4a9.834 9.834 0 0 1-3.251 1.2A5.124 5.124 0 0 0 12.195 5c-.017.402.018.806.102 1.2A14.47 14.47 0 0 1 1.728.9a5.524 5.524 0 0 0-.711 2.6 5.042 5.042 0 0 0 2.235 4.2A5.834 5.834 0 0 1 1.017 7v.1a5.147 5.147 0 0 0 4.166 5 6.04 6.04 0 0 1-1.321.2 3.872 3.872 0 0 1-1.017-.1 5.021 5.021 0 0 0 4.777 3.499 10.11 10.11 0 0 1-6.402 2.2 5.027 5.027 0 0 1-1.22-.1 14.834 14.834 0 0 0 7.833 2.2 14.412 14.412 0 0 0 14.634-14.4v-.7A8.58 8.58 0 0 0 25 2.4Z"/>
           </svg>
         </a>
-        <a class="social-link" href="https://instagram.com" target="_blank">
+        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Best Shop on Instagram">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="">
-            <path fill=""
-              d="M5.556 20A5.561 5.561 0 0 1 0 14.444V5.556A5.563 5.563 0 0 1 5.556 0h8.888A5.562 5.562 0 0 1 20 5.556v8.89A5.562 5.562 0 0 1 14.444 20H5.556ZM4.444 10A5.556 5.556 0 1 0 10 4.445 5.563 5.563 0 0 0 4.444 10Zm11.112-6.667a1.111 1.111 0 1 0 2.222-.003 1.111 1.111 0 0 0-2.222.003ZM6.666 10a3.333 3.333 0 1 1 6.667 0 3.333 3.333 0 0 1-6.666 0Z" />
+            <path fill="" d="M5.556 20A5.561 5.561 0 0 1 0 14.444V5.556A5.563 5.563 0 0 1 5.556 0h8.888A5.562 5.562 0 0 1 20 5.556v8.89A5.562 5.562 0 0 1 14.444 20H5.556ZM4.444 10A5.556 5.556 0 1 0 10 4.445 5.563 5.563 0 0 0 4.444 10Zm11.112-6.667a1.111 1.111 0 1 0 2.222-.003 1.111 1.111 0 0 0-2.222.003ZM6.666 10a3.333 3.333 0 1 1 6.667 0 3.333 3.333 0 0 1-6.666 0Z"/>
           </svg>
         </a>
       </div>
 
       <div class="logo">
-        <a href="/index.html" class="logo-link"><span class="brand">BEST SHOP</span></a>
+        <a href="../../index.html" class="logo-link">
+          <div class="logo-icon">
+            <img src="../assets/images/logo.png" alt="">
+          </div>
+          <span class="brand">BEST SHOP</span>
+        </a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
       <div class="user-cart">
-        <span class="account-icon">
-          <img src="../assets/images/account.svg" alt="Account">
-        </span>
-        <a class="cart-icon" href="/src/html/cart.html">
-          <img src="../assets/images/cart.svg" alt="Cart">
+        <button type="button" class="account-icon" aria-label="Log in">
+          <img src="../assets/images/account.svg" alt="">
+        </button>
+        <a class="cart-icon" href="cart.html" aria-label="View cart">
+          <img src="../assets/images/cart.svg" alt="">
           <span class="cart-count">0</span>
         </a>
       </div>
     </div>
     <div class="divider"></div>
-    <nav class="main-nav">
-      <a href="#" class="nav-item">Home</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="../../index.html" class="nav-item">Home</a>
       <div class="nav-dropdown">
-        <a href="/src/html/catalog.html" class="nav-item">
+        <a href="catalog.html" class="nav-item">
           Catalog
           <span class="arrow"><span></span><span></span></span>
         </a>
         <div class="dropdown-menu">
-          <a href="#">Category 1</a>
-          <a href="#">Category 2</a>
-          <a href="#">Category 3</a>
+          <a href="catalog.html?category=carry-ons">Carry-ons</a>
+          <a href="catalog.html?category=suitcases">Suitcases</a>
+          <a href="catalog.html?category=luggage-sets">Luggage Sets</a>
+          <a href="catalog.html?category=kids-luggage">Kids' Luggage</a>
         </div>
       </div>
-      <a href="/src/html/about.html" class="nav-item">About Us</a>
-      <a href="/src/html/contact.html" class="nav-item">Contact Us</a>
+      <a href="about.html" class="nav-item">About Us</a>
+      <a href="contact.html" class="nav-item">Contact Us</a>
     </nav>
-  </header>
-  <div id="loginModal" class="login-overlay">
-    <div class="login-modal">
-      <span class="login-close">&times;</span>
-      <form id="loginForm">
-        <div class="form-group">
-          <label for="loginEmail">Email address <span class="required">*</span></label>
-          <input class="login-input" classtype="text" id="loginEmail" name="email" placeholder="" required>
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Password <span class="required">*</span></label>
-          <input class="login-input" type="password" id="loginPassword" name="password" placeholder="" required>
-          <span class="password-toggle" id="togglePassword">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="#ec4c84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-          </span>
-        </div>
-        <div class="form-options">
-          <label class="remember-me">
-            <input type="checkbox" name="remember"> Remember me
-          </label>
-          <a href="#" class="forgot-password">Forgot your password?</a>
-        </div>
-        <button type="submit" class="login-btn">LOG IN</button>
-      </form>
+
+    <div id="loginModal" class="modal-overlay login-overlay" aria-hidden="true">
+      <div class="login-modal modal-box">
+        <button type="button" class="login-close" aria-label="Close login form">&times;</button>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email address <span class="required">*</span></label>
+            <input class="login-input" type="text" id="loginEmail" name="email" autocomplete="email" required>
+            <small class="error" id="loginEmailError"></small>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input class="login-input" type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+              <span class="password-toggle" id="togglePassword" role="button" tabindex="0" aria-label="Show password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="#ec4c84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+            </div>
+            <small class="error" id="loginPasswordError"></small>
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" name="remember"> Remember me
+            </label>
+          </div>
+          <button type="submit" class="login-btn">LOG IN</button>
+        </form>
+      </div>
     </div>
-  </div>
   </header>
-  <section class="container product-page">
+
+  <main>
+  <p id="productLoading" class="container product-page">Loading product…</p>
+
+  <section class="container product-page" id="productNotFound" hidden>
+    <div class="not-found">
+      <h1>Product not found</h1>
+      <p>We couldn't find a product with that ID. It may have been removed or the link is incorrect.</p>
+      <a class="btn" href="catalog.html">Back to Catalog</a>
+    </div>
+  </section>
+
+  <section class="container product-page" id="productContent" hidden>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="catalog.html">Catalog</a>
+      <span aria-hidden="true">/</span>
+      <span id="breadcrumbCurrent" aria-current="page"></span>
+    </nav>
 
     <div class="product-wrapper">
       <div class="product-gallery">
-        <img class="main-img" src="../assets/images/product-card-img-1.jpg" alt="Silver suitcase">
-
-        <div class="thumbs">
-          <img src="../assets/images/product-card-img-2.jpg" alt="">
-          <img src="../assets/images/product-card-img-3.jpg" alt="">
-          <img src="../assets/images/product-card-img-4.jpg" alt="">
-          <img src="../assets/images/product-card-img-5.jpg" alt="">
-        </div>
+        <img class="main-img" id="mainImage" src="" alt="">
       </div>
       <div class="product-info">
-        <h1>Global Explorer Silver Edition Suitcase</h1>
+        <h1 id="productName"></h1>
         <div class="rating">
-          ⭐⭐⭐⭐⭐ <span>(1 Client review)</span>
+          <span id="productRating"></span> <span id="reviewCountText">(0 reviews)</span>
         </div>
-        <div class="price">$250</div>
-        <p class="product-desc">
-          The new Global Explorer Max Comfort Suitcase Pro is a bold reimagining of
-          travel essentials, designed to elevate every journey. Made with at least 30%
-          recycled materials, its lightweight yet impact-resistant shell combines eco-
-          conscious innovation with rugged durability.
-        </p>
-        <p>
-          The ergonomic handle and GlideMotion spinner wheels ensure effortless
-          mobility while making a statement in sleek design. Inside, the modular
-          compartments and adjustable straps keep your belongings secure and
-          neatly organized, no matter the destination.
-        </p>
-        <div class="product-options">
-          <label>Size</label>
-          <select class="product-options-select" style="height: 40px; color: #727174;">
-            <option>Choose option</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-          </select>
-          <label>Color</label>
-          <select class="product-options-select" style="height: 40px; color: #727174;">
-            <option>Choose option</option>
-            <option>Silver</option>
-            <option>Black</option>
-            <option>Red</option>
-          </select>
-          <label>Category</label>
-          <select class="product-options-select" style="height: 40px; color: #727174;">
-            <option>Choose option</option>
-            <option>Travel</option>
-            <option>Luggage</option>
-            <option>Luggage</option>
-          </select>
-        </div>
+        <div class="price" id="productPrice"></div>
+        <p class="product-desc" id="productDescription"></p>
+
+        <ul class="product-meta" id="productMeta"></ul>
+
         <div class="product-action">
           <div class="qty-box">
-            <button class="qty-btn minus">−</button>
-            <input type="number" value="1" class="qty-input" />
-            <button class="qty-btn plus">+</button>
+            <button type="button" class="qty-btn minus" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <input type="number" value="1" min="1" class="qty-input" id="qtyInput" aria-label="Quantity" />
+            <button type="button" class="qty-btn plus" id="qtyPlus" aria-label="Increase quantity">+</button>
           </div>
-          <a href="#" class="btn add-cart">Add To Cart</a>
+          <button type="button" class="btn add-cart" id="addToCartBtn">Add To Cart</button>
         </div>
+        <p class="add-cart-status" id="addToCartStatus" role="status"></p>
+
         <div class="payment">
-          <span
-            style="font-family: Montserrat; font-weight: 700; font-style: Bold;font-size: 23px;line-height: 100%;letter-spacing: 0%;">
-            Payment:
-          </span>
-          <img src="../assets/images/visa-pay-logo.svg" alt="">
-          <img src="../assets/images/americaexpress-logo.png" alt="">
-          <img src="../assets/images/master-card-logo.svg" alt="">
-          <img src="../assets/images/paypal-logo.svg" alt="">
+          <span class="payment-label">Payment:</span>
+          <img src="../assets/images/visa-pay-logo.svg" alt="Visa">
+          <img src="../assets/images/americaexpress-logo.png" alt="American Express">
+          <img src="../assets/images/master-card-logo.svg" alt="Mastercard">
+          <img src="../assets/images/paypal-logo.svg" alt="PayPal">
         </div>
       </div>
     </div>
-    <div class="product-tabs">
-      <button class="active">Details</button>
-      <button>Reviews</button>
-      <button>Shipping</button>
+
+    <div class="product-tabs" role="tablist">
+      <button type="button" role="tab" aria-selected="true" aria-controls="tabDescription" id="tabBtnDescription" class="active">Description</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="tabAdditionalInfo" id="tabBtnInfo">Additional Information</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="tabReviews" id="tabBtnReviews">Reviews</button>
     </div>
-    <div class="tab-content">
-      <p>
-        Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor, in
-        efficitur justo imperdiet. Etiam a ex at
-        ante tincidunt imperdiet. Nunc congue ex vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent luctus
-        lacus non lorem elementum, eu tristique
-        sapien suscipit. Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales purus, eget hendrerit dui ligula
-        eu enim. Ut non est nisi. Pellentesque
-        tristique pretium dolor eu commodo. Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna
-        sit amet luctus. Suspendisse potenti.
-        Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra,
-        facilisis quam.</p>
-      <p>Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse potenti.
-        Curabitur ac placerat est, sit amet sodales
-        risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra, facilisis quam. Proin iaculis nibh vitae
-        lectus mollis bibendum. </p>
-      <p>Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
-        risus. Pellentesque viverra dui auctor,
-        ullamcorper turpis pharetra, facilisis quam.
-      </p>
+
+    <div class="tab-content" id="tabDescription" role="tabpanel" aria-labelledby="tabBtnDescription">
+      <p id="tabDescriptionText"></p>
     </div>
-    <div class="tab-content reviews-content" style="display:none;">
+
+    <div class="tab-content" id="tabAdditionalInfo" role="tabpanel" aria-labelledby="tabBtnInfo" hidden>
+      <table class="spec-table" id="specTable"></table>
+    </div>
+
+    <div class="tab-content reviews-content" id="tabReviews" role="tabpanel" aria-labelledby="tabBtnReviews" hidden>
       <div class="reviews-items">
-        <div>
-          <div class="review-header-title">1 review for Global Explorer Max Comfort Suitcase Pro</div>
-          <div class="review-card">
-            <img src="../assets/images/product-cart-user.jpg" class="review-avatar">
-            <div>
-              <div class="review-row">
-                <span class="review-author">Ella Harper</span>
-                <span class="review-date">/ June 11, 2025</span>
-              </div>
-              <div class="review-stars">
-                ⭐⭐⭐⭐☆
-              </div>
-              <p class="review-text">
-                Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus.
-                Suspendisse potenti curabitur ac placerat est, sit amet sodales risus.
-              </p>
-            </div>
-          </div>
+        <div class="reviews-list-wrap">
+          <div class="review-header-title" id="reviewCountTitle"></div>
+          <div class="reviews-items" id="reviewsList"></div>
         </div>
         <div class="container-add-review">
-          <form>
-              <h3 class="add-title">Add Review</h3>
-              <p class="note">Your email address won’t be shared. Required fields have the symbol *</p>
-              <label class="rate-label">RATE PRODUCT</label>
-              <div class="rating-input">☆ ☆ ☆ ☆ ☆</div>
-              <textarea placeholder="Your Review*" required></textarea>
-              <div class="input-group">
-                <input type="text" placeholder="Your Name*" required>
-                <input type="email" placeholder="Your Email*" required>
+          <h3 class="add-title">Add Review</h3>
+          <p class="note">Your email address won't be shared. Required fields have the symbol *</p>
+          <form id="reviewForm" novalidate>
+            <label class="rate-label" for="ratingInput">Rate product</label>
+            <div class="rating-input" id="ratingInput" role="radiogroup" aria-label="Rating">
+              <button type="button" class="star-btn" data-value="1" aria-label="1 star">☆</button>
+              <button type="button" class="star-btn" data-value="2" aria-label="2 stars">☆</button>
+              <button type="button" class="star-btn" data-value="3" aria-label="3 stars">☆</button>
+              <button type="button" class="star-btn" data-value="4" aria-label="4 stars">☆</button>
+              <button type="button" class="star-btn" data-value="5" aria-label="5 stars">☆</button>
+            </div>
+            <textarea id="reviewText" placeholder="Your Review*" required></textarea>
+            <small class="error" id="reviewTextError"></small>
+            <div class="input-group">
+              <div>
+                <input type="text" id="reviewName" placeholder="Your Name*" required>
+                <small class="error" id="reviewNameError"></small>
               </div>
-              <label class="checkbox">
-                <input type="checkbox"> Save my name, email, and website in this browser for next comment.
-              </label>
-              <div class="form-message"></div>
+              <div>
+                <input type="email" id="reviewEmail" placeholder="Your Email*" required>
+                <small class="error" id="reviewEmailError"></small>
+              </div>
+            </div>
+            <div class="form-message" id="reviewFormMessage"></div>
+            <button type="submit" class="btn-submit">SUBMIT</button>
           </form>
-          <button class="btn-submit">SUBMIT</button>
         </div>
       </div>
     </div>
   </section>
+
   <section class="featured-products">
     <div class="container">
       <h2 class="section-title">You May Also Like</h2>
       <div class="divider-product-card"></div>
-      <p class="section-sub">Duis vestibulum elit vel neque pharetra</p>
-
-      <div class="selected-products-grid">
-
-        <article class="card-item">
-          <div class="card-img" style="background-image:url('../assets/images/product-card-1.jpg')"></div>
-          <div class="card-content">
-            <h4>Vel vestibulum elit
-              tuvel euqen.</h4>
-            <div class="price">$250</div>
-            <a href="#" class="btn">Add To Cart</a>
-          </div>
-        </article>
-
-        <article class="card-item">
-          <div class="card-img" style="background-image:url('../assets/images/product-card-2.jpg')"></div>
-          <div class="card-content">
-            <h4>Vel vestibulum elit
-              tuvel euqen.</h4>
-            <div class="price">$200</div>
-            <a href="#" class="btn">Add To Cart</a>
-          </div>
-        </article>
-
-        <article class="card-item">
-          <div class="card-img" style="background-image:url('../assets/images/product-card-3.jpg')"></div>
-          <div class="card-content">
-            <h4>Vel vestibulum elit
-              tuvel euqen.</h4>
-            <div class="price">$300</div>
-            <a href="#" class="btn">Add To Cart</a>
-          </div>
-        </article>
-
-        <article class="card-item">
-          <div class="card-img" style="background-image:url('../assets/images/product-card-4.jpg')"></div>
-          <div class="card-content">
-            <h4>Vel vestibulum elit
-              tuvel euqen.</h4>
-            <div class="price">$350</div>
-            <a href="#" class="btn">Add To Cart</a>
-          </div>
-        </article>
-      </div>
+      <p class="section-sub">More picks from the Best Shop collection</p>
+      <div class="selected-products-grid" id="relatedProductsGrid"></div>
     </div>
   </section>
+  </main>
+
   <footer class="site-footer">
     <div class="footer-top">
       <div class="footer-bg"></div>
@@ -296,20 +234,20 @@
         <h3 class="footer-title">Our Benefits</h3>
         <div class="footer-items">
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-1.svg" alt="">
-            <p>Velit nisl sodales eget donec quis. volutpat orci.</p>
+            <img src="../assets/images/footer-icon-1.svg" alt="">
+            <p>Free worldwide shipping on all orders over $150.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-2.svg" alt="">
-            <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
+            <img src="../assets/images/footer-icon-2.svg" alt="">
+            <p>Secure checkout, protected every step of the way.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-3.svg" alt="">
-            <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
+            <img src="../assets/images/footer-icon-3.svg" alt="">
+            <p>30-day easy returns, no questions asked.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-4.svg" alt="">
-            <p>Nisl sodales eget donec quis. volutpat orci.</p>
+            <img src="../assets/images/footer-icon-4.svg" alt="">
+            <p>Lifetime warranty on every suitcase shell.</p>
           </div>
         </div>
       </div>
@@ -319,42 +257,39 @@
         <div class="footer-left">
           <div class="footer-links-row">
             <div class="col">
-              <a class="footer-link" href="/src/html/about.html">
+              <a class="footer-link" href="about.html">
                 <h4>About Us</h4>
               </a>
-              <a class="footer-link" href="#">Organisation</a>
-              <a class="footer-link" href="#">Partners</a>
-              <a class="footer-link" href="#">Clients</a>
+              <span class="footer-static">Organisation</span>
+              <span class="footer-static">Partners</span>
+              <span class="footer-static">Clients</span>
             </div>
             <div class="col">
               <h4>Interesting Links</h4>
-              <a class="footer-link" href="#">Photo Gallery</a>
-              <a class="footer-link" href="#">Our Team</a>
-              <a class="footer-link" href="#">Socials</a>
+              <span class="footer-static">Photo Gallery</span>
+              <a class="footer-link" href="about.html#team">Our Team</a>
+              <span class="footer-static">Socials</span>
             </div>
             <div class="col">
               <h4>Achievements</h4>
-              <a class="footer-link" href="#">Winning Awards</a>
-              <a class="footer-link" href="#">Press</a>
-              <a class="footer-link" href="#">Our Amazing Clients</a>
+              <span class="footer-static">Winning Awards</span>
+              <span class="footer-static">Press</span>
+              <span class="footer-static">Our Amazing Clients</span>
             </div>
           </div>
           <div class="footer-wide-text">
             <h4>Shipping Information</h4>
             <p>
-              Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac. Ut sit amet erat nec nibh rhoncus
-              varius in non lorem.
-              Donec interdum, lectus in convallis pulvinar, enim elit porta sapien, vel finibus erat felis sed neque.
+              We ship worldwide within 2-5 business days. Free shipping applies to
+              orders over $150; express options are available at checkout.
             </p>
           </div>
         </div>
         <aside class="footer-contact">
-          <a class="footer-link" href="/src/html/contact.html">
+          <a class="footer-link" href="contact.html">
             <h4>Contact Us</h4>
           </a>
-          <p>
-            Bendum dolor eu varius. Morbi fermentum velit nisl sodales egetonec. Volutpat orci.
-          </p>
+          <p>Have a question about an order or a product? Reach out any time.</p>
           <div class="contact-wrapper">
             <ul class="contact-column">
               <li>
@@ -394,12 +329,18 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-container">
-        <p class="copyright">© Copyright 2025</p>
+        <p class="copyright">© Copyright 2026 Best Shop</p>
       </div>
     </div>
   </footer>
-  <script src="../js/main.js"></script>
-  <script src="../js/product.js"></script>
+
+  <script src="../js/utils/paths.js" defer></script>
+  <script src="../js/utils/storage.js" defer></script>
+  <script src="../js/utils/products.js" defer></script>
+  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/modal.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/product.js" defer></script>
 </body>
 
 </html>

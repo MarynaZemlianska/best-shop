@@ -1,0 +1,52 @@
+@import "../abstracts/mixins";
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.is-invalid {
+  border-color: #c41b66 !important;
+}
+
+/* Generic modal form fields (checkout, confirm) that don't use .login-input */
+.modal-box .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  text-align: left;
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  input,
+  textarea {
+    border: 1px solid var(--pink);
+    padding: 10px 12px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: 0.2s;
+
+    &:focus-visible {
+      outline: 2px solid var(--pink);
+      outline-offset: 1px;
+    }
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+}
+
+.checkout-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @include respond(mobile) {
+    grid-template-columns: 1fr;
+  }
+}

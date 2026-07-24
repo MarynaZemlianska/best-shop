@@ -1,0 +1,88 @@
+@import "../abstracts/mixins";
+
+/* Generic overlay/box shared by the login modal, the clear-cart confirm
+   dialog and the checkout modal. */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-overlay.is-open {
+  display: flex;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 30px 40px;
+  width: 500px;
+  max-width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-sizing: border-box;
+
+  @include respond(mobile) {
+    padding: 26px 22px;
+  }
+}
+
+.login-modal {
+  align-items: center;
+}
+
+.confirm-modal .modal-box {
+  width: 400px;
+  align-items: center;
+  text-align: center;
+}
+
+.confirm-message {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
+.checkout-box {
+  width: 560px;
+  text-align: left;
+
+  h3 {
+    margin: 0;
+    font-size: 22px;
+  }
+}
+
+.checkout-note {
+  color: var(--muted);
+  font-size: 14px;
+  margin: -12px 0 0;
+}
+
+.checkout-submit {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+}
+
+.checkout-modal .form-message {
+  min-height: 20px;
+  font-weight: 600;
+}

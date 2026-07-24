@@ -1,77 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const selectedProductsGrid = document.querySelector('.selected-products-grid');
-  const newArrivalsGrid = document.querySelector('.new-arrivals-grid');
-  const cartCountEl = document.querySelector('.cart-count');
+/**
+ * Home page: renders Selected Products / New Products Arrival from JSON,
+ * assigns a random tagline to each Travel Suitcases tile, and handles the
+ * (demo, no backend) newsletter signup.
+ */
+(function () {
+  var TRAVEL_TAGLINES = [
+    { title: 'Weekend Carry-ons', text: 'Light enough for the overhead bin, tough enough for the gate agent.' },
+    { title: 'Everyday Suitcases', text: 'Our best-selling shells, built for years of frequent travel.' },
+    { title: 'Family Luggage Sets', text: 'Matching sets that make packing for the whole family effortless.' },
+    { title: "Kids' Luggage", text: 'Playful, durable rolling luggage sized just right for small travelers.' },
+    { title: 'Business Ready', text: 'Slim profiles and quiet wheels for the frequent business flyer.' },
+    { title: 'Adventure Proof', text: 'Impact-resistant shells that shrug off rough handling.' },
+  ];
 
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-    cartCountEl.textContent = totalItems;
+  function shuffleTravelTaglines() {
+    var grid = document.getElementById('travelCardsGrid');
+    if (!grid) return;
+    var pool = TRAVEL_TAGLINES.slice().sort(function () { return Math.random() - 0.5; });
+    grid.querySelectorAll('.card-content h4').forEach(function (heading, index) {
+      var pick = pool[index % pool.length];
+      var paragraph = heading.nextElementSibling;
+      heading.textContent = pick.title;
+      if (paragraph) paragraph.textContent = pick.text;
+    });
   }
 
-  function createCard(product, type) {
-    const card = document.createElement('article');
-    card.className = 'card-item';
-
-    const cardImg = document.createElement('div');
-    cardImg.className = 'card-img';
-    cardImg.style.backgroundImage = `url(${product.imageUrl})`;
-
-    const cardContent = document.createElement('div');
-    cardContent.className = 'card-content';
-
-    const title = document.createElement('h4');
-    title.textContent = product.name;
-
-    const price = document.createElement('div');
-    price.className = 'price';
-    price.textContent = `$${product.price}`;
-
-    const btn = document.createElement('button');
-    btn.className = 'btn';
-
-    if (type === 'cart') {
-      btn.textContent = 'Add to Cart';
-      btn.addEventListener('click', () => {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        const existingItem = cart.find(item => item.id === product.id);
-        if (existingItem) {
-          existingItem.quantity = (existingItem.quantity || 1) + 1;
-        } else {
-          cart.push({ ...product, quantity: 1 });
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartCount();
-        alert(`${product.name} added to cart`);
-      });
-    } else if (type === 'view') {
-      btn.textContent = 'View Product';
-      btn.addEventListener('click', () => {
-        localStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.href = '/src/html/product-card.html';
-      });
+  function renderGrid(gridEl, statusEl, products, emptyMessage) {
+    if (!gridEl) return;
+    gridEl.innerHTML = '';
+    if (!products.length) {
+      if (statusEl) statusEl.textContent = emptyMessage;
+      return;
     }
-
-    cardContent.append(title, price, btn);
-    card.append(cardImg, cardContent);
-    return card;
+    if (statusEl) statusEl.remove();
+    products.forEach(function (product) {
+      gridEl.appendChild(window.BestShop.renderCard.createProductCard(product));
+    });
   }
 
+  function setupNewsletter() {
+    var form = document.getElementById('newsletterForm');
+    var status = document.getElementById('newsletterStatus');
+    if (!form) return;
 
-  fetch('./assets/data/products.json')
-    .then(res => res.json())
-    .then(data => {
-      const products = data.data;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = document.getElementById('newsletterEmail');
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(input.value.trim())) {
+        status.textContent = 'Please enter a valid email address.';
+        status.classList.add('is-error');
+        return;
+      }
+      status.classList.remove('is-error');
+      status.textContent = 'Thanks for subscribing! (demo — no email is actually sent)';
+      form.reset();
+    });
+  }
 
+  document.addEventListener('DOMContentLoaded', function () {
+    shuffleTravelTaglines();
+    setupNewsletter();
 
-      products.filter(p => p.blocks.includes('Selected Products'))
-              .forEach(p => selectedProductsGrid.appendChild(createCard(p, 'cart')));
+    var selectedGrid = document.getElementById('selectedProductsGrid');
+    var selectedStatus = document.getElementById('selectedProductsStatus');
+    var arrivalsGrid = document.getElementById('newArrivalsGrid');
+    var arrivalsStatus = document.getElementById('newArrivalsStatus');
 
-
-      products.filter(p => p.blocks.includes('New Products Arrival'))
-              .forEach(p => newArrivalsGrid.appendChild(createCard(p, 'view')));
-
-      updateCartCount();
-    })
-    .catch(err => console.error('Error loading products:', err));
-});
+    window.BestShop.products.loadProducts()
+      .then(function (products) {
+        renderGrid(
+          selectedGrid,
+          selectedStatus,
+          products.filter(function (p) { return p.blocks.includes('Selected Products'); }),
+          'No selected products yet.'
+        );
+        renderGrid(
+          arrivalsGrid,
+          arrivalsStatus,
+          products.filter(function (p) { return p.blocks.includes('New Products Arrival'); }),
+          'No new arrivals yet.'
+        );
+      })
+      .catch(function () {
+        if (selectedStatus) selectedStatus.textContent = 'Could not load products. Please try again later.';
+        if (arrivalsStatus) arrivalsStatus.textContent = 'Could not load products. Please try again later.';
+      });
+  });
+})();

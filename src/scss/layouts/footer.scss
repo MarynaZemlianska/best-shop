@@ -22,7 +22,7 @@
 .footer-bg {
   position: absolute;
   inset: 0;
-  background: url('/src/assets/images/footer-wave.svg') center/cover no-repeat;
+  background: url('../src/assets/images/footer-wave.svg') center/cover no-repeat;
   pointer-events: none;
 }
 
@@ -189,8 +189,25 @@
   color: var(--pink);
 }
 
+.footer-static {
+  display: block;
+  color: #999;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
 
 @media screen and (max-width: 820px) {
+  .footer-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-item {
+    width: 100%;
+    max-width: 320px;
+  }
+
   .footer-flex {
     flex-direction: column;
     gap: 40px;

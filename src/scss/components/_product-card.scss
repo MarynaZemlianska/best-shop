@@ -27,13 +27,82 @@
 }
 
 
+.card-item:not(.card--tall) .card-img-link {
+  display: block;
+  width: 100%;
+  height: 70%;
+}
+
 .card-item:not(.card--tall) .card-img {
   width: 100%;
-  height: 70%; /* изображение занимает большую часть */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100%;
   position: relative;
+  overflow: hidden;
+  background: #f1eef0;
+}
+
+.card-item:not(.card--tall) .card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card-item:hover .card-img img {
+  transform: scale(1.06);
+}
+
+.sale-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.card-meta {
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.card-rating {
+  font-size: 14px;
+  color: gold;
+}
+
+.card-content h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-content h4 a:hover {
+  color: var(--pink);
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--pink);
+  color: var(--pink);
+}
+
+.btn-outline:hover {
+  background: var(--pink);
+  color: #fff;
 }
 
 .card-item:not(.card--tall) .card-content {
@@ -87,21 +156,17 @@
   flex-direction: column;
   justify-content: flex-end; /* текст внизу */
   color: white;
-}
-
-/* Tall карточки */
-.card-item.card--tall .card-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 0;
+  transition: background-size 0.4s ease;
 }
 
-.card-item.card--tall .card-img::before {
+.card-item.card--tall:hover {
+  background-size: 112%;
+}
+
+.card-item.card--tall::before {
   content: "";
   position: absolute;
   inset: 0;

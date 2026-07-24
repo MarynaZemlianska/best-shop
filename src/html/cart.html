@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,53 +9,99 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../../dist/style.css">
 </head>
+
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="socials">
-        <a class="social-link" href="https://facebook.com" target="_blank">
+        <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Best Shop on Facebook">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=""><path fill="" d="M16.417 0H3.484A3.535 3.535 0 0 0 0 3.5v13.1A3.516 3.516 0 0 0 3.483 20h6.965v-7.1h-1.99v-3h1.99V8a3.683 3.683 0 0 1 3.685-3.7h2.388v3h-2.388a.858.858 0 0 0-.8.8V10h2.587v3h-2.487v7h3.084A3.535 3.535 0 0 0 20 16.5v-13A3.692 3.692 0 0 0 16.417 0Z"/></svg>
         </a>
-        <a class="social-link" href="https://twitter.com" target="_blank">
+        <a class="social-link" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Best Shop on Twitter">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill=""><path fill="" d="M25 2.4a9.893 9.893 0 0 1-2.947.8A5.188 5.188 0 0 0 24.288.4a9.834 9.834 0 0 1-3.251 1.2A5.124 5.124 0 0 0 12.195 5c-.017.402.018.806.102 1.2A14.47 14.47 0 0 1 1.728.9a5.524 5.524 0 0 0-.711 2.6 5.042 5.042 0 0 0 2.235 4.2A5.834 5.834 0 0 1 1.017 7v.1a5.147 5.147 0 0 0 4.166 5 6.04 6.04 0 0 1-1.321.2 3.872 3.872 0 0 1-1.017-.1 5.021 5.021 0 0 0 4.777 3.499 10.11 10.11 0 0 1-6.402 2.2 5.027 5.027 0 0 1-1.22-.1 14.834 14.834 0 0 0 7.833 2.2 14.412 14.412 0 0 0 14.634-14.4v-.7A8.58 8.58 0 0 0 25 2.4Z"/></svg>
         </a>
-        <a class="social-link" href="https://instagram.com" target="_blank">
+        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Best Shop on Instagram">
           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=""><path fill="" d="M5.556 20A5.561 5.561 0 0 1 0 14.444V5.556A5.563 5.563 0 0 1 5.556 0h8.888A5.562 5.562 0 0 1 20 5.556v8.89A5.562 5.562 0 0 1 14.444 20H5.556ZM4.444 10A5.556 5.556 0 1 0 10 4.445 5.563 5.563 0 0 0 4.444 10Zm11.112-6.667a1.111 1.111 0 1 0 2.222-.003 1.111 1.111 0 0 0-2.222.003ZM6.666 10a3.333 3.333 0 1 1 6.667 0 3.333 3.333 0 0 1-6.666 0Z"/></svg>
         </a>
       </div>
 
       <div class="logo">
-        <a href="/index.html" class="logo-link"><span class="brand">BEST SHOP</span></a>
+        <a href="../../index.html" class="logo-link">
+          <div class="logo-icon">
+            <img src="../assets/images/logo.png" alt="">
+          </div>
+          <span class="brand">BEST SHOP</span>
+        </a>
+      </div>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
       <div class="user-cart">
-        <span class="account-icon">
-          <img src="../assets/images/account.svg" alt="Account">
-        </span>
-        <a class="cart-icon" href="/src/html/cart.html">
-          <img src="../assets/images/cart.svg" alt="Cart">
+        <button type="button" class="account-icon" aria-label="Log in">
+          <img src="../assets/images/account.svg" alt="">
+        </button>
+        <a class="cart-icon" href="cart.html" aria-label="View cart">
+          <img src="../assets/images/cart.svg" alt="">
           <span class="cart-count">0</span>
         </a>
       </div>
     </div>
 
     <div class="divider"></div>
-    <nav class="main-nav">
-      <a href="/index.html" class="nav-item">Home</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="../../index.html" class="nav-item">Home</a>
       <div class="nav-dropdown">
-        <a href="/src/html/catalog.html" class="nav-item">
+        <a href="catalog.html" class="nav-item">
           Catalog
           <span class="arrow"><span></span><span></span></span>
         </a>
         <div class="dropdown-menu">
-          <a href="#">Category 1</a>
-          <a href="#">Category 2</a>
-          <a href="#">Category 3</a>
+          <a href="catalog.html?category=carry-ons">Carry-ons</a>
+          <a href="catalog.html?category=suitcases">Suitcases</a>
+          <a href="catalog.html?category=luggage-sets">Luggage Sets</a>
+          <a href="catalog.html?category=kids-luggage">Kids' Luggage</a>
         </div>
       </div>
-      <a href="/src/html/about.html" class="nav-item">About Us</a>
-      <a href="/src/html/contact.html" class="nav-item">Contact Us</a>
+      <a href="about.html" class="nav-item">About Us</a>
+      <a href="contact.html" class="nav-item">Contact Us</a>
     </nav>
+
+    <div id="loginModal" class="modal-overlay login-overlay" aria-hidden="true">
+      <div class="login-modal modal-box">
+        <button type="button" class="login-close" aria-label="Close login form">&times;</button>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail">Email address <span class="required">*</span></label>
+            <input class="login-input" type="text" id="loginEmail" name="email" autocomplete="email" required>
+            <small class="error" id="loginEmailError"></small>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password <span class="required">*</span></label>
+            <div class="password-wrapper">
+              <input class="login-input" type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+              <span class="password-toggle" id="togglePassword" role="button" tabindex="0" aria-label="Show password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="#ec4c84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+            </div>
+            <small class="error" id="loginPasswordError"></small>
+          </div>
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" name="remember"> Remember me
+            </label>
+          </div>
+          <button type="submit" class="login-btn">LOG IN</button>
+        </form>
+      </div>
+    </div>
   </header>
 
   <section class="hero-slider-cart">
@@ -68,26 +115,78 @@
 
   <main class="cart-page container">
     <div class="cart-section">
-      <div class="cart-items-container">
-        <!-- Товары будут подгружаться через JS -->
+      <div class="cart-items-container" id="cartItemsContainer"></div>
+
+      <div class="cart-empty" id="cartEmpty" hidden>
+        <p>Your cart is empty. Use the catalog to add new items.</p>
+        <a href="catalog.html" class="btn">Browse Catalog</a>
       </div>
 
-      <div class="cart-bottom">
+      <div class="cart-bottom" id="cartBottom">
         <div class="cart-buttons">
-          <a href="/src/html/catalog.html" class="btn-cart">Continue Shopping</a>
-          <button class="btn-cart clear-cart">Clear Shopping Cart</button>
+          <a href="catalog.html" class="btn-cart">Continue Shopping</a>
+          <button type="button" class="btn-cart clear-cart" id="clearCartBtn">Clear Shopping Cart</button>
         </div>
         <aside class="cart-summary">
           <ul>
-            <li><span>Sub Total</span><span class="subtotal">$0</span></li>
+            <li><span>Sub Total</span><span class="subtotal" id="cartSubtotal">$0</span></li>
+            <li id="cartDiscountRow" hidden><span>Discount (10%)</span><span id="cartDiscount">-$0</span></li>
             <li><span>Shipping</span><span>Free</span></li>
-            <li class="total"><span>Total</span><span class="total-amount">$0</span></li>
+            <li class="total"><span>Total</span><span class="total-amount" id="cartTotal">$0</span></li>
           </ul>
-          <a href="#" class="btn checkout">Checkout</a>
+          <button type="button" class="btn checkout" id="checkoutBtn">Checkout</button>
         </aside>
       </div>
     </div>
   </main>
+
+  <div id="checkoutModal" class="modal-overlay checkout-modal" aria-hidden="true">
+    <div class="modal-box checkout-box">
+      <button type="button" class="login-close" id="checkoutClose" aria-label="Close checkout form">&times;</button>
+      <h3>Checkout</h3>
+      <p class="checkout-note">Demo checkout — no real payment is processed.</p>
+      <form id="checkoutForm" novalidate>
+        <div class="form-group">
+          <label for="checkoutName">Name <span class="required">*</span></label>
+          <input id="checkoutName" required>
+          <small class="error" id="checkoutNameError"></small>
+        </div>
+        <div class="form-group">
+          <label for="checkoutEmail">Email <span class="required">*</span></label>
+          <input type="email" id="checkoutEmail" required>
+          <small class="error" id="checkoutEmailError"></small>
+        </div>
+        <div class="form-group">
+          <label for="checkoutPhone">Phone <span class="required">*</span></label>
+          <input id="checkoutPhone" required>
+          <small class="error" id="checkoutPhoneError"></small>
+        </div>
+        <div class="checkout-grid-2">
+          <div class="form-group">
+            <label for="checkoutCountry">Country <span class="required">*</span></label>
+            <input id="checkoutCountry" required>
+            <small class="error" id="checkoutCountryError"></small>
+          </div>
+          <div class="form-group">
+            <label for="checkoutCity">City <span class="required">*</span></label>
+            <input id="checkoutCity" required>
+            <small class="error" id="checkoutCityError"></small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="checkoutAddress">Delivery address <span class="required">*</span></label>
+          <input id="checkoutAddress" required>
+          <small class="error" id="checkoutAddressError"></small>
+        </div>
+        <div class="form-group">
+          <label for="checkoutComment">Comment</label>
+          <textarea id="checkoutComment"></textarea>
+        </div>
+        <div class="form-message" id="checkoutMessage"></div>
+        <button type="submit" class="btn checkout-submit">Place Order (Demo)</button>
+      </form>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="footer-top">
@@ -96,20 +195,20 @@
         <h3 class="footer-title">Our Benefits</h3>
         <div class="footer-items">
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-1.svg" alt="">
-            <p>Velit nisl sodales eget donec quis. volutpat orci.</p>
+            <img src="../assets/images/footer-icon-1.svg" alt="">
+            <p>Free worldwide shipping on all orders over $150.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-2.svg" alt="">
-            <p>Dolor eu varius. Morbi fermentum velit nisl.</p>
+            <img src="../assets/images/footer-icon-2.svg" alt="">
+            <p>Secure checkout, protected every step of the way.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-3.svg" alt="">
-            <p>Malesuada fames ac ante ipsum primis in faucibus.</p>
+            <img src="../assets/images/footer-icon-3.svg" alt="">
+            <p>30-day easy returns, no questions asked.</p>
           </div>
           <div class="footer-item">
-            <img src="/src/assets/images/footer-icon-4.svg" alt="">
-            <p>Nisl sodales eget donec quis. volutpat orci.</p>
+            <img src="../assets/images/footer-icon-4.svg" alt="">
+            <p>Lifetime warranty on every suitcase shell.</p>
           </div>
         </div>
       </div>
@@ -119,42 +218,39 @@
         <div class="footer-left">
           <div class="footer-links-row">
             <div class="col">
-              <a class="footer-link" href="/src/html/about.html">
+              <a class="footer-link" href="about.html">
                 <h4>About Us</h4>
               </a>
-              <a class="footer-link" href="#">Organisation</a>
-              <a class="footer-link" href="#">Partners</a>
-              <a class="footer-link" href="#">Clients</a>
+              <span class="footer-static">Organisation</span>
+              <span class="footer-static">Partners</span>
+              <span class="footer-static">Clients</span>
             </div>
             <div class="col">
               <h4>Interesting Links</h4>
-              <a class="footer-link" href="#">Photo Gallery</a>
-              <a class="footer-link" href="#">Our Team</a>
-              <a class="footer-link" href="#">Socials</a>
+              <span class="footer-static">Photo Gallery</span>
+              <a class="footer-link" href="about.html#team">Our Team</a>
+              <span class="footer-static">Socials</span>
             </div>
             <div class="col">
               <h4>Achievements</h4>
-              <a class="footer-link" href="#">Winning Awards</a>
-              <a class="footer-link" href="#">Press</a>
-              <a class="footer-link" href="#">Our Amazing Clients</a>
+              <span class="footer-static">Winning Awards</span>
+              <span class="footer-static">Press</span>
+              <span class="footer-static">Our Amazing Clients</span>
             </div>
           </div>
           <div class="footer-wide-text">
             <h4>Shipping Information</h4>
             <p>
-              Nulla eleifend pulvinar purus, molestie euismod odio imperdiet ac. Ut sit amet erat nec nibh rhoncus
-              varius in non lorem.
-              Donec interdum, lectus in convallis pulvinar, enim elit porta sapien, vel finibus erat felis sed neque.
+              We ship worldwide within 2-5 business days. Free shipping applies to
+              orders over $150; express options are available at checkout.
             </p>
           </div>
         </div>
         <aside class="footer-contact">
-          <a class="footer-link" href="/src/html/contact.html">
+          <a class="footer-link" href="contact.html">
             <h4>Contact Us</h4>
           </a>
-          <p>
-            Bendum dolor eu varius. Morbi fermentum velit nisl sodales egetonec. Volutpat orci.
-          </p>
+          <p>Have a question about an order or a product? Reach out any time.</p>
           <div class="contact-wrapper">
             <ul class="contact-column">
               <li>
@@ -194,12 +290,17 @@
     </div>
     <div class="footer-bottom">
       <div class="footer-container">
-        <p class="copyright">© Copyright 2025</p>
+        <p class="copyright">© Copyright 2026 Best Shop</p>
       </div>
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
-  <script src="../js/cart.js"></script>
+  <script src="../js/utils/paths.js" defer></script>
+  <script src="../js/utils/storage.js" defer></script>
+  <script src="../js/utils/products.js" defer></script>
+  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/modal.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/cart.js" defer></script>
 </body>
 </html>
