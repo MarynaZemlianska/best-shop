@@ -17,7 +17,7 @@
   }
 
   function openModal(modalEl, options) {
-    if (!modalEl) return;
+    if (!modalEl || modalEl.classList.contains('is-open')) return;
     options = options || {};
     modalEl.classList.add('is-open');
     modalEl.style.display = 'flex';

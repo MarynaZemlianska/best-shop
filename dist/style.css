@@ -1335,7 +1335,7 @@ select:focus-visible,
   flex: 1 1 300px;
 }
 
-.big-promo-left h1 {
+.big-promo-left .promo-percent {
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
   font-size: 223px;
@@ -1403,7 +1403,7 @@ select:focus-visible,
   .promo-inner {
     max-width: 1000px;
   }
-  .big-promo-left h1 {
+  .big-promo-left .promo-percent {
     font-size: 180px;
   }
   .big-promo-right h3 {
@@ -1433,7 +1433,7 @@ select:focus-visible,
     flex: unset;
     max-width: 100%;
   }
-  .big-promo-left h1 {
+  .big-promo-left .promo-percent {
     font-size: 120px;
     margin: 0;
   }
@@ -1464,7 +1464,7 @@ select:focus-visible,
   .overlay-content .small {
     font-size: 14px;
   }
-  .big-promo-left h1 {
+  .big-promo-left .promo-percent {
     font-size: 80px;
   }
   .big-promo-right h3 {
@@ -1503,7 +1503,7 @@ select:focus-visible,
   }
 }
 @media screen and (max-width: 480px) {
-  .big-promo-left h1 {
+  .big-promo-left .promo-percent {
     font-size: 50px;
   }
   .big-promo-right h3 {

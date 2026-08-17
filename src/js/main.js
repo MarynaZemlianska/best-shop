@@ -216,5 +216,6 @@
     setupHamburger();
     setupLogin();
     setActiveNav();
+    setupScrollReveal();
   });
 })();
