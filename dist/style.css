@@ -228,7 +228,6 @@ a {
 .card-item {
   display: flex;
   flex-direction: column;
-  height: 100%;
   box-shadow: 0 8px 30px rgba(28, 28, 28, 0.06);
   transition: transform 0.28s ease, box-shadow 0.28s ease;
   background: #fff;
@@ -369,14 +368,20 @@ a {
   flex-direction: column;
   justify-content: flex-end; /* текст внизу */
   color: white;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-size 0.4s ease;
 }
 
-.card-item.card--tall:hover {
-  background-size: 112%;
+.card-item.card--tall .card-tall-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.card-item.card--tall:hover .card-tall-img {
+  transform: scale(1.08);
 }
 
 .card-item.card--tall::before {
@@ -403,16 +408,24 @@ a {
   color: white;
 }
 
-/* Сетки */
+/* Сетки — flex-wrap вместо grid, чтобы неполный последний ряд (например,
+   3 карточки из 4) центрировался, а не прижимался к левому краю. */
 .travel-cards-grid,
 .selected-products-grid,
 .new-arrivals-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
+  gap: 24px;
   margin: 0 auto;
   max-width: 1256px;
+}
+
+.travel-cards-grid > .card-item,
+.selected-products-grid > .card-item,
+.new-arrivals-grid > .card-item {
+  flex: 0 1 296px;
 }
 
 /* Общие отступы для секций */
@@ -426,8 +439,12 @@ a {
   .travel-cards-grid,
   .selected-products-grid,
   .new-arrivals-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+  .travel-cards-grid > .card-item,
+  .selected-products-grid > .card-item,
+  .new-arrivals-grid > .card-item {
+    flex-basis: calc(50% - 10px);
   }
   /* Tall карточки */
   .card-item.card--tall {
@@ -438,9 +455,13 @@ a {
   .travel-cards-grid,
   .selected-products-grid,
   .new-arrivals-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     padding: 0 10px;
+  }
+  .travel-cards-grid > .card-item,
+  .selected-products-grid > .card-item,
+  .new-arrivals-grid > .card-item {
+    flex-basis: calc(50% - 7px);
   }
   /* Tall карточки */
   .card-item.card--tall {
@@ -448,10 +469,10 @@ a {
   }
 }
 @media screen and (max-width: 480px) {
-  .travel-cards-grid,
-  .selected-products-grid,
-  .new-arrivals-grid {
-    grid-template-columns: 1fr;
+  .travel-cards-grid > .card-item,
+  .selected-products-grid > .card-item,
+  .new-arrivals-grid > .card-item {
+    flex-basis: 100%;
   }
   /* Tall карточки */
   .card-item.card--tall {
@@ -1541,28 +1562,37 @@ select:focus-visible,
   height: 220px;
   border-radius: 8px;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
   color: #fff;
   text-decoration: none;
-  transition: background-size 0.4s ease;
+}
+.category-tile .category-tile-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
 }
 .category-tile::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
+  z-index: 1;
 }
 .category-tile span {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 18px;
   font-weight: 700;
   font-size: 18px;
 }
 .category-tile:hover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  background-size: 112%;
+}
+.category-tile:hover .category-tile-img {
+  transform: scale(1.08);
 }
 
 @media screen and (max-width: 1024px) {
