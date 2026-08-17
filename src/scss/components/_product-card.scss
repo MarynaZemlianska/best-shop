@@ -14,12 +14,13 @@
   text-align: center;
 }
 
-/* Обычные карточки */
+/* Обычные карточки — высота у всех одинаковая за счёт grid (align-items:
+   stretch по умолчанию), картинка фиксированного соотношения сторон,
+   поэтому цена и кнопки никогда не обрезаются и не "прыгают". */
 .card-item {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  height: 450px; /* фиксированная высота */
+  height: 100%;
   box-shadow: 0 8px 30px rgba(28,28,28,0.06);
   transition: transform .28s ease, box-shadow .28s ease;
   background: #fff;
@@ -30,7 +31,7 @@
 .card-item:not(.card--tall) .card-img-link {
   display: block;
   width: 100%;
-  height: 70%;
+  aspect-ratio: 4 / 3;
 }
 
 .card-item:not(.card--tall) .card-img {
@@ -81,6 +82,10 @@
 .card-content h4 a {
   color: inherit;
   text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-content h4 a:hover {
@@ -92,6 +97,8 @@
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .btn-outline {
@@ -106,7 +113,8 @@
 }
 
 .card-item:not(.card--tall) .card-content {
-  padding: 12px 16px;
+  flex: 1;
+  padding: 12px 16px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -217,11 +225,6 @@
     gap: 20px;
   }
 
-  /* Уменьшаем обычные карточки */
-  .card-item {
-    height: 400px;
-  }
-
   /* Tall карточки */
   .card-item.card--tall {
     height: 500px;
@@ -235,11 +238,6 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
     padding: 0 10px;
-  }
-
-  /* Обычные карточки */
-  .card-item {
-    height: 350px;
   }
 
   /* Tall карточки */
@@ -258,11 +256,6 @@
   /* Tall карточки */
   .card-item.card--tall {
     height: 350px;
-  }
-
-  /* Обычные карточки */
-  .card-item {
-    height: 300px;
   }
 
   .card-item .card-content h4 {
