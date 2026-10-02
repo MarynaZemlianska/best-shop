@@ -237,25 +237,18 @@
       var text = textInput.value.trim();
       var valid = true;
 
-      document.getElementById('reviewNameError').textContent = '';
-      document.getElementById('reviewEmailError').textContent = '';
-      document.getElementById('reviewTextError').textContent = '';
+      function setFieldError(input, message) {
+        document.getElementById(input.id + 'Error').textContent = message || '';
+        input.setAttribute('aria-invalid', message ? 'true' : 'false');
+        if (message) valid = false;
+      }
 
-      if (!name) {
-        document.getElementById('reviewNameError').textContent = 'Name is required.';
-        valid = false;
-      }
-      if (!EMAIL_PATTERN.test(email)) {
-        document.getElementById('reviewEmailError').textContent = 'Enter a valid email address.';
-        valid = false;
-      }
-      if (!text) {
-        document.getElementById('reviewTextError').textContent = 'Please write a short review.';
-        valid = false;
-      }
+      setFieldError(nameInput, name ? '' : 'Name is required.');
+      setFieldError(emailInput, EMAIL_PATTERN.test(email) ? '' : 'Enter a valid email address.');
+      setFieldError(textInput, text ? '' : 'Please write a short review.');
       if (!selectedRating) {
         message.textContent = 'Please select a star rating.';
-        message.style.color = '#c41b66';
+        message.style.color = 'var(--color-error)';
         valid = false;
       }
 
@@ -272,7 +265,7 @@
       form.reset();
       selectedRating = 0;
       paintStars(0);
-      message.style.color = '#2b9c2b';
+      message.style.color = 'var(--color-success)';
       message.textContent = 'Thank you! Your review has been submitted.';
     });
   }

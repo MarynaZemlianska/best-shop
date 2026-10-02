@@ -166,6 +166,7 @@
 
   function validateCheckoutField(input, errorEl, message) {
     var value = input.value.trim();
+    input.setAttribute('aria-invalid', value ? 'false' : 'true');
     if (!value) {
       errorEl.textContent = message;
       return false;
@@ -206,7 +207,9 @@
 
       var emailInput = document.getElementById('checkoutEmail');
       var emailError = document.getElementById('checkoutEmailError');
-      if (!emailPattern.test(emailInput.value.trim())) {
+      var emailValid = emailPattern.test(emailInput.value.trim());
+      emailInput.setAttribute('aria-invalid', emailValid ? 'false' : 'true');
+      if (!emailValid) {
         emailError.textContent = 'Enter a valid email address.';
         valid = false;
       } else {
@@ -218,7 +221,7 @@
       cartApi.clearCart();
       renderCart();
       checkoutForm.reset();
-      checkoutMessage.style.color = '#2b9c2b';
+      checkoutMessage.style.color = 'var(--color-success)';
       checkoutMessage.textContent = 'Thank you! Your order has been placed in demo mode — no real payment was taken.';
       setTimeout(function () { modalApi.closeModal(checkoutModal); }, 2200);
     });

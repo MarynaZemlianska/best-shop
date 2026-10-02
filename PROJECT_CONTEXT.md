@@ -717,12 +717,13 @@ Verified by full code inspection and browser testing (Playwright + Chrome, width
 - Backend: **none**. There is no server, API, or database.
 - Database: none. Product data is a static file `src/assets/data.json` (20 products).
 - Client storage: `localStorage` / `sessionStorage` (cart, demo login, reviews).
-- CSS: SCSS (Dart Sass `^1.101.7`, legacy `@import` syntax — deprecated), compiled to a single `dist/style.css` (~53 KB, committed to git).
+- CSS: SCSS (Dart Sass `^1.101.7`, legacy `@import` syntax — deprecated), compiled with `npm run build` to a single minified `dist/style.css` (~53 KB, committed to git; production output, no source map).
+- Design system: tokens in `src/scss/abstracts/_variables.scss` (SCSS maps → CSS custom properties `--color-*`, `--text-*`, `--space-*`, `--radius-*`, `--shadow-*`), mixins in `_mixins.scss` (`respond()`, `text()`, `focus-ring`), base in `base/_reset.scss` + `base/_typography.scss`, container in `layouts/_container.scss`, buttons in `components/_buttons.scss`, forms in `components/_forms.scss`.
 - JavaScript: vanilla ES5-style IIFE modules attached to `window.BestShop` (`paths`, `cart`, `products`, `renderCard`, `modal`), loaded as separate `<script defer>` files. No bundler.
 - Build tools: `npm run dev` (sass --watch), `npm run build` (compressed CSS). No linters, no tests (`npm test` is a placeholder that fails).
 - Hosting: README describes Netlify; no deploy config in the repo.
 - Email / Payment / Delivery providers: none (all forms are demo-only).
-- Fonts: Google Fonts (Montserrat; Nunito is also requested but not used).
+- Fonts: Google Fonts — Montserrat 400/500/600/700 only, one `<link>` per page.
 - Origin: EPAM JavaScript capstone project (`REQUIREMENTS.md`, Figma-based).
 
 ## Current Pages
@@ -736,7 +737,7 @@ Verified by full code inspection and browser testing (Playwright + Chrome, width
 - Login: modal in the header on every page (demo only)
 - Registration / Account / Wishlist / Admin / Order confirmation page / 404: do not exist
 
-Header and footer markup is duplicated in all 6 HTML files.
+Header and footer markup is duplicated in all 6 HTML files (identical apart from relative paths; regenerated from one template in Stage 2 — keep them in sync when editing).
 
 ## Product Data Model (data.json)
 
@@ -750,7 +751,7 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 ## Current Features
 
 - Product catalog: IMPLEMENTED (20 products, JSON fetch with cache, loading/error/empty states).
-- Search: PARTIAL — catalog sidebar only (name/category/color/id substring, 200 ms debounce, Enter with a single match opens the product). No header search, no suggestions.
+- Search: PARTIAL — header search (desktop bar / inside the mobile menu) submits to `catalog.html?search=`; catalog sidebar search (name/category/color/id substring, 200 ms debounce, Enter with a single match opens the product). No live suggestions; brand/SKU fields don't exist in data.
 - Filters: IMPLEMENTED for category, color, size, sale; state kept in URL; mobile drawer exists. No price/brand/material/etc. (no data).
 - Sorting: IMPLEMENTED (price asc/desc, popularity, rating).
 - Pagination: IMPLEMENTED (12 per page, prev/next, no reload).
@@ -783,7 +784,7 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 - `src/assets/images` = 9.3 MB, JPG/PNG only (no WebP/AVIF). Largest: `contact-img.png` 946 KB, `contact-slider.jpg` 910 KB, `big-promo-img.jpg` 845 KB.
 - 24 image files are not referenced anywhere.
 - No `<img>` has `width`/`height` attributes (layout shift risk); only JS-rendered product cards use `loading="lazy"`.
-- Montserrat is loaded twice (HTML `<link>` + CSS `@import`), Nunito is loaded but unused.
+- Fonts: fixed in Stage 2 (one request, Montserrat only).
 
 ---
 
@@ -899,13 +900,36 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 
 ---
 
+## BUG-010
+
+**Status:** Fixed (2026-10-02, Stage 2)
+**Priority:** High
+**Area:** Forms (contact, checkout, reviews)
+
+**Description:** Inline field error messages were never visible on the Contact form, the checkout modal and the review form; an empty checkout gave no feedback at all.
+
+**Cause:** A global `.error { display: none }` rule in `_contact.scss`; only the login script set `display` explicitly.
+
+**Fix:** `.error` is shown whenever it has text (`:empty` hides it) in `components/_forms.scss`; contact/checkout/review scripts also set `aria-invalid` so invalid fields get the error border.
+
+---
+
 ## Minor issues found during Stage 1 (not fixed — out of scope)
 
-- Cart hero title "My Cart" wraps into two lines on phones (cosmetic).
-- Scroll-reveal animation (`.reveal`, `translateY(24px)`) shifts sections after an anchor jump (e.g. `about.html#team` lands ~12px under the sticky header).
+- ~~Cart hero title wraps on phones~~ — fixed in Stage 2.
+- ~~Scroll-reveal shift after an anchor jump~~ — reduced to 16px in Stage 2; `about.html#team` now lands exactly below the header.
 - After removing a cart row or clearing the cart, keyboard focus falls back to `<body>`.
-- The menu button is a `<div>` with `role="button"` added by JS; it should be a real `<button>` (needs markup change in all 6 pages — Stage 2 header).
-- `npm run build` outputs minified CSS without a source map, while the committed `dist/style.css` is the expanded `npm run dev` output with a map. Decide which one is committed.
+- ~~Menu button is a `<div>`~~ — real `<button>` since Stage 2.
+- ~~Stale `dist/style.css.map` in git~~ — removed in Stage 2; `dist/*.map` is git-ignored (`npm run dev` still generates it locally).
+
+## Minor issues found during Stage 2 (not fixed)
+
+- Product cards still show two equal-width buttons and the ★½ text rating; catalog has 1 column on phones ≤480px (Stage 3).
+- Product page layout, gallery and spec table are unchanged apart from shared components (Stage 4).
+- Cart delete button still uses the 🗑️ emoji (Stage 5).
+- Social links were removed from the footer in Stage 2: the old links pointed to generic facebook.com / twitter.com / instagram.com, not Best Shop accounts. Add them back only with confirmed official URLs.
+- Field errors are not yet linked to inputs with `aria-describedby`.
+- `big-promo-img.jpg` has grey blurred edges baked into the image.
 
 ---
 
@@ -917,12 +941,9 @@ Based on the 2026-10-02 audit.
 
 - Fixed BUG-001…BUG-009.
 
-## Stage 2 — Design foundation + header
+## Stage 2 — Design foundation + header — DONE 2026-10-02
 
-- Design tokens (one accent color, neutrals, spacing, radius, typography scale), unified buttons/forms.
-- Remove duplicate/unused font loading.
-- New header: logo, catalog, search, account, wishlist placeholder only if wishlist is built, cart; compact sticky mobile header.
-- Decide how to stop duplicating header/footer in 6 files.
+- Design tokens, typography scale, container/spacing, button and form systems, new header with real search, new footer, BUG-010.
 
 ## Stage 3 — Catalog and product cards
 
@@ -970,6 +991,18 @@ Keep this section useful for future sessions.
 - Decision: header is `position: sticky` instead of `fixed` + body padding.
 - Decision: cart storage holds only `{id, quantity, color, size}`; catalog data is the only source of price/name/image.
 - Testing: Playwright + Chrome — 7 widths × 6 pages (horizontal scroll, header overlap, sticky, console), 62 scenario checks (cart tampering cases, two tabs, keyboard in modals/menu/drawer, checkout, reviews), regression of catalog filters/sort/search/pagination, contact form, legacy cart migration.
+- Commit `1739f38`.
+
+## 2026-10-02 — Stage 2: design system and visual refresh
+
+- Tokens (`--color-*` roles, type scale, 4–96px spacing, radius sm/md/pill, two shadows), one 1200px container with 16/24px gutters, section spacing token.
+- Typography: Montserrat 400–700 only; Nunito and the duplicate CSS `@import` removed; buttons/inputs inherit the font (they rendered in Arial before).
+- Buttons: primary / secondary / ghost / icon + sm size, hover/focus-visible/active/disabled; legacy classes mapped with `@extend` (no JS selector changed).
+- Forms: one field style (48px, 16px text, focus ring, error, disabled), checkbox/radio accent, visible inline errors (BUG-010), `aria-invalid` on invalid fields.
+- Header: desktop `logo | Catalog▾ · About · Contact | search | account | cart` (72px); compact header ≤1024px with a real `<button>` menu (aria-expanded/controls), search and categories in the menu; dropdown also opens on keyboard focus; social links removed from the header.
+- Footer: benefits band (text unchanged), brand, Shop (real categories), Company, Contact, Shipping, copyright; non-link items and unconfirmed social links removed.
+- Marketing claims (discounts, free shipping, warranty, testimonials) intentionally unchanged.
+- Testing: 64 scenario checks, 16 regression checks (incl. header search → catalog), 7 widths × 6 pages responsive + console, smoke test on production CSS.
 - Not committed.
 
 ---
@@ -988,6 +1021,18 @@ Example:
 
 **Date:** YYYY-MM-DD
 
+## Decision 002 — Design tokens are the only source of visual values
+
+**Decision:** New styles use `var(--color-*)`, `var(--space-*)`, `var(--radius-*)`, `var(--shadow-*)` and the `text()` mixin; no new hard-coded colors. Brand rose `--color-primary` (#a8204f) is reserved for primary CTAs, sale badges, cart count and active/focus states.
+
+**Date:** 2026-10-02
+
+## Decision 003 — Compact header below 1024px
+
+**Decision:** The hamburger header is used up to 1024px (`respond(tablet)`); `main.js` uses the same breakpoint to close the menu.
+
+**Date:** 2026-10-02
+
 ---
 
 # 37. OPEN QUESTIONS
@@ -996,8 +1041,9 @@ Example:
 - Target market: currency (currently USD) and languages (currently English only) — the brief says "European store".
 - Who provides real product data (specs, multiple photos, old prices, stock, brands)? Target categories (Travel bags, Backpacks, Accessories) do not exist in the data.
 - Are the marketing claims real (25% / 50% discounts, free shipping over $150, lifetime warranty, testimonials, team)? The cart currently always shows "Shipping: Free".
-- Keep the current brand accent color (#c41b66 pink)?
+- Brand accent: refined to #a8204f in Stage 2 — confirm or provide official brand colors/logo.
 - Deployment target: Netlify (per README)?
+- Official Best Shop social media URLs (none confirmed; footer currently has no social links).
 
 ---
 

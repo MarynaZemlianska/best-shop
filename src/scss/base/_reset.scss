@@ -4,10 +4,19 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  color: var(--dark);
-  background: #fafafa;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+img,
+svg {
+  max-width: 100%;
 }
 
 a {
@@ -15,8 +24,46 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
+
+// Form controls don't inherit the page font by default (they fell back to
+// Arial before).
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
 /* The [hidden] attribute must always win, even over components (like
    .cart-bottom) that set their own `display` for their visible state. */
 [hidden] {
   display: none !important;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

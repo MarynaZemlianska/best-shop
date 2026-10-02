@@ -1,3 +1,5 @@
+// Max-width breakpoints (desktop-first, matches the existing stylesheets).
+// tablet ≤ 1024px, mobile ≤ 768px, small ≤ 480px.
 @mixin respond($breakpoint) {
   @if $breakpoint == tablet {
     @media screen and (max-width: 1024px) { @content; }
@@ -5,7 +7,21 @@
     @media screen and (max-width: 768px) { @content; }
   } @else if $breakpoint == small {
     @media screen and (max-width: 480px) { @content; }
+  } @else {
+    @error "Unknown breakpoint `#{$breakpoint}`.";
   }
+}
+
+// Applies a step of the type scale defined in _variables.scss.
+@mixin text($step) {
+  font-size: var(--text-#{$step});
+  line-height: var(--leading-#{$step});
+  font-weight: var(--weight-#{$step});
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 @mixin flex-center($gap: 0) {

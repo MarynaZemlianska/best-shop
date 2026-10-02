@@ -209,6 +209,11 @@
       el.textContent = String(count);
       el.style.display = count > 0 ? '' : 'none';
     });
+    document.querySelectorAll('.cart-icon').forEach(function (link) {
+      link.setAttribute('aria-label', count > 0
+        ? 'View cart, ' + count + (count === 1 ? ' item' : ' items')
+        : 'View cart, empty');
+    });
   }
 
   // Another tab changed the cart: refresh the counter and let the current

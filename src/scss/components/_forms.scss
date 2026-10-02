@@ -1,52 +1,163 @@
-@import "../abstracts/mixins";
+// Form system shared by login, contact, checkout, reviews, newsletter,
+// catalog search/sort and the header search.
 
 .visually-hidden {
   @include visually-hidden;
 }
 
-.is-invalid {
-  border-color: #c41b66 !important;
+%field {
+  display: block;
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1rem; // 16px: prevents iOS zoom on focus
+  line-height: 1.4;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-text-secondary);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+
+  &:disabled {
+    background: var(--color-surface-alt);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+
+  &.is-invalid,
+  &[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
 }
 
-/* Generic modal form fields (checkout, confirm) that don't use .login-input */
-.modal-box .form-group {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="number"],
+input:not([type]),
+select,
+textarea {
+  @extend %field;
+}
+
+textarea {
+  min-height: 120px;
+  padding: var(--space-3) var(--space-4);
+  resize: vertical;
+}
+
+select {
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%235f5a55' stroke-width='1.6' d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+label {
+  cursor: default;
+}
+
+.form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 14px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
   text-align: left;
 
-  label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
+  > label {
+    @include text(label);
+    color: var(--color-text);
   }
+}
 
-  input,
-  textarea {
-    border: 1px solid var(--pink);
-    padding: 10px 12px;
-    font-size: 15px;
-    font-family: inherit;
-    transition: 0.2s;
+.required {
+  color: var(--color-primary);
+}
 
-    &:focus-visible {
-      outline: 2px solid var(--pink);
-      outline-offset: 1px;
-    }
+// Inline validation message. Hidden while empty so it takes no space; shown
+// as soon as a script writes text into it. (It was always `display: none`
+// before, so contact/checkout/review errors were never visible.)
+.error {
+  display: block;
+  color: var(--color-error);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+
+  &:empty {
+    display: none;
   }
+}
 
-  textarea {
-    min-height: 90px;
-    resize: vertical;
-  }
+.checkbox-label,
+.remember-me {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  font-size: var(--text-small);
+  color: var(--color-text-secondary);
+  cursor: pointer;
 }
 
 .checkout-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 0 var(--space-4);
 
   @include respond(mobile) {
     grid-template-columns: 1fr;
+  }
+}
+
+.form-status {
+  margin-top: var(--space-4);
+  font-weight: 600;
+  display: none;
+  text-align: center;
+
+  &.success {
+    color: var(--color-success);
+  }
+
+  &.error {
+    color: var(--color-error);
   }
 }

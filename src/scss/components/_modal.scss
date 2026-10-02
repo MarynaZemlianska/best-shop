@@ -1,17 +1,14 @@
-@import "../abstracts/mixins";
-
 /* Generic overlay/box shared by the login modal, the clear-cart confirm
    dialog and the checkout modal. */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--color-overlay);
   align-items: center;
   justify-content: center;
   z-index: 3000;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: var(--space-5) var(--space-4);
 }
 
 .modal-overlay.is-open {
@@ -19,28 +16,102 @@
 }
 
 .modal-box {
-  background: #fff;
-  padding: 30px 40px;
-  width: 500px;
-  max-width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
   position: relative;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  box-sizing: border-box;
+  gap: var(--space-4);
+  width: 480px;
+  max-width: 100%;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 
   @include respond(mobile) {
-    padding: 26px 22px;
+    padding: var(--space-6) var(--space-5) var(--space-5);
+  }
+
+  h3 {
+    @include text(h3);
+    margin: 0;
+    padding-right: var(--space-7);
   }
 }
 
+// Close button (login + checkout share this class).
+.login-close {
+  @extend %btn-icon;
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* Login */
 .login-modal {
+  width: 440px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 100%;
+    padding-top: var(--space-4);
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+
+  .login-input {
+    padding-right: 52px;
+  }
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  svg {
+    stroke: var(--color-text-secondary);
+  }
+
+  &:hover svg {
+    stroke: var(--color-text);
+  }
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
+.login-btn {
+  @extend %btn-primary;
+  width: 100%;
+}
+
+/* Confirm dialog */
 .confirm-modal .modal-box {
   width: 400px;
   align-items: center;
@@ -49,37 +120,35 @@
 
 .confirm-message {
   margin: 0;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .confirm-actions {
   display: flex;
-  gap: 12px;
+  gap: var(--space-3);
   justify-content: center;
   width: 100%;
-}
 
-.checkout-box {
-  width: 560px;
-  text-align: left;
-
-  h3 {
-    margin: 0;
-    font-size: 22px;
+  .btn {
+    flex: 1;
   }
 }
 
+/* Checkout */
+.checkout-box {
+  width: 560px;
+  text-align: left;
+}
+
 .checkout-note {
-  color: var(--muted);
-  font-size: 14px;
-  margin: -12px 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  margin: calc(-1 * var(--space-2)) 0 0;
 }
 
 .checkout-submit {
   width: 100%;
-  padding: 12px 0;
-  font-size: 16px;
 }
 
 .checkout-modal .form-message {

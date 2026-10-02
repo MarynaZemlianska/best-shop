@@ -23,6 +23,8 @@
   function setError(id, message) {
     var el = fieldError(id);
     if (el) el.textContent = message || '';
+    var field = document.getElementById(id);
+    if (field) field.setAttribute('aria-invalid', message ? 'true' : 'false');
   }
 
   emailInput.addEventListener('input', function () {

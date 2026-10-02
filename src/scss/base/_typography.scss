@@ -1,0 +1,45 @@
+// Montserrat (400/500/600/700) is loaded once via <link> in each HTML page.
+body {
+  font-family: var(--font-base);
+  @include text(body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: inherit;
+  letter-spacing: -0.01em;
+}
+
+h1 { @include text(h1); }
+h2 { @include text(h2); }
+h3 { @include text(h3); }
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+small {
+  font-size: var(--text-small);
+}
+
+.eyebrow {
+  @include text(caption);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-secondary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}

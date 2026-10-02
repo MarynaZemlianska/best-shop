@@ -1,25 +1,131 @@
-.btn {
-  display: inline-block;
-  padding: 10px 16px;
-  background: var(--pink);
-  color: #fff;
-  font-weight: 700;
-  margin-top: 18px;
-  border: none;
+// Button system.
+//
+//   .btn                 primary (brand) — the main action of a view
+//   .btn--secondary      outlined ink — alternative actions
+//   .btn--ghost          text-only — low-emphasis actions
+//   .btn--icon           square icon-only button (needs an aria-label)
+//   .btn--sm / --block   size and width modifiers
+//
+// Older class names that JS creates or queries (.btn-outline, .login-btn,
+// .btn-cart, .add-cart, .page, .qty-btn, …) are mapped onto these variants
+// with @extend, so no selector used by scripts had to change.
+
+%btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--control-height);
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-button);
+  font-weight: var(--weight-button);
+  line-height: var(--leading-button);
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), transform var(--transition);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
 }
 
-.promo .promo-btn,
-.add{
-  display: inline-block;
-  padding: 8px 12px;
-  background: var(--pink);
-  color: #fff;
-  font-weight: 700;
-  margin-top: 12px;
+%btn-primary {
+  @extend %btn-base;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+  }
 }
 
-.btn:hover {
-  background: #d12d77;
+%btn-secondary {
+  @extend %btn-base;
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-accent);
+    background: var(--color-surface-alt);
+  }
 }
 
+%btn-ghost {
+  @extend %btn-base;
+  padding: 0 var(--space-3);
+  color: var(--color-text);
+
+  &:hover:not(:disabled) {
+    background: var(--color-surface-alt);
+  }
+}
+
+%btn-icon {
+  @extend %btn-ghost;
+  width: 44px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+%btn-sm {
+  min-height: var(--control-height-sm);
+  padding: 0 var(--space-4);
+  font-size: var(--text-small);
+}
+
+.btn {
+  @extend %btn-primary;
+}
+
+.btn--secondary,
+.btn.btn-outline {
+  @extend %btn-secondary;
+}
+
+.btn--ghost {
+  @extend %btn-ghost;
+}
+
+.btn--icon {
+  @extend %btn-icon;
+}
+
+.btn--sm {
+  @extend %btn-sm;
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+// Touch screens: never go below a ~44px target.
+@media (pointer: coarse) {
+  %btn-sm {
+    min-height: 44px;
+  }
+}

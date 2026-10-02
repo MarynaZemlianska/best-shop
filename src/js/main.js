@@ -12,24 +12,13 @@
     var mainNav = document.getElementById('mainNav') || document.querySelector('.main-nav');
     if (!hamburger || !mainNav) return;
 
-    hamburger.setAttribute('role', 'button');
-    hamburger.setAttribute('tabindex', '0');
-    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-controls', mainNav.id || 'mainNav');
 
-    // On mobile the header row only has room for menu/logo/account/cart, so
-    // the social links are shown inside the menu instead (CSS hides this copy
-    // on desktop).
-    var socials = document.querySelector('.topbar-inner .socials');
-    if (socials && !mainNav.querySelector('.nav-socials')) {
-      var navSocials = socials.cloneNode(true);
-      navSocials.className = 'nav-socials';
-      mainNav.appendChild(navSocials);
-    }
-
     function onKeydown(e) {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key !== 'Escape') return;
+      closeMenu();
+      hamburger.focus();
     }
     function onOutsideClick(e) {
       if (!mainNav.contains(e.target) && !hamburger.contains(e.target)) closeMenu();
@@ -58,20 +47,14 @@
       if (mainNav.classList.contains('active')) closeMenu();
       else openMenu();
     });
-    hamburger.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        hamburger.click();
-      }
-    });
 
     mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
 
-    // Leaving the mobile layout with the menu open would keep the page
-    // scroll-locked.
-    var mobileQuery = window.matchMedia('(max-width: 768px)');
+    // Leaving the compact header layout with the menu open would keep the
+    // page scroll-locked. Must match respond(tablet) in header.scss.
+    var mobileQuery = window.matchMedia('(max-width: 1024px)');
     var onBreakpointChange = function (e) {
       if (!e.matches) closeMenu();
     };
@@ -228,7 +211,10 @@
     var current = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-item[href]').forEach(function (link) {
       var page = (link.getAttribute('href') || '').split('/').pop();
-      link.classList.toggle('active', page === current);
+      var isCurrent = page === current;
+      link.classList.toggle('active', isCurrent);
+      if (isCurrent) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
     });
   }
 

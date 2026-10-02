@@ -1,2 +1,4 @@
 node_modules
 .DS_Store
+# Source maps are generated locally by `npm run dev`; production CSS (`npm run build`) has none.
+dist/*.map
