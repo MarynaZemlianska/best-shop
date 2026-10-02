@@ -7,6 +7,7 @@
   width: 1300px;
   max-width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   gap: 40px;
 }
@@ -244,24 +245,44 @@
     box-sizing: border-box;
     overflow-y: auto;
     transform: translateX(-105%);
-    transition: transform 0.3s ease;
+    // Hidden while closed so its controls are not reachable with Tab.
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0s linear 0.3s;
   }
 
   .catalog-sidebar.is-open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
   }
 
   .filters-close {
     display: block;
     position: absolute;
-    top: 14px;
-    right: 18px;
     font-size: 26px;
     border: none;
     background: none;
     color: var(--pink);
     cursor: pointer;
+    width: 44px;
+    height: 44px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .filters-toggle {
+    min-height: 44px;
+    padding: 8px 20px;
+  }
+
+  .filter-sort {
+    min-height: 44px;
+    margin-bottom: 0;
+  }
+
+  .filter-group label {
+    padding: 8px 0;
   }
 }
 

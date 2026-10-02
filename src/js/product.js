@@ -106,8 +106,10 @@
     var minus = document.getElementById('qtyMinus');
     var plus = document.getElementById('qtyPlus');
 
+    input.max = String(cartApi.MAX_QUANTITY);
+
     function clamp() {
-      var value = Math.max(1, Math.floor(Number(input.value)) || 1);
+      var value = Math.min(Math.max(1, Math.floor(Number(input.value)) || 1), cartApi.MAX_QUANTITY);
       input.value = value;
       return value;
     }
@@ -117,7 +119,7 @@
       input.value = Math.max(1, clamp() - 1);
     });
     plus.addEventListener('click', function () {
-      input.value = clamp() + 1;
+      input.value = Math.min(clamp() + 1, cartApi.MAX_QUANTITY);
     });
 
     return function getQuantity() { return clamp(); };
@@ -154,8 +156,10 @@
     var reviews = getReviews(productId);
     var list = document.getElementById('reviewsList');
     var title = document.getElementById('reviewCountTitle');
-    title.textContent = reviews.length +
-      (reviews.length === 1 ? ' review' : ' reviews') + ' for ' + productName;
+    var countText = document.getElementById('reviewCountText');
+    var countLabel = reviews.length + (reviews.length === 1 ? ' review' : ' reviews');
+    title.textContent = countLabel + ' for ' + productName;
+    if (countText) countText.textContent = '(' + countLabel + ')';
 
     list.innerHTML = '';
     if (!reviews.length) {

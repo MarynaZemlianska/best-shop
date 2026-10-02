@@ -1,12 +1,16 @@
 /**
  * Cart page: renders items through the shared cart module (storage.js),
  * recalculates totals/discount live, and handles the clear-cart confirmation
- * and demo checkout modal.
+ * and demo checkout modal. Prices, names and images always come from the
+ * current catalog (data.json), never from localStorage.
  */
 (function () {
   var cartApi = window.BestShop.cart;
   var modalApi = window.BestShop.modal;
   var pathsApi = window.BestShop.paths;
+  var productsApi = window.BestShop.products;
+
+  var catalog = null;
 
   var itemsContainer = document.getElementById('cartItemsContainer');
   var emptyState = document.getElementById('cartEmpty');
@@ -21,6 +25,21 @@
   var checkoutClose = document.getElementById('checkoutClose');
   var checkoutForm = document.getElementById('checkoutForm');
   var checkoutMessage = document.getElementById('checkoutMessage');
+
+  function formatMoney(amount) {
+    return '$' + amount.toFixed(2).replace(/\.00$/, '');
+  }
+
+  function showStatus(message) {
+    itemsContainer.innerHTML = '';
+    var status = document.createElement('p');
+    status.className = 'cart-status';
+    status.setAttribute('role', 'status');
+    status.textContent = message;
+    itemsContainer.appendChild(status);
+    emptyState.hidden = true;
+    cartBottom.hidden = true;
+  }
 
   function buildRow(item) {
     var row = document.createElement('div');
@@ -48,7 +67,7 @@
 
     var price = document.createElement('div');
     price.className = 'price';
-    price.textContent = '$' + item.price;
+    price.textContent = formatMoney(item.price);
 
     var quantity = document.createElement('div');
     quantity.className = 'quantity';
@@ -57,6 +76,7 @@
     minus.className = 'minus';
     minus.textContent = '−';
     minus.setAttribute('aria-label', 'Decrease quantity of ' + item.name);
+    minus.disabled = item.quantity <= 1;
     var qtyValue = document.createElement('span');
     qtyValue.textContent = item.quantity;
     var plus = document.createElement('button');
@@ -64,11 +84,12 @@
     plus.className = 'plus';
     plus.textContent = '+';
     plus.setAttribute('aria-label', 'Increase quantity of ' + item.name);
+    plus.disabled = item.quantity >= cartApi.MAX_QUANTITY;
     quantity.append(minus, qtyValue, plus);
 
     var total = document.createElement('div');
     total.className = 'total';
-    total.textContent = '$' + (item.price * item.quantity);
+    total.textContent = formatMoney(item.price * item.quantity);
 
     var deleteBtn = document.createElement('button');
     deleteBtn.type = 'button';
@@ -94,7 +115,8 @@
   }
 
   function renderCart() {
-    var cart = cartApi.getCart();
+    if (!catalog) return;
+    var cart = cartApi.getCartLines(catalog);
     itemsContainer.innerHTML = '';
 
     if (!cart.length) {
@@ -122,14 +144,14 @@
     var subtotal = cartApi.getSubtotal(cart);
     var discount = cartApi.getDiscount(subtotal);
 
-    subtotalEl.textContent = '$' + subtotal.toFixed(2).replace(/\.00$/, '');
+    subtotalEl.textContent = formatMoney(subtotal);
     if (discount > 0) {
       discountRow.hidden = false;
-      discountEl.textContent = '-$' + discount.toFixed(2).replace(/\.00$/, '');
+      discountEl.textContent = '-' + formatMoney(discount);
     } else {
       discountRow.hidden = true;
     }
-    totalEl.textContent = '$' + (subtotal - discount).toFixed(2).replace(/\.00$/, '');
+    totalEl.textContent = formatMoney(cartApi.getTotal(subtotal));
   }
 
   function setupClearCart() {
@@ -156,7 +178,7 @@
     if (!checkoutBtn || !checkoutModal) return;
 
     checkoutBtn.addEventListener('click', function () {
-      if (!cartApi.getCart().length) return;
+      if (!catalog || !cartApi.getCartLines(catalog).length) return;
       checkoutMessage.textContent = '';
       modalApi.openModal(checkoutModal);
     });
@@ -203,8 +225,27 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    renderCart();
     setupClearCart();
     setupCheckout();
+    showStatus('Loading your cart…');
+
+    productsApi.loadProducts()
+      .then(function (products) {
+        catalog = products;
+        cartApi.syncWithCatalog(products);
+        renderCart();
+      })
+      .catch(function () {
+        // Without current prices the cart can't be totalled safely, so
+        // checkout stays hidden.
+        showStatus('Could not load current prices. Please refresh the page.');
+      });
+
+    // The cart was changed in another tab.
+    document.addEventListener('bestshop:cartchange', function () {
+      if (!catalog) return;
+      cartApi.syncWithCatalog(catalog);
+      renderCart();
+    });
   });
 })();

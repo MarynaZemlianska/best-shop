@@ -48,7 +48,8 @@
 
 .breadcrumbs {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
   font-size: 14px;
   color: var(--muted);
   margin-top: 20px;

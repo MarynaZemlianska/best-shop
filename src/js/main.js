@@ -16,6 +16,17 @@
     hamburger.setAttribute('tabindex', '0');
     hamburger.setAttribute('aria-label', 'Toggle navigation menu');
     hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-controls', mainNav.id || 'mainNav');
+
+    // On mobile the header row only has room for menu/logo/account/cart, so
+    // the social links are shown inside the menu instead (CSS hides this copy
+    // on desktop).
+    var socials = document.querySelector('.topbar-inner .socials');
+    if (socials && !mainNav.querySelector('.nav-socials')) {
+      var navSocials = socials.cloneNode(true);
+      navSocials.className = 'nav-socials';
+      mainNav.appendChild(navSocials);
+    }
 
     function onKeydown(e) {
       if (e.key === 'Escape') closeMenu();
@@ -54,9 +65,18 @@
       }
     });
 
-    mainNav.querySelectorAll('.nav-item').forEach(function (link) {
+    mainNav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', closeMenu);
     });
+
+    // Leaving the mobile layout with the menu open would keep the page
+    // scroll-locked.
+    var mobileQuery = window.matchMedia('(max-width: 768px)');
+    var onBreakpointChange = function (e) {
+      if (!e.matches) closeMenu();
+    };
+    if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', onBreakpointChange);
+    else if (mobileQuery.addListener) mobileQuery.addListener(onBreakpointChange);
   }
 
   function showFieldError(input, errorEl, message) {

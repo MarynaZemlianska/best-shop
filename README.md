@@ -92,7 +92,8 @@ Compiles a minified `dist/style.css` with no source map, suitable for deployment
 
 ## LocalStorage usage
 
-- `bestshop_cart` — cart contents (`{id, name, price, imageUrl, quantity, color, size}[]`).
+- `bestshop_cart` — cart contents (`{id, quantity, color, size}[]`). Name, price and image are
+  always read from `data.json`; invalid entries and products no longer in the catalog are dropped.
 - `loggedUser` (localStorage or sessionStorage, depending on "Remember me") — the demo logged-in
   email.
 - `bestshop_reviews_<productId>` — reviews submitted for a given product.

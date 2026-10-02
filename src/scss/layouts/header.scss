@@ -1,8 +1,9 @@
 
+// Sticky (not fixed) so the header always reserves its own height in the
+// flow — no body padding to keep in sync with the header height.
 .topbar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
 
   background: #fff;
@@ -60,9 +61,14 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding-top: 130px;
+// Keeps anchor targets and scrollIntoView() clear of the sticky header.
+html {
+  scroll-padding-top: 140px;
+}
+
+.hamburger,
+.nav-socials {
+  display: none;
 }
 
 .socials{
@@ -317,30 +323,6 @@ select:focus-visible,
 }
 
 @media screen and (max-width: 1024px) {
-  .topbar-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 0;
-    gap: 10px;
-
-
-  }
-
-  .logo {
-    position: static;
-    transform: none;
-    margin: 0 auto;
-  }
-
-  .socials {
-    order: 2;
-    gap: 15px;
-  }
-
-  .user-cart {
-    order: 3;
-  }
-
   .main-nav {
     width: 100%;
     flex-wrap: wrap;
@@ -351,50 +333,39 @@ select:focus-visible,
   .dropdown-menu {
     min-width: 120px;
   }
-  .topbar-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .socials, .user-cart {
-    justify-content: center;
-  }
 }
 
+// Compact mobile header: one row — menu button | logo | account + cart.
+// Social links are moved into the menu by main.js (.nav-socials).
 @media screen and (max-width: 768px) {
-
-  .topbar {
-    height: auto;
-    padding: 10px 15px 15px 15px;
-  }
-
-  body {
-    padding-top: 180px; 
+  html {
+    scroll-padding-top: 80px;
   }
 
   .topbar-inner {
-    display: flex;
-    flex-direction: row;       
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    margin-top: 0;
+    padding: 8px 12px;
   }
 
-  .logo,
-  .socials,
-  .user-cart {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .topbar-inner > .socials {
+    display: none;
   }
 
   .hamburger {
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
     cursor: pointer;
   }
 
@@ -408,21 +379,88 @@ select:focus-visible,
   }
 
   .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(8px) rotate(45deg);
   }
   .hamburger.active span:nth-child(2) {
     opacity: 0;
   }
   .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .logo {
+    grid-column: 2;
+    grid-row: 1;
+    position: static;
+    transform: none;
+    justify-self: center;
+    min-width: 0;
+  }
+
+  .logo .logo-link {
+    gap: 8px;
+  }
+
+  .logo .logo-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .logo-icon img {
+    width: 22px;
+  }
+
+  .brand {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+
+  .user-cart {
+    grid-column: 3;
+    grid-row: 1;
+    gap: 4px;
+  }
+
+  .account-icon,
+  .cart-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .account-icon img,
+  .cart-icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .account-icon.logged-in {
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+  }
+
+  .cart-icon .cart-count {
+    top: 0;
+    right: -2px;
+    background: #fff;
+  }
+
+  .divider {
+    display: none;
   }
 
   .main-nav {
-    display: none; 
+    display: none;
     flex-direction: column;
+    align-items: stretch;
     width: 100%;
     gap: 0;
-    margin-top: 10px;
+    padding: 4px 16px 16px;
+    max-height: calc(100vh - 60px);
+    max-height: calc(100dvh - 60px);
+    overflow-y: auto;
+    border-top: 1px solid #eee;
   }
 
   .main-nav.active {
@@ -430,44 +468,73 @@ select:focus-visible,
   }
 
   .nav-item {
+    display: block;
     width: 100%;
     text-align: center;
-    padding: 12px 0;
+    padding: 14px 0;
     font-size: 16px;
   }
 
+  // Categories are listed inline in the open menu: hover dropdowns don't
+  // work on touch screens.
+  .dropdown-menu,
   .nav-dropdown:hover .dropdown-menu {
     position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    box-shadow: none;
+    background: none;
+    margin-bottom: 6px;
+  }
+
+  .dropdown-menu a {
+    padding: 10px 16px;
+    font-size: 15px;
+    color: #504E4A;
+  }
+
+  .dropdown-menu a:hover {
+    background: none;
+    color: var(--pink);
+  }
+
+  .nav-dropdown .arrow {
     display: none;
   }
 
-  .divider {
-    margin: 10px 0;
+  .nav-socials {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 12px;
+    margin-top: 6px;
+    border-top: 1px solid #eee;
   }
 
+  .nav-socials .social-link {
+    width: 44px;
+    height: 44px;
+  }
 }
 
-@media screen and (max-width: 524px) {
+@media screen and (max-width: 374px) {
   .topbar-inner {
-    flex-direction: column;
-    align-items: center; 
-    gap: 10px;
+    padding: 8px;
+    gap: 4px;
   }
 
+  .logo .logo-icon {
+    width: 30px;
+    height: 30px;
+  }
 
-  .socials {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
+  .brand {
+    font-size: 18px;
   }
 
   .user-cart {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
+    gap: 0;
   }
 }

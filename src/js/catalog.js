@@ -289,21 +289,40 @@
 
   function setupMobileFilters() {
     if (!filtersToggle || !sidebar) return;
+    function isOpen() {
+      return sidebar.classList.contains('is-open');
+    }
+    function onKeydown(e) {
+      if (e.key === 'Escape') closeFilters();
+      else modalApi.trapFocus(sidebar, e);
+    }
     function openFilters() {
+      if (isOpen()) return;
       sidebar.classList.add('is-open');
       filtersToggle.setAttribute('aria-expanded', 'true');
       modalApi.lockScroll();
+      document.addEventListener('keydown', onKeydown);
+      if (filtersClose) filtersClose.focus();
     }
     function closeFilters() {
+      if (!isOpen()) return;
       sidebar.classList.remove('is-open');
       filtersToggle.setAttribute('aria-expanded', 'false');
       modalApi.unlockScroll();
+      document.removeEventListener('keydown', onKeydown);
+      modalApi.restoreFocus(filtersToggle);
     }
     filtersToggle.addEventListener('click', openFilters);
     if (filtersClose) filtersClose.addEventListener('click', closeFilters);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeFilters();
-    });
+
+    // The drawer is a desktop sidebar above 768px; don't leave the page
+    // scroll-locked if the viewport grows while it is open.
+    var mobileQuery = window.matchMedia('(max-width: 768px)');
+    var onBreakpointChange = function (e) {
+      if (!e.matches) closeFilters();
+    };
+    if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', onBreakpointChange);
+    else if (mobileQuery.addListener) mobileQuery.addListener(onBreakpointChange);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
