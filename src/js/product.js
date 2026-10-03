@@ -74,7 +74,9 @@
     });
 
     document.getElementById('productName').textContent = product.name;
-    document.getElementById('productRating').textContent = renderApi.ratingToStars(product.rating);
+    var ratingEl = document.getElementById('productRating');
+    ratingEl.innerHTML = '';
+    ratingEl.appendChild(renderApi.createRating(product.rating));
     document.getElementById('productPrice').textContent = '$' + product.price +
       (product.salesStatus ? ' · Sale' : '');
     document.getElementById('productDescription').textContent = product.description;
@@ -193,7 +195,7 @@
 
       var stars = document.createElement('div');
       stars.className = 'review-stars';
-      stars.textContent = renderApi.ratingToStars(review.rating);
+      stars.appendChild(renderApi.createRating(review.rating, { size: 'sm', showValue: false }));
 
       var text = document.createElement('p');
       text.className = 'review-text';

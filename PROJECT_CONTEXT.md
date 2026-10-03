@@ -728,7 +728,7 @@ Verified by full code inspection and browser testing (Playwright + Chrome, width
 
 ## Current Pages
 
-- Homepage: `index.html`
+- Homepage: `index.html` — hero, categories (live counts), Popular now (top 8 by `popularity`), two existing offers, New arrivals (`blocks` flag), static testimonials. Newsletter and the "Travel Suitcases" block were removed in Stage 3.
 - Catalog (+ category via `?category=` query): `src/html/catalog.html`
 - Product: `src/html/product-card.html?id=<ID>` (client-side rendered)
 - Cart (+ checkout modal): `src/html/cart.html`
@@ -750,9 +750,9 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 
 ## Current Features
 
-- Product catalog: IMPLEMENTED (20 products, JSON fetch with cache, loading/error/empty states).
+- Product catalog: IMPLEMENTED (20 products, JSON fetch with cache, skeleton loading, empty state with reset, error state; visible H1/breadcrumb/document title follow the active category/search).
 - Search: PARTIAL — header search (desktop bar / inside the mobile menu) submits to `catalog.html?search=`; catalog sidebar search (name/category/color/id substring, 200 ms debounce, Enter with a single match opens the product). No live suggestions; brand/SKU fields don't exist in data.
-- Filters: IMPLEMENTED for category, color, size, sale; state kept in URL; mobile drawer exists. No price/brand/material/etc. (no data).
+- Filters: IMPLEMENTED for category, color (swatches), size (pills), sale; option counts; active-filter chips; state kept in URL; left sidebar on desktop, drawer ≤1024px with "Show N products". No price/brand/material/etc. filters yet.
 - Sorting: IMPLEMENTED (price asc/desc, popularity, rating).
 - Pagination: IMPLEMENTED (12 per page, prev/next, no reload).
 - Product variants: NOT IMPLEMENTED (one color/size per product; the cart supports color/size keys).
@@ -922,14 +922,35 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 - ~~Menu button is a `<div>`~~ — real `<button>` since Stage 2.
 - ~~Stale `dist/style.css.map` in git~~ — removed in Stage 2; `dist/*.map` is git-ignored (`npm run dev` still generates it locally).
 
+## BUG-011
+
+**Status:** Fixed (2026-10-03, Stage 3)
+**Priority:** Critical
+**Area:** Homepage / product links
+
+**Description:** Every product link on the homepage returned 404 (`/product-card.html?id=…` at the site root).
+
+**Cause:** `productUrl()` in `render-card.js` returned a path relative to the current page, which only worked from pages inside `src/html/`. Present since commit `6e4d60b`.
+
+**Fix:** `productUrl()` builds an absolute URL from the site root via `paths.assetUrl()`; verified that all 11 homepage product links return 200.
+
+---
+
 ## Minor issues found during Stage 2 (not fixed)
 
-- Product cards still show two equal-width buttons and the ★½ text rating; catalog has 1 column on phones ≤480px (Stage 3).
+- ~~Product cards: two equal buttons, ★½ text rating, 1 column on phones~~ — redesigned in Stage 3.
 - Product page layout, gallery and spec table are unchanged apart from shared components (Stage 4).
 - Cart delete button still uses the 🗑️ emoji (Stage 5).
 - Social links were removed from the footer in Stage 2: the old links pointed to generic facebook.com / twitter.com / instagram.com, not Best Shop accounts. Add them back only with confirmed official URLs.
 - Field errors are not yet linked to inputs with `aria-describedby`.
 - `big-promo-img.jpg` has grey blurred edges baked into the image.
+
+## Data / asset issues found during Stage 3 (need real product data)
+
+- 4 product photos are small squares (SU006 120px, KL016 120px, SET017 87px, SET018 116px) and look blurry when enlarged; the other 16 are 296×400.
+- SU001 and SU008 use visually identical photos (red suitcase), so "Popular now" shows two look-alike cards.
+- No luggage-set lifestyle photo exists; the Luggage Sets category card uses the 116px SET018 photo.
+- `suitcase.png` (vintage leather case) and the `travel-suit-*.png` images are no longer used on the homepage.
 
 ---
 
@@ -945,11 +966,11 @@ Based on the 2026-10-02 audit.
 
 - Design tokens, typography scale, container/spacing, button and form systems, new header with real search, new footer, BUG-010.
 
-## Stage 3 — Catalog and product cards
+## Stage 3 — Homepage, catalog and product cards — DONE 2026-10-03
 
-- Card redesign (equal image ratio, clamped titles, price/sale/availability), catalog layout, mobile filter drawer, empty states.
+- Homepage restructure, catalog header/toolbar/filters/chips/empty state/skeletons, product card redesign, rating component, add-to-cart toast, BUG-011.
 
-## Stage 4 — Product data model + product page
+## Stage 4 — Product data model + product page — NEXT
 
 - Extend data.json only with real data (old price, stock, specs, multiple images) — requires product data from the owner.
 - Gallery, specs, delivery/returns blocks, related products by category.
@@ -1003,6 +1024,17 @@ Keep this section useful for future sessions.
 - Footer: benefits band (text unchanged), brand, Shop (real categories), Company, Contact, Shipping, copyright; non-link items and unconfirmed social links removed.
 - Marketing claims (discounts, free shipping, warranty, testimonials) intentionally unchanged.
 - Testing: 64 scenario checks, 16 regression checks (incl. header search → catalog), 7 widths × 6 pages responsive + console, smoke test on production CSS.
+- Commit `55287c7` (pushed to origin/main).
+
+## 2026-10-03 — Stage 3: homepage, catalog and product cards
+
+- Homepage: 10 sections → 6 (hero with the best existing photo + 1 primary/1 secondary CTA, category cards with product photos from each category and live counts, Popular now, compact offers with unchanged wording, New arrivals, simplified testimonials). Removed: Travel Suitcases (non-clickable, random taglines), duplicate benefits section (footer band remains), CMO persona block, newsletter (sent nothing). Page height 6180 → ~4740px desktop, 12000 → ~7060px at 390px.
+- Product card: 3:4 image with `object-fit: contain` on a neutral surface, Sale badge only from `salesStatus`, 2-line clamped title, SVG-mask star rating with fractions, price, one "Add to cart" button; the title link is stretched over the card (one tab stop + the button).
+- Add-to-cart feedback: button shows "Added", toast "Added to cart · View cart" in a polite live region (`src/js/utils/toast.js`).
+- Catalog: breadcrumbs + H1 + count, toolbar (filters button, search, sort), chips, filters on the left with counts/swatches/size pills, skeleton cards, empty state, centered pagination; "Top Best Sets" removed (showed random suitcases).
+- Grid decision (tested at 320/375/390/430): 2 columns on all phones ≤600px (card 138–193px wide, title 2 lines, button label on one line; icon hidden ≤359px), 3 columns on tablet/catalog desktop, 4 on homepage desktop.
+- BUG-011 fixed (homepage product links 404).
+- Testing: 30 new Stage 3 checks, 64 scenario + 16 regression checks, 7 widths × 6 pages responsive + console, smoke test, production build.
 - Not committed.
 
 ---
@@ -1029,9 +1061,21 @@ Example:
 
 ## Decision 003 — Compact header below 1024px
 
-**Decision:** The hamburger header is used up to 1024px (`respond(tablet)`); `main.js` uses the same breakpoint to close the menu.
+**Decision:** The hamburger header is used up to 1024px (`respond(tablet)`); `main.js` uses the same breakpoint to close the menu. The catalog filter drawer uses the same 1024px breakpoint.
 
 **Date:** 2026-10-02
+
+## Decision 004 — Two product cards per row on phones
+
+**Decision:** Product grids use 2 columns at ≤600px, including 320px, after a real test at 320/375/390/430px.
+
+**Date:** 2026-10-03
+
+## Decision 005 — No newsletter without a backend
+
+**Decision:** The newsletter form was removed because it sent nothing; add it back only with a real subscription service.
+
+**Date:** 2026-10-03
 
 ---
 

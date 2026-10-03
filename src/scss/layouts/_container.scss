@@ -33,3 +33,14 @@ section {
   opacity: 1;
   transform: none;
 }
+
+// Loading / empty / error text under product grids.
+.grid-status {
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+
+  &:not(:empty) {
+    padding: var(--space-6) 0;
+  }
+}

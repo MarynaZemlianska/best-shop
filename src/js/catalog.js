@@ -1,10 +1,12 @@
 /**
  * Catalog page: combinable filters (category/color/size/sale), sorting,
- * live search, pagination and URL query-param persistence.
+ * live search, pagination and URL query-param persistence, plus the page
+ * heading/breadcrumb, active-filter chips and option counts derived from
+ * the same state.
  */
 (function () {
   var PAGE_SIZE = 12;
-  var cartApi = window.BestShop.cart;
+  var SKELETON_COUNT = 6;
   var modalApi = window.BestShop.modal;
   var productsApi = window.BestShop.products;
   var renderApi = window.BestShop.renderCard;
@@ -19,20 +21,22 @@
     map[CATEGORY_SLUGS[slug]] = slug;
     return map;
   }, {});
-
-  var allProducts = [];
-  var state = {
-    categories: [],
-    colors: [],
-    sizes: [],
-    saleOnly: false,
-    sort: 'default',
-    search: '',
-    page: 1,
+  var CATEGORY_LABELS = {
+    'carry-ons': 'Carry-ons',
+    'suitcases': 'Suitcases',
+    'luggage sets': 'Luggage Sets',
+    "kids' luggage": "Kids' Luggage",
   };
 
+  var allProducts = [];
+  var loaded = false;
+  var state = emptyState();
+
   var grid = document.getElementById('catalogGrid');
-  var statusEl = document.getElementById('catalogStatus');
+  var statusBox = document.getElementById('catalogStatus');
+  var statusTitle = document.getElementById('catalogStatusTitle');
+  var statusText = document.getElementById('catalogStatusText');
+  var statusReset = document.getElementById('catalogStatusReset');
   var resultsCount = document.getElementById('resultsCount');
   var pagination = document.getElementById('catalogPagination');
   var sortSelect = document.getElementById('sortSelect');
@@ -41,8 +45,22 @@
   var sidebar = document.getElementById('catalogSidebar');
   var filtersToggle = document.getElementById('filtersToggle');
   var filtersClose = document.getElementById('filtersClose');
+  var filtersApply = document.getElementById('filtersApply');
+  var filtersCount = document.getElementById('filtersCount');
   var saleCheckbox = document.getElementById('filterSaleOnly');
-  var topProductsList = document.getElementById('topProductsList');
+  var activeFilters = document.getElementById('activeFilters');
+  var titleEl = document.getElementById('catalogTitle');
+  var breadcrumbCatalog = document.getElementById('breadcrumbCatalog');
+  var breadcrumbSep = document.getElementById('breadcrumbSep');
+  var breadcrumbCurrent = document.getElementById('breadcrumbCurrent');
+
+  function emptyState() {
+    return { categories: [], colors: [], sizes: [], saleOnly: false, sort: 'default', search: '', page: 1 };
+  }
+
+  function capitalize(value) {
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
 
   function checkboxesFor(filterName) {
     var group = document.querySelector('.filter-group[data-filter="' + filterName + '"]');
@@ -128,6 +146,90 @@
     return sorted;
   }
 
+  function activeFilterCount() {
+    return state.categories.length + state.colors.length + state.sizes.length + (state.saleOnly ? 1 : 0);
+  }
+
+  // Heading + breadcrumb + document title describe what is being shown.
+  function pageLabel() {
+    if (state.search) return 'Results for “' + state.search + '”';
+    if (state.categories.length === 1 && activeFilterCount() === 1) {
+      return CATEGORY_LABELS[state.categories[0]] || capitalize(state.categories[0]);
+    }
+    if (state.saleOnly && activeFilterCount() === 1) return 'Sale';
+    return '';
+  }
+
+  function renderHeading() {
+    var label = pageLabel();
+    titleEl.textContent = label || 'All luggage';
+    document.title = (label || 'Catalog') + ' — Best Shop';
+
+    var hasCurrent = Boolean(label);
+    breadcrumbSep.hidden = !hasCurrent;
+    breadcrumbCurrent.hidden = !hasCurrent;
+    breadcrumbCurrent.textContent = label;
+    if (hasCurrent) breadcrumbCatalog.removeAttribute('aria-current');
+    else breadcrumbCatalog.setAttribute('aria-current', 'page');
+  }
+
+  function makeChip(label, onRemove) {
+    var chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'filter-chip';
+    chip.setAttribute('aria-label', 'Remove filter: ' + label);
+    var text = document.createElement('span');
+    text.textContent = label;
+    var icon = document.createElement('span');
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '×';
+    chip.append(text, icon);
+    chip.addEventListener('click', function () {
+      onRemove();
+      state.page = 1;
+      syncControlsFromState();
+      render();
+    });
+    return chip;
+  }
+
+  function renderActiveFilters() {
+    activeFilters.innerHTML = '';
+    var chips = [];
+    state.categories.forEach(function (c) {
+      chips.push(makeChip(CATEGORY_LABELS[c] || c, function () {
+        state.categories = state.categories.filter(function (v) { return v !== c; });
+      }));
+    });
+    state.colors.forEach(function (c) {
+      chips.push(makeChip(capitalize(c), function () {
+        state.colors = state.colors.filter(function (v) { return v !== c; });
+      }));
+    });
+    state.sizes.forEach(function (s) {
+      chips.push(makeChip('Size ' + s, function () {
+        state.sizes = state.sizes.filter(function (v) { return v !== s; });
+      }));
+    });
+    if (state.saleOnly) chips.push(makeChip('On sale', function () { state.saleOnly = false; }));
+    if (state.search) chips.push(makeChip('“' + state.search + '”', function () { state.search = ''; }));
+
+    var count = activeFilterCount();
+    filtersCount.hidden = !count;
+    filtersCount.textContent = String(count);
+
+    activeFilters.hidden = !chips.length;
+    if (!chips.length) return;
+    chips.forEach(function (chip) { activeFilters.appendChild(chip); });
+
+    var clear = document.createElement('button');
+    clear.type = 'button';
+    clear.className = 'filter-chip-clear';
+    clear.textContent = 'Clear all';
+    clear.addEventListener('click', resetAll);
+    activeFilters.appendChild(clear);
+  }
+
   function renderPagination(totalPages) {
     pagination.innerHTML = '';
     if (totalPages <= 1) return;
@@ -139,6 +241,8 @@
       btn.className = 'page' + (options.active ? ' active' : '');
       btn.textContent = label;
       btn.disabled = Boolean(options.disabled);
+      if (options.ariaLabel) btn.setAttribute('aria-label', options.ariaLabel);
+      if (options.active) btn.setAttribute('aria-current', 'page');
       btn.addEventListener('click', function () {
         state.page = page;
         render();
@@ -147,11 +251,18 @@
       return btn;
     }
 
-    pagination.appendChild(makeButton('← Prev', state.page - 1, { disabled: state.page <= 1 }));
+    pagination.appendChild(makeButton('←', state.page - 1, { disabled: state.page <= 1, ariaLabel: 'Previous page' }));
     for (var i = 1; i <= totalPages; i += 1) {
-      pagination.appendChild(makeButton(String(i), i, { active: i === state.page }));
+      pagination.appendChild(makeButton(String(i), i, { active: i === state.page, ariaLabel: 'Page ' + i }));
     }
-    pagination.appendChild(makeButton('Next →', state.page + 1, { disabled: state.page >= totalPages }));
+    pagination.appendChild(makeButton('→', state.page + 1, { disabled: state.page >= totalPages, ariaLabel: 'Next page' }));
+  }
+
+  function showStatus(title, text, withReset) {
+    statusTitle.textContent = title;
+    statusText.textContent = text || '';
+    statusReset.hidden = !withReset;
+    statusBox.hidden = false;
   }
 
   function render() {
@@ -164,62 +275,62 @@
     var pageItems = sorted.slice(start, start + PAGE_SIZE);
 
     grid.innerHTML = '';
+    statusBox.hidden = true;
     if (!sorted.length) {
-      statusEl.textContent = 'No products match your filters. Try adjusting or resetting them.';
-      statusEl.style.display = 'block';
-      resultsCount.textContent = 'Showing 0 of 0 results';
+      showStatus('No products found',
+        'Try removing a filter or searching for something else.', true);
+      resultsCount.textContent = '0 products';
     } else {
-      statusEl.style.display = 'none';
       pageItems.forEach(function (product) {
         grid.appendChild(renderApi.createProductCard(product));
       });
-      resultsCount.textContent =
-        'Showing ' + (start + 1) + '–' + Math.min(start + PAGE_SIZE, sorted.length) + ' of ' + sorted.length + ' results';
+      resultsCount.textContent = sorted.length > PAGE_SIZE
+        ? 'Showing ' + (start + 1) + '–' + Math.min(start + PAGE_SIZE, sorted.length) + ' of ' + sorted.length + ' products'
+        : sorted.length + (sorted.length === 1 ? ' product' : ' products');
     }
 
+    if (filtersApply) {
+      filtersApply.textContent = sorted.length
+        ? 'Show ' + sorted.length + (sorted.length === 1 ? ' product' : ' products')
+        : 'No matching products';
+    }
+
+    renderHeading();
+    renderActiveFilters();
     renderPagination(totalPages);
     writeStateToUrl();
   }
 
-  function renderTopBestSets() {
-    if (!topProductsList) return;
-    var sets = allProducts.filter(function (p) { return p.category === 'luggage sets'; });
-    var pool = sets.length >= 5 ? sets : allProducts.slice().sort(function (a, b) { return b.rating - a.rating; });
-    var picks = pool.slice().sort(function () { return Math.random() - 0.5; }).slice(0, 5);
-
-    topProductsList.innerHTML = '';
-    picks.forEach(function (product) {
-      var item = document.createElement('a');
-      item.className = 'top-product';
-      item.href = renderApi.productUrl(product);
-
-      var img = document.createElement('img');
-      img.src = window.BestShop.paths.assetUrl(product.imageUrl);
-      img.alt = product.name;
-      img.addEventListener('error', function onError() {
-        img.removeEventListener('error', onError);
-        img.src = window.BestShop.paths.assetUrl('src/assets/images/placeholder.svg');
-      });
-
-      var info = document.createElement('div');
-      info.className = 'top-product-info';
-
-      var title = document.createElement('p');
-      title.className = 'tp-title';
-      title.textContent = product.name;
-
-      var stars = document.createElement('div');
-      stars.className = 'tp-stars';
-      stars.textContent = renderApi.ratingToStars(product.rating);
-
-      var price = document.createElement('div');
-      price.className = 'tp-price';
-      price.textContent = '$' + product.price;
-
-      info.append(title, stars, price);
-      item.append(img, info);
-      topProductsList.appendChild(item);
+  // Number of products for each filter option (out of the whole catalog).
+  function renderOptionCounts() {
+    function setCount(selector, count) {
+      var el = document.querySelector(selector);
+      if (el) el.textContent = String(count);
+    }
+    checkboxesFor('category').forEach(function (cb) {
+      setCount('[data-count-category="' + cb.value + '"]',
+        allProducts.filter(function (p) { return p.category === cb.value; }).length);
     });
+    checkboxesFor('color').forEach(function (cb) {
+      setCount('[data-count-color="' + cb.value + '"]',
+        allProducts.filter(function (p) { return p.color === cb.value; }).length);
+    });
+    checkboxesFor('size').forEach(function (cb) {
+      setCount('[data-count-size="' + cb.value + '"]',
+        allProducts.filter(function (p) { return productsApi.matchesSize(p, cb.value); }).length);
+    });
+    setCount('#saleCount', allProducts.filter(function (p) { return p.salesStatus; }).length);
+  }
+
+  function showSkeletons() {
+    grid.innerHTML = '';
+    for (var i = 0; i < SKELETON_COUNT; i += 1) grid.appendChild(renderApi.createSkeletonCard());
+  }
+
+  function resetAll() {
+    state = emptyState();
+    syncControlsFromState();
+    render();
   }
 
   function setupFilterInputs() {
@@ -232,7 +343,7 @@
         else state[key] = current.filter(function (v) { return v !== cb.value; });
         cb.closest('label').classList.toggle('is-active', cb.checked);
         state.page = 1;
-        render();
+        if (loaded) render();
       });
     });
 
@@ -241,7 +352,7 @@
         state.saleOnly = saleCheckbox.checked;
         saleCheckbox.closest('label').classList.toggle('is-active', state.saleOnly);
         state.page = 1;
-        render();
+        if (loaded) render();
       });
     }
 
@@ -249,17 +360,12 @@
       sortSelect.addEventListener('change', function () {
         state.sort = sortSelect.value;
         state.page = 1;
-        render();
+        if (loaded) render();
       });
     }
 
-    if (resetBtn) {
-      resetBtn.addEventListener('click', function () {
-        state = { categories: [], colors: [], sizes: [], saleOnly: false, sort: 'default', search: '', page: 1 };
-        syncControlsFromState();
-        render();
-      });
-    }
+    if (resetBtn) resetBtn.addEventListener('click', function () { if (loaded) resetAll(); });
+    if (statusReset) statusReset.addEventListener('click', resetAll);
 
     if (searchInput) {
       var debounceTimer = null;
@@ -268,7 +374,7 @@
         debounceTimer = setTimeout(function () {
           state.search = searchInput.value.trim();
           state.page = 1;
-          render();
+          if (loaded) render();
         }, 200);
       });
       searchInput.addEventListener('keydown', function (e) {
@@ -277,6 +383,7 @@
         clearTimeout(debounceTimer);
         state.search = searchInput.value.trim();
         state.page = 1;
+        if (!loaded) return;
         var matches = filterProducts(allProducts);
         if (state.search && matches.length === 1) {
           window.location.href = renderApi.productUrl(matches[0]);
@@ -314,10 +421,12 @@
     }
     filtersToggle.addEventListener('click', openFilters);
     if (filtersClose) filtersClose.addEventListener('click', closeFilters);
+    if (filtersApply) filtersApply.addEventListener('click', closeFilters);
 
-    // The drawer is a desktop sidebar above 768px; don't leave the page
-    // scroll-locked if the viewport grows while it is open.
-    var mobileQuery = window.matchMedia('(max-width: 768px)');
+    // The drawer is a sidebar above 1024px (must match respond(tablet) in
+    // _catalog.scss); don't leave the page scroll-locked if the viewport
+    // grows while it is open.
+    var mobileQuery = window.matchMedia('(max-width: 1024px)');
     var onBreakpointChange = function (e) {
       if (!e.matches) closeFilters();
     };
@@ -330,16 +439,19 @@
     syncControlsFromState();
     setupFilterInputs();
     setupMobileFilters();
+    renderHeading();
+    showSkeletons();
 
     productsApi.loadProducts()
       .then(function (products) {
         allProducts = products;
+        loaded = true;
+        renderOptionCounts();
         render();
-        renderTopBestSets();
       })
       .catch(function () {
-        statusEl.textContent = 'Could not load the catalog. Please refresh the page.';
-        statusEl.style.display = 'block';
+        grid.innerHTML = '';
+        showStatus('Could not load the catalog', 'Please refresh the page.', false);
         resultsCount.textContent = '';
       });
   });

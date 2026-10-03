@@ -1,0 +1,38 @@
+// Star rating with fractional fill (render-card.js → createRating()).
+// Five stars are drawn with a mask; the background gradient fills them up to
+// var(--rating) / 5 of the width, so 4.5 shows four and a half stars.
+$star-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8L12 2.5z'/%3E%3C/svg%3E");
+
+.rating {
+  --star-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--text-small);
+  line-height: 1;
+}
+
+.rating--sm {
+  --star-size: 14px;
+  gap: 6px;
+  font-size: 0.8125rem;
+}
+
+.rating__stars {
+  display: inline-block;
+  width: calc(var(--star-size) * 5);
+  height: var(--star-size);
+  background: linear-gradient(
+    90deg,
+    var(--color-warning) calc(var(--rating, 0) / 5 * 100%),
+    var(--color-border) 0
+  );
+  -webkit-mask: $star-mask left center / var(--star-size) var(--star-size) repeat-x;
+  mask: $star-mask left center / var(--star-size) var(--star-size) repeat-x;
+}
+
+.rating__value {
+  font-weight: 600;
+  color: var(--color-text);
+}

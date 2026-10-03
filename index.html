@@ -103,213 +103,118 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div>
-            <div class="eyebrow">TRAVEL IN STYLE</div>
-            <h1>Smart Styles for <br> Every Destination</h1>
-            <p class="lead">
-              Durable, lightweight suitcases and travel accessories built for frequent flyers —
-              from weekend carry-ons to full family luggage sets.
-            </p>
-            <a class="btn" href="src/html/catalog.html">View All Items</a>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Travel in style</p>
+          <h1 id="heroTitle">Smart Styles for Every Destination</h1>
+          <p class="lead">Lightweight suitcases, carry-ons and luggage sets for frequent travelers.</p>
+          <div class="hero-actions">
+            <a class="btn" href="src/html/catalog.html">Shop all luggage</a>
+            <a class="btn btn--secondary" href="src/html/catalog.html?sale=true">Shop sale</a>
           </div>
-          <div class="hero-visual">
-            <img class="hero-img" src="src/assets/images/suitcase.png" alt="Best Shop signature suitcase">
-          </div>
+        </div>
+        <div class="hero-media">
+          <img src="src/assets/images/promo-background.png" alt="Three Best Shop hard-shell suitcases in different sizes" width="646" height="566" fetchpriority="high">
         </div>
       </div>
     </section>
 
-    <section class="promo">
-      <div class="promo-inner">
-        <div class="promo-left">
-          <div class="author">
-            <img src="src/assets/images/author.png" alt="">
-            <div>
-              <div class="author-name">Lillian Bennett</div>
-              <div class="author-role">Chief Marketing Officer</div>
-            </div>
-          </div>
-          <h3 class="title">Built for the road, designed for you.</h3>
-          <p class="text">
-            Every Best Shop suitcase is stress-tested for airline handling, with reinforced
-            corners, 360° spinner wheels and TSA-friendly locks as standard.
-          </p>
-          <p class="text">
-            Whether it's a weekend trip or a season abroad, we help you pack smarter.
-          </p>
-        </div>
-        <div class="promo-right">
-          <div class="overlay-content">
-            <h3>25% Discount</h3>
-            <p class="small">
-              Save on selected suitcases and luggage sets this month. Limited stock available.
-            </p>
-            <a class="btn" href="src/html/catalog.html">Get Discount</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="travel-cards">
+    <section class="home-section" aria-labelledby="categoriesTitle">
       <div class="container">
-        <h2 class="section-title">Travel Suitcases</h2>
-        <p class="section-sub">Explore our most-loved travel collections</p>
-        <div class="travel-cards-grid" id="travelCardsGrid">
-          <article class="card-item card--tall">
-            <img class="card-tall-img" src="src/assets/images/travel-suit-1.png" alt="">
-            <div class="card-content card--tall">
-              <h4>Weekend Carry-ons</h4>
-              <p>Light enough for the overhead bin, tough enough for the gate agent.</p>
-            </div>
-          </article>
-          <article class="card-item card--tall">
-            <img class="card-tall-img" src="src/assets/images/travel-suit-2.png" alt="">
-            <div class="card-content card--tall">
-              <h4>Everyday Suitcases</h4>
-              <p>Our best-selling shells, built for years of frequent travel.</p>
-            </div>
-          </article>
-          <article class="card-item card--tall">
-            <img class="card-tall-img" src="src/assets/images/travel-suit-3.png" alt="">
-            <div class="card-content card--tall">
-              <h4>Family Luggage Sets</h4>
-              <p>Matching sets that make packing for the whole family effortless.</p>
-            </div>
-          </article>
-          <article class="card-item card--tall">
-            <img class="card-tall-img" src="src/assets/images/travel-suit-4.png" alt="">
-            <div class="card-content card--tall">
-              <h4>Kids' Luggage</h4>
-              <p>Playful, durable rolling luggage sized just right for small travelers.</p>
-            </div>
-          </article>
+        <div class="section-head">
+          <h2 id="categoriesTitle">Shop by category</h2>
+          <a class="section-link" href="src/html/catalog.html">All products <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-      </div>
-    </section>
-
-    <section class="categories">
-      <div class="container">
-        <h2 class="section-title">Shop by Category</h2>
-        <p class="section-sub">Find the right piece for your next trip</p>
-        <div class="categories-grid">
-          <a class="category-tile" href="src/html/catalog.html?category=carry-ons">
-            <img class="category-tile-img" src="src/assets/images/img3.jpg" alt="">
-            <span>Carry-ons</span>
+        <div class="category-grid">
+          <a class="category-card" href="src/html/catalog.html?category=carry-ons">
+            <span class="category-card__media"><img src="src/assets/images/img5.jpg" alt="" loading="lazy" width="296" height="400"></span>
+            <span class="category-card__body">
+              <span class="category-card__name">Carry-ons</span>
+              <span class="category-card__count" data-category-count="carry-ons"></span>
+            </span>
           </a>
-          <a class="category-tile" href="src/html/catalog.html?category=suitcases">
-            <img class="category-tile-img" src="src/assets/images/img7.jpg" alt="">
-            <span>Suitcases</span>
+          <a class="category-card" href="src/html/catalog.html?category=suitcases">
+            <span class="category-card__media"><img src="src/assets/images/img6.jpg" alt="" loading="lazy" width="296" height="400"></span>
+            <span class="category-card__body">
+              <span class="category-card__name">Suitcases</span>
+              <span class="category-card__count" data-category-count="suitcases"></span>
+            </span>
           </a>
-          <a class="category-tile" href="src/html/catalog.html?category=luggage-sets">
-            <img class="category-tile-img" src="src/assets/images/best-sets-1.jpg" alt="">
-            <span>Luggage Sets</span>
+          <a class="category-card" href="src/html/catalog.html?category=luggage-sets">
+            <span class="category-card__media category-card__media--contain"><img src="src/assets/images/img15.png" alt="" loading="lazy" width="296" height="400"></span>
+            <span class="category-card__body">
+              <span class="category-card__name">Luggage Sets</span>
+              <span class="category-card__count" data-category-count="luggage-sets"></span>
+            </span>
           </a>
-          <a class="category-tile" href="src/html/catalog.html?category=kids-luggage">
-            <img class="category-tile-img" src="src/assets/images/img14.jpg" alt="">
-            <span>Kids' Luggage</span>
+          <a class="category-card" href="src/html/catalog.html?category=kids-luggage">
+            <span class="category-card__media"><img src="src/assets/images/img9.jpg" alt="" loading="lazy" width="296" height="400"></span>
+            <span class="category-card__body">
+              <span class="category-card__name">Kids' Luggage</span>
+              <span class="category-card__count" data-category-count="kids-luggage"></span>
+            </span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="selected-products">
+    <section class="home-section" aria-labelledby="popularTitle">
       <div class="container">
-        <h2 class="section-title">Selected Products</h2>
-        <p class="section-sub">Hand-picked favorites from our collection</p>
-        <div class="selected-products-grid" id="selectedProductsGrid"></div>
-        <p class="grid-status" id="selectedProductsStatus">Loading products…</p>
+        <div class="section-head">
+          <h2 id="popularTitle">Popular now</h2>
+          <a class="section-link" href="src/html/catalog.html?sort=popularity">View all <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="product-grid" id="popularProductsGrid"></div>
+        <p class="grid-status" id="popularProductsStatus" role="status"></p>
       </div>
     </section>
 
-    <section class="benefits">
-      <div class="container">
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <img src="src/assets/images/footer-icon-1.svg" alt="">
-            <h4>Free Shipping</h4>
-            <p>On all orders over $150, delivered worldwide.</p>
-          </div>
-          <div class="benefit-item">
-            <img src="src/assets/images/footer-icon-2.svg" alt="">
-            <h4>Secure Checkout</h4>
-            <p>Your payment details are always protected.</p>
-          </div>
-          <div class="benefit-item">
-            <img src="src/assets/images/footer-icon-3.svg" alt="">
-            <h4>Easy Returns</h4>
-            <p>30-day, no-hassle returns on every order.</p>
-          </div>
-          <div class="benefit-item">
-            <img src="src/assets/images/footer-icon-4.svg" alt="">
-            <h4>Lifetime Warranty</h4>
-            <p>Every suitcase shell is covered for life.</p>
-          </div>
+    <section class="home-section" aria-label="Current offers">
+      <div class="container offers-grid">
+        <div class="offer-card offer-card--dark">
+          <h2 class="offer-card__title">25% Discount</h2>
+          <p>Save on selected suitcases and luggage sets this month. Limited stock available.</p>
+          <a class="btn" href="src/html/catalog.html?sale=true">Get Discount</a>
         </div>
-      </div>
-    </section>
-
-    <section class="big-promo">
-      <div class="container">
-        <div class="big-promo-left">
-          <p class="promo-percent">50%</p>
-          <p>Off selected luggage sets while stock lasts.</p>
-        </div>
-        <div class="big-promo-right">
-          <h3>Offer Of The Month</h3>
+        <div class="offer-card">
+          <p class="offer-card__eyebrow">Offer Of The Month</p>
+          <p class="offer-card__title"><span class="offer-card__percent">50%</span> Off selected luggage sets while stock lasts.</p>
           <p>Grab a matching luggage set before your next big trip.</p>
-          <a class="btn" href="src/html/catalog.html">Get Offer Today</a>
+          <a class="btn btn--secondary" href="src/html/catalog.html?category=luggage-sets">Get Offer Today</a>
         </div>
       </div>
-      <div class="bg-overlay"></div>
     </section>
 
-    <section class="new-arrivals">
+    <section class="home-section" aria-labelledby="arrivalsTitle">
       <div class="container">
-        <h2 class="section-title">New Products Arrival</h2>
-        <p class="section-sub">Just landed in the Best Shop collection</p>
-        <div class="new-arrivals-grid" id="newArrivalsGrid"></div>
-        <p class="grid-status" id="newArrivalsStatus">Loading products…</p>
-      </div>
-    </section>
-
-    <section class="newsletter">
-      <div class="container newsletter-inner">
-        <div>
-          <h2>Join our newsletter</h2>
-          <p>Get early access to new arrivals and members-only discounts.</p>
+        <div class="section-head">
+          <h2 id="arrivalsTitle">New arrivals</h2>
+          <a class="section-link" href="src/html/catalog.html">Shop all <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
-        <form class="newsletter-form" id="newsletterForm" novalidate>
-          <label class="visually-hidden" for="newsletterEmail">Email address</label>
-          <input type="email" id="newsletterEmail" placeholder="Your email address" required>
-          <button type="submit" class="btn">Subscribe</button>
-        </form>
-        <p class="newsletter-status" id="newsletterStatus" role="status"></p>
+        <div class="product-grid product-grid--center" id="newArrivalsGrid"></div>
+        <p class="grid-status" id="newArrivalsStatus" role="status"></p>
       </div>
     </section>
 
-    <section class="testimonials-section">
+    <section class="home-section testimonials-section" aria-labelledby="testimonialsTitle">
       <div class="container">
-        <h2 class="section-title">Our Grateful Customers</h2>
-        <p class="section-sub">What travelers say about Best Shop</p>
+        <div class="section-head">
+          <h2 id="testimonialsTitle">What travelers say</h2>
+        </div>
         <div class="testimonials">
-          <div class="testimonial">
-            <img src="src/assets/images/person-1.png" alt="">
-            <p>"My carry-on has been through a dozen flights and still looks brand new. Wheels are butter-smooth."</p>
-            <div class="who">Ethan Wade, New York</div>
-          </div>
-          <div class="testimonial">
-            <img src="src/assets/images/person-2.png" alt="">
-            <p>"The luggage set matched perfectly and made packing for our family trip so much easier."</p>
-            <div class="who">Jane Mayer, California</div>
-          </div>
-          <div class="testimonial">
-            <img src="src/assets/images/person-3.png" alt="">
-            <p>"Lightweight but sturdy — exactly what I needed for weekly business trips."</p>
-            <div class="who">Erica Blank, Miami</div>
-          </div>
+          <figure class="testimonial">
+            <blockquote>"My carry-on has been through a dozen flights and still looks brand new. Wheels are butter-smooth."</blockquote>
+            <figcaption><img src="src/assets/images/person-1.png" alt="" width="40" height="40" loading="lazy"> Ethan Wade, New York</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>"The luggage set matched perfectly and made packing for our family trip so much easier."</blockquote>
+            <figcaption><img src="src/assets/images/person-2.png" alt="" width="40" height="40" loading="lazy"> Jane Mayer, California</figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>"Lightweight but sturdy — exactly what I needed for weekly business trips."</blockquote>
+            <figcaption><img src="src/assets/images/person-3.png" alt="" width="40" height="40" loading="lazy"> Erica Blank, Miami</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -402,6 +307,7 @@
   <script src="src/js/utils/storage.js" defer></script>
   <script src="src/js/utils/products.js" defer></script>
   <script src="src/js/utils/render-card.js" defer></script>
+  <script src="src/js/utils/toast.js" defer></script>
   <script src="src/js/utils/modal.js" defer></script>
   <script src="src/js/main.js" defer></script>
   <script src="src/js/home.js" defer></script>
