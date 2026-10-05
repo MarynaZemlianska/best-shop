@@ -1,8 +1,8 @@
 /**
  * Cart page: renders items through the shared cart module (storage.js),
- * recalculates totals/discount live, and handles the clear-cart confirmation
- * and demo checkout modal. Prices, names and images always come from the
- * current catalog (data.json), never from localStorage.
+ * recalculates totals/discount live and handles the clear-cart confirmation.
+ * Checkout is a separate page (checkout.html). Prices, names and images
+ * always come from the current catalog (data.json), never from localStorage.
  */
 (function () {
   var cartApi = window.BestShop.cart;
@@ -20,11 +20,6 @@
   var discountRow = document.getElementById('cartDiscountRow');
   var discountEl = document.getElementById('cartDiscount');
   var clearCartBtn = document.getElementById('clearCartBtn');
-  var checkoutBtn = document.getElementById('checkoutBtn');
-  var checkoutModal = document.getElementById('checkoutModal');
-  var checkoutClose = document.getElementById('checkoutClose');
-  var checkoutForm = document.getElementById('checkoutForm');
-  var checkoutMessage = document.getElementById('checkoutMessage');
 
   function formatMoney(amount) {
     return '$' + amount.toFixed(2).replace(/\.00$/, '');
@@ -164,72 +159,8 @@
     });
   }
 
-  function validateCheckoutField(input, errorEl, message) {
-    var value = input.value.trim();
-    input.setAttribute('aria-invalid', value ? 'false' : 'true');
-    if (!value) {
-      errorEl.textContent = message;
-      return false;
-    }
-    errorEl.textContent = '';
-    return true;
-  }
-
-  function setupCheckout() {
-    if (!checkoutBtn || !checkoutModal) return;
-
-    checkoutBtn.addEventListener('click', function () {
-      if (!catalog || !cartApi.getCartLines(catalog).length) return;
-      checkoutMessage.textContent = '';
-      modalApi.openModal(checkoutModal);
-    });
-
-    if (checkoutClose) {
-      checkoutClose.addEventListener('click', function () { modalApi.closeModal(checkoutModal); });
-    }
-
-    checkoutForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
-      var fields = [
-        ['checkoutName', 'checkoutNameError', 'Name is required.'],
-        ['checkoutPhone', 'checkoutPhoneError', 'Phone number is required.'],
-        ['checkoutCountry', 'checkoutCountryError', 'Country is required.'],
-        ['checkoutCity', 'checkoutCityError', 'City is required.'],
-        ['checkoutAddress', 'checkoutAddressError', 'Delivery address is required.'],
-      ];
-
-      var valid = fields.reduce(function (isValid, field) {
-        var input = document.getElementById(field[0]);
-        var errorEl = document.getElementById(field[1]);
-        return validateCheckoutField(input, errorEl, field[2]) && isValid;
-      }, true);
-
-      var emailInput = document.getElementById('checkoutEmail');
-      var emailError = document.getElementById('checkoutEmailError');
-      var emailValid = emailPattern.test(emailInput.value.trim());
-      emailInput.setAttribute('aria-invalid', emailValid ? 'false' : 'true');
-      if (!emailValid) {
-        emailError.textContent = 'Enter a valid email address.';
-        valid = false;
-      } else {
-        emailError.textContent = '';
-      }
-
-      if (!valid) return;
-
-      cartApi.clearCart();
-      renderCart();
-      checkoutForm.reset();
-      checkoutMessage.style.color = 'var(--color-success)';
-      checkoutMessage.textContent = 'Thank you! Your order has been placed in demo mode — no real payment was taken.';
-      setTimeout(function () { modalApi.closeModal(checkoutModal); }, 2200);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     setupClearCart();
-    setupCheckout();
     showStatus('Loading your cart…');
 
     productsApi.loadProducts()

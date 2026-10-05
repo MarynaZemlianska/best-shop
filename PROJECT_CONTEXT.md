@@ -716,7 +716,8 @@ Verified by full code inspection and browser testing (Playwright + Chrome, width
 - Frontend: static multi-page site, plain HTML5 (6 pages), no framework.
 - Backend: **none**. There is no server, API, or database.
 - Database: none. Product data is a static file `src/assets/data.json` (20 products).
-- Client storage: `localStorage` / `sessionStorage` (cart, demo login, reviews).
+- Client storage: `localStorage` — `bestshop_cart`, `bestshop_orders`, `bestshop_customer`, `bestshop_reviews_<id>` (no login/session storage since Stage 4).
+- **No real payment backend. Portfolio demo only.**
 - CSS: SCSS (Dart Sass `^1.101.7`, legacy `@import` syntax — deprecated), compiled with `npm run build` to a single minified `dist/style.css` (~53 KB, committed to git; production output, no source map).
 - Design system: tokens in `src/scss/abstracts/_variables.scss` (SCSS maps → CSS custom properties `--color-*`, `--text-*`, `--space-*`, `--radius-*`, `--shadow-*`), mixins in `_mixins.scss` (`respond()`, `text()`, `focus-ring`), base in `base/_reset.scss` + `base/_typography.scss`, container in `layouts/_container.scss`, buttons in `components/_buttons.scss`, forms in `components/_forms.scss`.
 - JavaScript: vanilla ES5-style IIFE modules attached to `window.BestShop` (`paths`, `cart`, `products`, `renderCard`, `modal`), loaded as separate `<script defer>` files. No bundler.
@@ -731,13 +732,16 @@ Verified by full code inspection and browser testing (Playwright + Chrome, width
 - Homepage: `index.html` — hero, categories (live counts), Popular now (top 8 by `popularity`), two existing offers, New arrivals (`blocks` flag), static testimonials. Newsletter and the "Travel Suitcases" block were removed in Stage 3.
 - Catalog (+ category via `?category=` query): `src/html/catalog.html`
 - Product: `src/html/product-card.html?id=<ID>` (client-side rendered)
-- Cart (+ checkout modal): `src/html/cart.html`
+- Cart: `src/html/cart.html` ("Proceed to checkout" → checkout page)
+- Checkout: `src/html/checkout.html`
+- Order confirmation: `src/html/order-success.html?id=<orderId>`
+- Guest account / My orders: `src/html/account.html`
+- Order details: `src/html/order.html?id=<orderId>`
 - About: `src/html/about.html`
 - Contact: `src/html/contact.html`
-- Login: modal in the header on every page (demo only)
-- Registration / Account / Wishlist / Admin / Order confirmation page / 404: do not exist
+- Login / Registration / Wishlist / Admin / 404: do not exist (the fake login modal was removed in Stage 4; the header account icon links to `account.html`)
 
-Header and footer markup is duplicated in all 6 HTML files (identical apart from relative paths; regenerated from one template in Stage 2 — keep them in sync when editing).
+Header and footer markup is duplicated in all 10 HTML files (identical apart from relative paths; regenerated from one template in Stage 2 — keep them in sync when editing).
 
 ## Product Data Model (data.json)
 
@@ -757,14 +761,14 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 - Pagination: IMPLEMENTED (12 per page, prev/next, no reload).
 - Product variants: NOT IMPLEMENTED (one color/size per product; the cart supports color/size keys).
 - Product page: PARTIAL — one image, no gallery, no old price, no stock, specs table shows only data fields; reviews in localStorage; "You May Also Like" is random.
-- Cart: IMPLEMENTED (localStorage stores only `{id, quantity, color, size}`; name/price/image always come from data.json; invalid or removed items are dropped; quantity 1–99; merge by id+color+size; clear with confirm; 10% discount over $3,000; cross-tab sync). Shipping is always shown as "Free".
+- Cart: IMPLEMENTED (localStorage stores only `{id, quantity, color, size}`; name/price/image always come from data.json; invalid or removed items are dropped; quantity 1–99; merge by id+color+size; clear with confirm; 10% discount over $3,000; cross-tab sync). Delivery is shown as "Calculated at checkout".
 - Wishlist: NOT IMPLEMENTED.
 - Registration: NOT IMPLEMENTED.
-- Login: DEMO ONLY — any valid-looking email + any password "logs in"; only the email is stored.
+- Login: REMOVED in Stage 4 (it accepted any email/password — fake authentication).
 - Password reset: NOT IMPLEMENTED.
-- Checkout: DEMO ONLY — modal form (name, email, phone, country, city, address, comment); on submit clears the cart. No order is created.
-- Orders / order history: NOT IMPLEMENTED.
-- Payment: NOT IMPLEMENTED (payment logos are displayed on the product page).
+- Checkout: IMPLEMENTED (demo) — separate page: contact, address, delivery method, payment method, inline validation, sticky summary; creates an order.
+- Orders / order history: IMPLEMENTED (demo, this browser only) — confirmation page, guest account with order list, order details with status timeline.
+- Payment: SIMULATED — card form is format-checked only; pay on delivery. No provider, no transaction.
 - Delivery integration: NOT IMPLEMENTED.
 - Customer emails: NOT IMPLEMENTED (contact form and newsletter are simulated).
 - Admin: NOT IMPLEMENTED.
@@ -777,7 +781,9 @@ Fields: `id` (e.g. `SU001`), `name`, `price` (integer USD, 220–800), `imageUrl
 - No backend → no SQL injection / CSRF / IDOR / session surface exists today.
 - Product and review data are rendered with `textContent` / DOM API (an XSS payload in a review was not executed).
 - Cart prices are never read from `localStorage`; quantities are validated (integer 1–99). This is only a client-side safeguard — the future backend must recalculate everything server-side.
-- The demo login is not authentication and must not be presented as such in production.
+- Fake login removed (Stage 4).
+- Checkout: card number / expiry / CVC / holder are read only inside the submit handler, have no `name` attribute and `autocomplete="off"`, are cleared after payment and are never stored, logged or sent (verified: not in localStorage, sessionStorage, console or any network request).
+- Orders read from storage are normalized: unknown fields dropped, image URLs whitelisted to `src/assets/images/`, delivery price from code, totals recalculated from items; customer text is rendered with `textContent` only (XSS payload in a name was not executed).
 
 ## Performance Notes (verified)
 
@@ -970,20 +976,24 @@ Based on the 2026-10-02 audit.
 
 - Homepage restructure, catalog header/toolbar/filters/chips/empty state/skeletons, product card redesign, rating component, add-to-cart toast, BUG-011.
 
-## Stage 4 — Product data model + product page — NEXT
+## Stage 4 (done instead of the product page) — Checkout, demo payment and orders — DONE 2026-10-05
+
+- Checkout page, demo card / pay-on-delivery payment, order creation, confirmation page, guest account with order history, order details with status timeline; fake login removed.
+
+## Stage 5 — Product data model + product page — NEXT
 
 - Extend data.json only with real data (old price, stock, specs, multiple images) — requires product data from the owner.
 - Gallery, specs, delivery/returns blocks, related products by category.
 
-## Stage 5 — Cart and checkout UX
+## Stage 6 — Cart page polish
 
-- Cart layout (mobile first), checkout as a page with proper input types and validation.
+- Cart layout refresh (the cart page still uses the Stage 1/2 table layout and the 🗑️ emoji); optional demo admin to change order statuses.
 
-## Stage 6 — Backend (requires a decision)
+## Stage 7 — Backend (requires a decision)
 
 - Real orders, authentication, account, order history, wishlist sync, admin, payments, server-side price validation.
 
-## Stage 7 — Performance, SEO, accessibility
+## Stage 8 — Performance, SEO, accessibility
 
 - Image optimization (WebP/AVIF, sizes, width/height), remove unused assets, meta/OG/canonical, sitemap/robots, Product schema (needs server/static rendering for product pages).
 
@@ -1035,7 +1045,19 @@ Keep this section useful for future sessions.
 - Grid decision (tested at 320/375/390/430): 2 columns on all phones ≤600px (card 138–193px wide, title 2 lines, button label on one line; icon hidden ≤359px), 3 columns on tablet/catalog desktop, 4 on homepage desktop.
 - BUG-011 fixed (homepage product links 404).
 - Testing: 30 new Stage 3 checks, 64 scenario + 16 regression checks, 7 widths × 6 pages responsive + console, smoke test, production build.
-- Not committed.
+- Commit `aa56b72` (pushed to origin/main).
+
+---
+
+## 2026-10-05 — Stage 4: checkout, demo payment and orders
+
+- New pages: checkout, order-success, account, order; new modules `utils/orders.js`, `utils/customer.js`, `utils/order-view.js`, `utils/format.js`; page scripts `checkout.js`, `order-success.js`, `account.js`, `order.js`; styles `components/_order.scss`, `pages/_checkout.scss`, `pages/_account.scss`.
+- Cart: modal checkout (which only cleared the cart) replaced by "Proceed to checkout"; summary shows "Delivery: Calculated at checkout".
+- Fake login modal and its code/styles removed; header account icon → `account.html` (all 10 pages).
+- Validation: inline errors with `aria-invalid` + `aria-describedby`, form-level alert, focus on the first invalid field; errors update live after the first attempt; double-submit protection.
+- Accessibility: success heading receives focus; status timeline uses `aria-current="step"` with visually hidden state text; radio groups in fieldsets with legends.
+- Testing: 59 Stage 4 checks (cart→checkout, validation, card/COD orders, numbering, storage contents, account, order details, tampered storage, XSS, keyboard, two tabs), 30 + 16 Stage 3 checks, 57 scenario checks, 16 regression checks, 7 widths × 10 pages responsive + console, smoke 10 pages × 2 widths, production build.
+- Committed and pushed to origin/main as `feat: add demo checkout, order flow and guest account` (see `git log`).
 
 ---
 
@@ -1077,11 +1099,32 @@ Example:
 
 **Date:** 2026-10-03
 
+## Decision 006 — Guest account instead of fake login
+
+**Decision:** The header account icon links to `account.html`; the old login modal (any email/password accepted) was removed. Orders are a guest flow tied to this browser. Real authentication only with a backend.
+
+**Date:** 2026-10-05
+
+## Decision 007 — Demo checkout and order architecture
+
+**Decision:**
+- Checkout is a separate page; cart → `checkout.html` never clears the cart. The cart is cleared only after `orders.saveOrder()` succeeded.
+- Order storage: `src/js/utils/orders.js` (`bestshop_orders`) — `getOrders()`, `getOrderById()`, `createOrder()`, `saveOrder()`, `normalizeOrder()`, `generateOrderNumber()`, `calculateTotals()`. This API is the seam a backend replaces later.
+- Order shape: `{ id, orderNumber, createdAt, customer{firstName,lastName,email,phone}, shippingAddress{country,city,address,postalCode}, deliveryMethod, paymentMethod, paymentStatus, orderStatus, items[{id,name,price,quantity,color,size,imageUrl}], subtotal, discount, delivery, total, currency }`. Item prices are the snapshot at purchase time (from data.json); totals are always recalculated from items.
+- Order number: `BS-<year>-<4+ digit sequence>` (e.g. BS-2026-0001), continuing from the highest stored number of that year; unique within this browser. `id` (URL) is a separate short random token.
+- Order statuses: `received` (Order received) → `processing` → `shipped` → `delivered`. New orders start as `received`; there is no automatic progression (a demo admin may change it later).
+- Payment statuses (separate from order status): `paid` (card demo) / `pay_on_delivery`.
+- Delivery (demo rates, labelled in the UI): Standard — free, 2–5 business days (matches the existing site copy); Express — $25 "demo rate". Discount: existing 10% over $3,000 rule.
+- Customer storage: `src/js/utils/customer.js` (`bestshop_customer`) — whitelisted contact/delivery fields only, saved when "Save my details" is checked, removed when unchecked.
+- Demo payment rule: card fields are format-checked only (16 digits, MM/YY not expired, 3-digit CVC, holder name) and never stored/logged/sent. UI shows "Demo checkout. No real payment will be processed."
+
+**Date:** 2026-10-05
+
 ---
 
 # 37. OPEN QUESTIONS
 
-- Will the store get a real backend (own API + database, or a headless commerce platform)? Account, orders, wishlist sync, admin and payments depend on it.
+- Will the store get a real backend (own API + database, or a headless commerce platform)? Real accounts, server-side orders, wishlist sync, admin and payments depend on it. Until then the project is a portfolio demo (Decision 006/007).
 - Target market: currency (currently USD) and languages (currently English only) — the brief says "European store".
 - Who provides real product data (specs, multiple photos, old prices, stock, brands)? Target categories (Travel bags, Backpacks, Accessories) do not exist in the data.
 - Are the marketing claims real (25% / 50% discounts, free shipping over $150, lifetime warranty, testimonials, team)? The cart currently always shows "Shipping: Free".

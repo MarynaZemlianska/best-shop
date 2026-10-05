@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Cart</title>
-  <meta name="description" content="Review your Best Shop cart, update quantities and check out.">
+  <title>Order details — Best Shop</title>
+  <meta name="description" content="Status and details of your Best Shop order.">
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,42 +70,63 @@
     </div>
   </header>
 
-  <section class="hero-slider-cart">
-    <div class="hero-slide active">
-      <img src="../assets/images/cart-slide.png" alt="">
-      <div class="hero-content">
-        <h1>My Cart</h1>
-      </div>
-    </div>
-  </section>
+  <main class="order-page">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="account.html">My account</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page" id="orderCrumb">Order</span>
+      </nav>
+      <p class="grid-status" id="orderLoading" role="status">Loading your order…</p>
 
-  <main class="cart-page container">
-    <div class="cart-section">
-      <div class="cart-items-container" id="cartItemsContainer"></div>
-
-      <div class="cart-empty" id="cartEmpty" hidden>
-        <p>Your cart is empty. Use the catalog to add new items.</p>
-        <a href="catalog.html" class="btn">Browse Catalog</a>
-      </div>
-
-      <div class="cart-bottom" id="cartBottom">
-        <div class="cart-buttons">
-          <a href="catalog.html" class="btn-cart">Continue Shopping</a>
-          <button type="button" class="btn-cart clear-cart" id="clearCartBtn">Clear Shopping Cart</button>
+      <div id="orderContent" hidden>
+        <div class="order-head">
+          <div>
+            <h1 id="orderTitle">Order</h1>
+            <p class="order-head__date" id="orderDate"></p>
+          </div>
+          <div class="order-head__badges" id="orderBadges"></div>
         </div>
-        <aside class="cart-summary">
-          <ul>
-            <li><span>Sub Total</span><span class="subtotal" id="cartSubtotal">$0</span></li>
-            <li id="cartDiscountRow" hidden><span>Discount (10%)</span><span id="cartDiscount">-$0</span></li>
-            <li><span>Delivery</span><span>Calculated at checkout</span></li>
-            <li class="total"><span>Total</span><span class="total-amount" id="cartTotal">$0</span></li>
-          </ul>
-          <a class="btn checkout" id="checkoutBtn" href="checkout.html">Proceed to checkout</a>
-        </aside>
+
+        <section class="order-card" aria-labelledby="statusTitle">
+          <h2 class="order-card__title" id="statusTitle">Order status</h2>
+          <ol class="status-timeline" id="statusTimeline"></ol>
+        </section>
+
+        <div class="order-grid">
+          <section class="order-card" aria-labelledby="itemsTitle">
+            <h2 class="order-card__title" id="itemsTitle">Items</h2>
+            <ul class="order-lines" id="orderLines"></ul>
+            <dl class="order-totals" id="orderTotals"></dl>
+          </section>
+
+          <div class="order-side">
+            <section class="order-card" aria-labelledby="deliveryTitle">
+              <h2 class="order-card__title" id="deliveryTitle">Delivery</h2>
+              <address class="order-address" id="orderAddress"></address>
+              <p class="order-card__meta" id="orderDeliveryMethod"></p>
+            </section>
+            <section class="order-card" aria-labelledby="customerTitle">
+              <h2 class="order-card__title" id="customerTitle">Customer</h2>
+              <dl class="fact-list fact-list--compact" id="orderCustomer"></dl>
+            </section>
+            <section class="order-card" aria-labelledby="paymentTitle">
+              <h2 class="order-card__title" id="paymentTitle">Payment</h2>
+              <dl class="fact-list fact-list--compact" id="orderPayment"></dl>
+            </section>
+          </div>
+        </div>
       </div>
+
+      <section class="state-card" id="orderMissing" hidden>
+        <h1 class="state-card__title">Order not found</h1>
+        <p class="state-card__text">This order doesn’t exist in this browser, or the link is incorrect.</p>
+        <a class="btn" href="account.html">Go to my orders</a>
+      </section>
     </div>
   </main>
-
 
   <footer class="site-footer">
     <div class="footer-top">
@@ -192,9 +214,11 @@
   <script src="../js/utils/paths.js" defer></script>
   <script src="../js/utils/storage.js" defer></script>
   <script src="../js/utils/products.js" defer></script>
-  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/format.js" defer></script>
+  <script src="../js/utils/orders.js" defer></script>
+  <script src="../js/utils/order-view.js" defer></script>
   <script src="../js/utils/modal.js" defer></script>
   <script src="../js/main.js" defer></script>
-  <script src="../js/cart.js" defer></script>
+  <script src="../js/order.js" defer></script>
 </body>
 </html>

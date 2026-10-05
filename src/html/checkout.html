@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Cart</title>
-  <meta name="description" content="Review your Best Shop cart, update quantities and check out.">
+  <title>Checkout — Best Shop</title>
+  <meta name="description" content="Complete your Best Shop order: contact, delivery and demo payment.">
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,42 +70,162 @@
     </div>
   </header>
 
-  <section class="hero-slider-cart">
-    <div class="hero-slide active">
-      <img src="../assets/images/cart-slide.png" alt="">
-      <div class="hero-content">
-        <h1>My Cart</h1>
-      </div>
-    </div>
-  </section>
-
-  <main class="cart-page container">
-    <div class="cart-section">
-      <div class="cart-items-container" id="cartItemsContainer"></div>
-
-      <div class="cart-empty" id="cartEmpty" hidden>
-        <p>Your cart is empty. Use the catalog to add new items.</p>
-        <a href="catalog.html" class="btn">Browse Catalog</a>
+  <main class="checkout-page">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="cart.html">Cart</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Checkout</span>
+      </nav>
+      <div class="page-head">
+        <h1>Checkout</h1>
+        <p class="demo-notice">Demo checkout. No real payment will be processed.</p>
       </div>
 
-      <div class="cart-bottom" id="cartBottom">
-        <div class="cart-buttons">
-          <a href="catalog.html" class="btn-cart">Continue Shopping</a>
-          <button type="button" class="btn-cart clear-cart" id="clearCartBtn">Clear Shopping Cart</button>
-        </div>
-        <aside class="cart-summary">
-          <ul>
-            <li><span>Sub Total</span><span class="subtotal" id="cartSubtotal">$0</span></li>
-            <li id="cartDiscountRow" hidden><span>Discount (10%)</span><span id="cartDiscount">-$0</span></li>
-            <li><span>Delivery</span><span>Calculated at checkout</span></li>
-            <li class="total"><span>Total</span><span class="total-amount" id="cartTotal">$0</span></li>
-          </ul>
-          <a class="btn checkout" id="checkoutBtn" href="checkout.html">Proceed to checkout</a>
+      <p class="grid-status" id="checkoutLoading" role="status">Loading your order…</p>
+
+      <div class="state-card" id="checkoutEmpty" hidden>
+        <p class="state-card__title">Your cart is empty</p>
+        <p class="state-card__text">Add a few items before checking out.</p>
+        <a class="btn" href="catalog.html">Shop now</a>
+      </div>
+
+      <div class="checkout-layout" id="checkoutLayout" hidden>
+        <aside class="checkout-summary" aria-labelledby="summaryTitle">
+          <details class="summary-details" id="summaryDetails" open>
+            <summary>
+              <span class="summary-details__title" id="summaryTitle">Order summary</span>
+              <span class="summary-details__total" id="summaryToggleTotal"></span>
+            </summary>
+            <ul class="order-lines" id="summaryLines"></ul>
+          </details>
+          <dl class="order-totals" id="summaryTotals"></dl>
+          <a class="summary-edit" href="cart.html">Edit cart</a>
         </aside>
+
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <div class="form-alert" id="formAlert" role="alert" tabindex="-1" hidden></div>
+
+          <section class="checkout-section" aria-labelledby="contactTitle">
+            <h2 class="checkout-section__title" id="contactTitle"><span class="step" aria-hidden="true">1</span> Contact</h2>
+            <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="firstName" autocomplete="given-name" aria-describedby="firstNameError" required>
+              <p class="error" id="firstNameError"></p>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="lastName" autocomplete="family-name" aria-describedby="lastNameError" required>
+              <p class="error" id="lastNameError"></p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+              <input type="email" id="email" autocomplete="email" inputmode="email" aria-describedby="emailError" required>
+              <p class="error" id="emailError"></p>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span class="required" aria-hidden="true">*</span></label>
+              <input type="tel" id="phone" autocomplete="tel" inputmode="tel" aria-describedby="phoneError phoneHint" required>
+              <p class="field-hint" id="phoneHint">Digits, spaces and + ( ) - allowed</p>
+              <p class="error" id="phoneError"></p>
+            </div>
+            </div>
+          </section>
+
+          <section class="checkout-section" aria-labelledby="addressTitle">
+            <h2 class="checkout-section__title" id="addressTitle"><span class="step" aria-hidden="true">2</span> Delivery address</h2>
+            <div class="form-grid">
+            <div class="form-group">
+              <label for="country">Country <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="country" autocomplete="country-name" aria-describedby="countryError" required>
+              <p class="error" id="countryError"></p>
+            </div>
+            <div class="form-group">
+              <label for="city">City <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="city" autocomplete="address-level2" aria-describedby="cityError" required>
+              <p class="error" id="cityError"></p>
+            </div>
+            <div class="form-group form-group--full">
+              <label for="address">Street address <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="address" autocomplete="street-address" aria-describedby="addressError" required>
+              <p class="error" id="addressError"></p>
+            </div>
+            <div class="form-group">
+              <label for="postalCode">Postal code <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="postalCode" autocomplete="postal-code" aria-describedby="postalCodeError" required>
+              <p class="error" id="postalCodeError"></p>
+            </div>
+            </div>
+          </section>
+
+          <fieldset class="checkout-section choice-group" id="deliveryGroup" aria-describedby="deliveryMethodError">
+            <legend class="checkout-section__title"><span class="step" aria-hidden="true">3</span> Delivery method</legend>
+            <div class="choice-list" id="deliveryOptions"></div>
+            <p class="error" id="deliveryMethodError"></p>
+          </fieldset>
+
+          <fieldset class="checkout-section choice-group" id="paymentGroup" aria-describedby="paymentMethodError">
+            <legend class="checkout-section__title"><span class="step" aria-hidden="true">4</span> Payment</legend>
+            <p class="demo-notice demo-notice--inline">Demo payment — no real transaction will be made.</p>
+            <div class="choice-list">
+              <label class="choice">
+                <input type="radio" name="paymentMethod" value="card">
+                <span class="choice__body">
+                  <span class="choice__title">Card</span>
+                  <span class="choice__text">Simulated card payment</span>
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="paymentMethod" value="cod">
+                <span class="choice__body">
+                  <span class="choice__title">Pay on delivery</span>
+                  <span class="choice__text">Pay when your order arrives</span>
+                </span>
+              </label>
+            </div>
+            <p class="error" id="paymentMethodError"></p>
+
+            <div class="card-fields" id="cardFields" hidden>
+              <p class="field-hint">Use any test values, e.g. 4242 4242 4242 4242. Card details are only checked in this page and are never saved or sent.</p>
+              <div class="form-grid">
+            <div class="form-group form-group--full">
+              <label for="cardNumber">Card number <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="cardNumber" autocomplete="off" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" aria-describedby="cardNumberError" required>
+              <p class="error" id="cardNumberError"></p>
+            </div>
+            <div class="form-group">
+              <label for="cardExpiry">Expiry (MM/YY) <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="cardExpiry" autocomplete="off" inputmode="numeric" maxlength="5" placeholder="MM/YY" aria-describedby="cardExpiryError" required>
+              <p class="error" id="cardExpiryError"></p>
+            </div>
+            <div class="form-group">
+              <label for="cardCvc">CVC <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="cardCvc" autocomplete="off" inputmode="numeric" maxlength="3" placeholder="123" aria-describedby="cardCvcError" required>
+              <p class="error" id="cardCvcError"></p>
+            </div>
+            <div class="form-group form-group--full">
+              <label for="cardName">Cardholder name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="cardName" autocomplete="off" aria-describedby="cardNameError" required>
+              <p class="error" id="cardNameError"></p>
+            </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="saveDetails" checked>
+            Save my contact and delivery details in this browser
+          </label>
+
+          <button type="submit" class="btn btn--block checkout-submit" id="placeOrderBtn">Place order</button>
+          <p class="checkout-legal">Demo checkout. No real payment will be processed.</p>
+        </form>
       </div>
     </div>
   </main>
-
 
   <footer class="site-footer">
     <div class="footer-top">
@@ -192,9 +313,12 @@
   <script src="../js/utils/paths.js" defer></script>
   <script src="../js/utils/storage.js" defer></script>
   <script src="../js/utils/products.js" defer></script>
-  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/format.js" defer></script>
+  <script src="../js/utils/orders.js" defer></script>
+  <script src="../js/utils/customer.js" defer></script>
+  <script src="../js/utils/order-view.js" defer></script>
   <script src="../js/utils/modal.js" defer></script>
   <script src="../js/main.js" defer></script>
-  <script src="../js/cart.js" defer></script>
+  <script src="../js/checkout.js" defer></script>
 </body>
 </html>

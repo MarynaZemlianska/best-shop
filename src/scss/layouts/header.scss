@@ -219,30 +219,6 @@ html {
   }
 }
 
-.account-icon.logged-in {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--color-text-inverse);
-
-  // The initial sits in a 32px circle inside the 44px target.
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-    z-index: -1;
-  }
-
-  &:hover:not(:disabled) {
-    background: transparent;
-  }
-}
-
-.account-icon {
-  isolation: isolate;
-}
-
 .cart-icon .cart-count {
   position: absolute;
   top: 4px;

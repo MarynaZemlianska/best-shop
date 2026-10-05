@@ -1,4 +1,4 @@
-// Form system shared by login, contact, checkout, reviews, newsletter,
+// Form system shared by checkout, contact, reviews,
 // catalog search/sort and the header search.
 
 .visually-hidden {
@@ -117,6 +117,7 @@ label {
 // before, so contact/checkout/review errors were never visible.)
 .error {
   display: block;
+  margin: 0;
   color: var(--color-error);
   font-size: 0.8125rem;
   line-height: 1.4;
@@ -126,8 +127,7 @@ label {
   }
 }
 
-.checkbox-label,
-.remember-me {
+.checkbox-label {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);

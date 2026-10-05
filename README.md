@@ -5,25 +5,27 @@ plain HTML5, SCSS and vanilla JavaScript — no frameworks (no React/Vue/Angular
 
 ## Features
 
-- **Home page** — hero section, a "Travel Suitcases" showcase, shop-by-category tiles, Selected
-  Products and New Products Arrival (loaded from JSON), a store-benefits section, a promotional
-  banner and a newsletter signup.
-- **Catalog** — products loaded from local JSON with combinable filters (category, color, size,
-  on-sale), sorting (price, popularity, rating), live search, pagination (12 per page), and a
-  "Top Best Sets" panel. Filter/sort/search/page state is kept in the URL query string, and the
-  filter panel collapses into a slide-in drawer on mobile.
-- **Product details** — loaded dynamically by `?id=` from the catalog data, with breadcrumbs,
-  Description / Additional Information / Reviews tabs, a quantity selector (minimum 1), Add to
-  Cart, a "You May Also Like" section, per-product reviews stored in LocalStorage, and a graceful
-  "Product not found" state for invalid or missing IDs.
-- **Cart** — a single shared cart module used by every page: add/update/remove items, an empty
-  state, a 10% discount when the subtotal exceeds $3,000, a custom confirmation dialog for
-  clearing the cart, and a demo checkout form (no real payment is processed).
-- **Login (demo)** — email/password validation with inline errors, show/hide password, a
-  "Remember me" option, and Escape/click-outside/scroll-locked modal behavior. This is a
-  LocalStorage-only demo, not real authentication.
-- **Contact Us** — real-time email validation, per-field error messages, and a simulated
-  (no backend) send with a brief "Sending…" state.
+> **Portfolio demo.** There is no backend and no real payment: orders, the guest account and
+> saved details live in the browser's LocalStorage.
+
+- **Home page** — hero, shop-by-category cards (live product counts), "Popular now" (top products
+  by popularity), current offers, "New arrivals" and customer testimonials.
+- **Catalog** — breadcrumbs and a heading that follows the selection, search, sorting (price,
+  popularity, rating), filters (category, color, size, on sale) with option counts and
+  active-filter chips, pagination (12 per page), loading skeletons and an empty state. State is
+  kept in the URL; filters open in a drawer on tablets and phones.
+- **Product cards** — whole card clickable, fractional star rating, one "Add to cart" button with
+  an accessible "Added to cart" notification.
+- **Product details** — loaded by `?id=`, tabs, quantity selector, Add to Cart, reviews stored in
+  LocalStorage, "You May Also Like" and a "Product not found" state.
+- **Cart** — add/update/remove, quantities 1–99, prices always taken from `data.json`, 10% discount
+  above $3,000, clear-cart confirmation, cross-tab sync, "Proceed to checkout".
+- **Checkout (demo)** — contact, delivery address, delivery method (standard free / express demo
+  rate), payment method (simulated card or pay on delivery), inline validation and a sticky order
+  summary. Card details are only validated in the page — never stored, logged or sent.
+- **Orders** — confirmation page, guest "My account" with order history, and an order details
+  page with a status timeline (Order received → Processing → Shipped → Delivered).
+- **Contact Us** — real-time validation and a simulated (no backend) send.
 - **About Us** — company story, mission, stats and team.
 
 ## Tech stack
@@ -31,7 +33,7 @@ plain HTML5, SCSS and vanilla JavaScript — no frameworks (no React/Vue/Angular
 - HTML5 (semantic markup)
 - SCSS (compiled with [Dart Sass](https://sass-lang.com/))
 - Vanilla JavaScript (ES5-friendly, no build step, `<script defer>` throughout)
-- Browser LocalStorage for the cart, login session and product reviews
+- Browser LocalStorage for the cart, demo orders, saved checkout details and product reviews
 - Local JSON as the only data source (`src/assets/data.json`)
 
 ## Project structure
@@ -42,16 +44,19 @@ best-shop-main/
 ├─ dist/
 │  └─ style.css              # Compiled CSS (generated — do not edit by hand)
 ├─ src/
-│  ├─ html/                  # Catalog, product, cart, about, contact pages
+│  ├─ html/                  # Catalog, product, cart, checkout, order-success,
+│  │                         # account, order, about, contact pages
 │  ├─ js/
 │  │  ├─ utils/              # Shared modules: paths, cart storage, product cache,
-│  │  │                      # card renderer, modal helper
-│  │  ├─ main.js             # Shared header/nav/login behavior (every page)
-│  │  └─ home.js, catalog.js, product.js, cart.js, contact.js
+│  │  │                      # card renderer, rating, toast, modal, orders,
+│  │  │                      # customer, order view, formatting
+│  │  ├─ main.js             # Shared header/nav behavior (every page)
+│  │  └─ home.js, catalog.js, product.js, cart.js, checkout.js,
+│  │     order-success.js, account.js, order.js, contact.js
 │  ├─ scss/
 │  │  ├─ abstracts/          # Variables, mixins
-│  │  ├─ base/               # Reset, fonts
-│  │  ├─ components/         # Buttons, forms, modal, product card
+│  │  ├─ base/               # Reset, typography
+│  │  ├─ components/         # Buttons, forms, modal, product card, rating, toast, order
 │  │  ├─ layouts/            # Header, footer
 │  │  └─ pages/              # Per-page styles
 │  └─ assets/
@@ -94,22 +99,25 @@ Compiles a minified `dist/style.css` with no source map, suitable for deployment
 
 - `bestshop_cart` — cart contents (`{id, quantity, color, size}[]`). Name, price and image are
   always read from `data.json`; invalid entries and products no longer in the catalog are dropped.
-- `loggedUser` (localStorage or sessionStorage, depending on "Remember me") — the demo logged-in
-  email.
+- `bestshop_orders` — demo orders (customer, address, delivery and payment method, items with the
+  price at purchase time, statuses). Totals are recalculated from the items when read.
+  No card data is ever stored.
+- `bestshop_customer` — optional saved contact and delivery details for the next checkout
+  ("Save my details" checkbox). Never contains payment data.
 - `bestshop_reviews_<productId>` — reviews submitted for a given product.
 
-Clearing your browser's site data will reset the cart, login session and reviews.
+Clearing your browser's site data resets the cart, orders, saved details and reviews.
 
 ## Limitations of this demo
 
-This project has no backend, by design:
+This project has no backend, by design (portfolio demo):
 
-- **Login** is a LocalStorage demo — there is no real user database, password hashing, or
-  session management.
-- **Checkout** does not process real payments; placing an order simply clears the cart and shows
-  a confirmation message.
-- **Contact form** and **newsletter signup** do not send real emails.
-- **Reviews** are stored per browser (LocalStorage), not shared between visitors.
+- **Checkout and payment are simulated** — no payment provider, no real transaction; card fields
+  are only format-checked in the browser.
+- **Orders and the account** exist only in this browser (LocalStorage); there is no login, and
+  order statuses do not change by themselves.
+- **Contact form** does not send real emails.
+- **Reviews** are stored per browser, not shared between visitors.
 
-To make these production-ready, they would need a backend/API (e.g. for auth, orders and email
-delivery such as EmailJS or a transactional email API).
+A production version would need a backend/API for orders, payments (verified server-side),
+authentication and email delivery.

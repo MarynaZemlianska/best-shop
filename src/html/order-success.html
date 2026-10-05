@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Cart</title>
-  <meta name="description" content="Review your Best Shop cart, update quantities and check out.">
+  <title>Order confirmed — Best Shop</title>
+  <meta name="description" content="Your Best Shop order has been placed.">
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,42 +70,35 @@
     </div>
   </header>
 
-  <section class="hero-slider-cart">
-    <div class="hero-slide active">
-      <img src="../assets/images/cart-slide.png" alt="">
-      <div class="hero-content">
-        <h1>My Cart</h1>
-      </div>
-    </div>
-  </section>
+  <main class="order-page">
+    <div class="container">
+      <p class="grid-status" id="orderLoading" role="status">Loading your order…</p>
 
-  <main class="cart-page container">
-    <div class="cart-section">
-      <div class="cart-items-container" id="cartItemsContainer"></div>
-
-      <div class="cart-empty" id="cartEmpty" hidden>
-        <p>Your cart is empty. Use the catalog to add new items.</p>
-        <a href="catalog.html" class="btn">Browse Catalog</a>
-      </div>
-
-      <div class="cart-bottom" id="cartBottom">
-        <div class="cart-buttons">
-          <a href="catalog.html" class="btn-cart">Continue Shopping</a>
-          <button type="button" class="btn-cart clear-cart" id="clearCartBtn">Clear Shopping Cart</button>
+      <section class="success-card" id="successContent" aria-labelledby="successTitle" hidden>
+        <div class="success-icon" aria-hidden="true"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></div>
+        <h1 id="successTitle" tabindex="-1">Thank you for your order!</h1>
+        <p class="success-lead">Your order <strong id="successNumber"></strong> has been placed.</p>
+        <dl class="fact-list">
+          <div><dt>Order number</dt><dd id="successNumberFact"></dd></div>
+          <div><dt>Total</dt><dd id="successTotal"></dd></div>
+          <div><dt>Payment</dt><dd id="successPayment"></dd></div>
+          <div><dt>Delivery</dt><dd id="successDelivery"></dd></div>
+          <div><dt>Email</dt><dd id="successEmail"></dd></div>
+        </dl>
+        <p class="demo-notice">Demo store — no real payment was taken and no email is sent.</p>
+        <div class="success-actions">
+          <a class="btn" id="viewOrderLink" href="account.html">View order</a>
+          <a class="btn btn--secondary" href="catalog.html">Continue shopping</a>
         </div>
-        <aside class="cart-summary">
-          <ul>
-            <li><span>Sub Total</span><span class="subtotal" id="cartSubtotal">$0</span></li>
-            <li id="cartDiscountRow" hidden><span>Discount (10%)</span><span id="cartDiscount">-$0</span></li>
-            <li><span>Delivery</span><span>Calculated at checkout</span></li>
-            <li class="total"><span>Total</span><span class="total-amount" id="cartTotal">$0</span></li>
-          </ul>
-          <a class="btn checkout" id="checkoutBtn" href="checkout.html">Proceed to checkout</a>
-        </aside>
-      </div>
+      </section>
+
+      <section class="state-card" id="orderMissing" hidden>
+        <h1 class="state-card__title">Order not found</h1>
+        <p class="state-card__text">We couldn't find this order in this browser.</p>
+        <a class="btn" href="account.html">Go to my orders</a>
+      </section>
     </div>
   </main>
-
 
   <footer class="site-footer">
     <div class="footer-top">
@@ -192,9 +186,10 @@
   <script src="../js/utils/paths.js" defer></script>
   <script src="../js/utils/storage.js" defer></script>
   <script src="../js/utils/products.js" defer></script>
-  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/format.js" defer></script>
+  <script src="../js/utils/orders.js" defer></script>
   <script src="../js/utils/modal.js" defer></script>
   <script src="../js/main.js" defer></script>
-  <script src="../js/cart.js" defer></script>
+  <script src="../js/order-success.js" defer></script>
 </body>
 </html>

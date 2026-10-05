@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Best Shop - Cart</title>
-  <meta name="description" content="Review your Best Shop cart, update quantities and check out.">
+  <title>My account — Best Shop</title>
+  <meta name="description" content="Your Best Shop orders and saved details.">
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,42 +70,43 @@
     </div>
   </header>
 
-  <section class="hero-slider-cart">
-    <div class="hero-slide active">
-      <img src="../assets/images/cart-slide.png" alt="">
-      <div class="hero-content">
-        <h1>My Cart</h1>
-      </div>
-    </div>
-  </section>
-
-  <main class="cart-page container">
-    <div class="cart-section">
-      <div class="cart-items-container" id="cartItemsContainer"></div>
-
-      <div class="cart-empty" id="cartEmpty" hidden>
-        <p>Your cart is empty. Use the catalog to add new items.</p>
-        <a href="catalog.html" class="btn">Browse Catalog</a>
+  <main class="account-page">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../../index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">My account</span>
+      </nav>
+      <div class="page-head">
+        <h1>My account</h1>
+        <p class="demo-notice">Guest account — orders are saved in this browser only (demo).</p>
       </div>
 
-      <div class="cart-bottom" id="cartBottom">
-        <div class="cart-buttons">
-          <a href="catalog.html" class="btn-cart">Continue Shopping</a>
-          <button type="button" class="btn-cart clear-cart" id="clearCartBtn">Clear Shopping Cart</button>
+      <section class="account-overview" aria-labelledby="overviewTitle">
+        <h2 class="visually-hidden" id="overviewTitle">Overview</h2>
+        <div class="overview-card">
+          <p class="overview-card__label">Customer</p>
+          <p class="overview-card__value" id="accountName">Guest</p>
+          <p class="overview-card__meta" id="accountEmail">No saved details yet</p>
         </div>
-        <aside class="cart-summary">
-          <ul>
-            <li><span>Sub Total</span><span class="subtotal" id="cartSubtotal">$0</span></li>
-            <li id="cartDiscountRow" hidden><span>Discount (10%)</span><span id="cartDiscount">-$0</span></li>
-            <li><span>Delivery</span><span>Calculated at checkout</span></li>
-            <li class="total"><span>Total</span><span class="total-amount" id="cartTotal">$0</span></li>
-          </ul>
-          <a class="btn checkout" id="checkoutBtn" href="checkout.html">Proceed to checkout</a>
-        </aside>
-      </div>
+        <div class="overview-card">
+          <p class="overview-card__label">Orders</p>
+          <p class="overview-card__value" id="accountOrderCount">0</p>
+          <p class="overview-card__meta" id="accountLastOrder"></p>
+        </div>
+      </section>
+
+      <section class="account-orders" aria-labelledby="ordersTitle">
+        <h2 id="ordersTitle">My orders</h2>
+        <ul class="orders-list" id="ordersList"></ul>
+        <div class="state-card" id="ordersEmpty" hidden>
+          <p class="state-card__title">You don’t have any orders yet</p>
+          <p class="state-card__text">When you place an order, it will appear here.</p>
+          <a class="btn" href="catalog.html">Shop now</a>
+        </div>
+      </section>
     </div>
   </main>
-
 
   <footer class="site-footer">
     <div class="footer-top">
@@ -192,9 +194,12 @@
   <script src="../js/utils/paths.js" defer></script>
   <script src="../js/utils/storage.js" defer></script>
   <script src="../js/utils/products.js" defer></script>
-  <script src="../js/utils/render-card.js" defer></script>
+  <script src="../js/utils/format.js" defer></script>
+  <script src="../js/utils/orders.js" defer></script>
+  <script src="../js/utils/customer.js" defer></script>
+  <script src="../js/utils/order-view.js" defer></script>
   <script src="../js/utils/modal.js" defer></script>
   <script src="../js/main.js" defer></script>
-  <script src="../js/cart.js" defer></script>
+  <script src="../js/account.js" defer></script>
 </body>
 </html>

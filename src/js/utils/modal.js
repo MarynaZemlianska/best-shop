@@ -1,6 +1,6 @@
 /**
- * Generic modal helpers used by the login modal, the cart "clear/checkout"
- * dialogs and any future overlay: Escape to close, click on the backdrop to
+ * Generic modal helpers used by the cart "clear cart" confirm dialog and any
+ * future overlay: Escape to close, click on the backdrop to
  * close, Tab kept inside the open dialog, focus returned to the element that
  * opened it, and page-scroll locking while at least one modal is open.
  */

@@ -6,7 +6,7 @@
 //   .btn--icon           square icon-only button (needs an aria-label)
 //   .btn--sm / --block   size and width modifiers
 //
-// Older class names that JS creates or queries (.btn-outline, .login-btn,
+// Older class names that JS creates or queries (.btn-outline,
 // .btn-cart, .add-cart, .page, .qty-btn, …) are mapped onto these variants
 // with @extend, so no selector used by scripts had to change.
 
